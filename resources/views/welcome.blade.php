@@ -69,7 +69,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">首页</a>
+                        <a href="{{ url('/home') }}">首页Yes</a>
                     @else
                         <a href="{{ route('login') }}">登录</a>
                         <a href="{{ route('register') }}">注册</a>
@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">文档</a>
+                    <a href="https://laravel.com/docs">文档OK</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">新闻</a>
                     <a href="https://forge.laravel.com">Forge</a>
