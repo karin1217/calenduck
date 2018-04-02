@@ -1,9 +1,46 @@
 
 // Fonts
 //@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+//@import url("http://fonts.googleapis.com/css?family=Salsa|Rancho|Jockey+One|Oswald|Yanone+Kaffeesatz");
 
 // Variables
 //@import "variables";
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+//@import "./themes/default/default";
+//@import "./themes/light/light";
+//@import "./themes/dark/dark";
+//@import "./themes/bar/bar";
+
+
+
+@import "~nivo-slider/nivo-slider";
+@import "style.main";
+@import "prettyPhoto";
+@import "owl.carousel";
+@import "jcarousel.connected-carousels";
+@import "../js/plugins/themeChanger/css/colorpicker";
+@import "../js/plugins/themeChanger/css/themeChanger";
+@import "~fullcalendar/dist/fullcalendar";
+@import "~fullcalendar-scheduler/dist/scheduler";
+//@import "~jquery-ui/themes/base/all.css";
+@import "~jquery-ui/themes/base/all.css";
+
+
+
+
+//<link rel="stylesheet" href="css/styles.css" />
+//<link rel="stylesheet" href="css/video-js.css" />
+//<link rel="stylesheet" href="css/nivo-slider.css" />
+//<link rel="stylesheet" href="css/prettyPhoto.css" />
+//<link rel="stylesheet" href="themeChanger/css/colorpicker.css" />
+//<link rel="stylesheet" href="themeChanger/css/themeChanger.css" />
+
+
+
+//@import "style";
+//@import "nivo-slider";
+//@import "anythingslider";

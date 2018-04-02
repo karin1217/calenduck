@@ -1,6 +1,11 @@
-@extends('layouts.default')
-{{--@section('title', '主页')--}}
+@extends('layouts.main')
+@section('title', '主页')
 
 @section('content')
-    <h7>主页</h7>
+    <div class="row-fluid" style="height: 300px;">
+        <h1>HOME PAGE</h1>
+        <div id='calendar'></div>
+        {{--<div id="calendar-x"></div>--}}
+
+    </div>
 @stop

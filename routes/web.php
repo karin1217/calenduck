@@ -20,3 +20,9 @@ Route::get('/', function () {
 Route::get('/', 'StaticPagesController@home');
 Route::get('/help', 'StaticPagesController@help');
 Route::get('/about', 'StaticPagesController@about');
+Route::get('/test', 'StaticPagesController@test');
+
+Route::get('/baby/', 'StaticPagesController@baby');
+Route::get('/main/', 'StaticPagesController@main');
+Route::get('/slider/', 'StaticPagesController@slider');
+Route::get('/calendar', 'StaticPagesController@calendar');
