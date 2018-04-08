@@ -4,7 +4,7 @@ $db_config = get_db_config();
 
 var_dump($db_config);
 
-return [
+var_dump( [
 
     /*
     |--------------------------------------------------------------------------
@@ -17,9 +17,9 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    //'default' => env('DB_CONNECTION', 'mysql'),
 
-        //'defalut'   =>  $db_config['connection'],
+        'defalut'   =>  $db_config['connection'],
     /*
     |--------------------------------------------------------------------------
     | Database Connections
@@ -59,29 +59,29 @@ return [
             'engine' => null,
         ],
 
-//        'pgsql' => [
-//            'driver' => 'pgsql',
-//            'host'  => $db_config['host'],
-//            'port' => env('DB_PORT', '5432'),
-//            'database' => $db_config['database'],
-//            'username' => $db_config['username'],
-//            'password' => $db_config['password'],
-//            'charset' => 'utf8',
-//            'prefix' => '',
-//            'schema' => 'public',
-//            'sslmode' => 'require',
-//        ],
+        'pgsql' => [
+            'driver' => 'pgsql',
+            'host'  => $db_config['host'],
+            'port' => env('DB_PORT', '5432'),
+            'database' => $db_config['database'],
+            'username' => $db_config['username'],
+            'password' => $db_config['password'],
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
+            'sslmode' => 'require',
+        ],
 
-//        'sqlsrv' => [
-//            'driver' => 'sqlsrv',
-//            'host' => env('DB_HOST', 'localhost'),
-//            'port' => env('DB_PORT', '1433'),
-//            'database' => env('DB_DATABASE', 'forge'),
-//            'username' => env('DB_USERNAME', 'forge'),
-//            'password' => env('DB_PASSWORD', ''),
-//            'charset' => 'utf8',
-//            'prefix' => '',
-//        ],
+        'sqlsrv' => [
+            'driver' => 'sqlsrv',
+            'host' => env('DB_HOST', 'localhost'),
+            'port' => env('DB_PORT', '1433'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+        ],
 
     ],
 
@@ -122,4 +122,4 @@ return [
 
     ],
 
-];
+]);exit;
