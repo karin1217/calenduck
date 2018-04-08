@@ -1,4 +1,5 @@
 <?php
+$db_config = get_db_config();
 
 return [
 
@@ -16,7 +17,7 @@ return [
     |
     */
 
-    'driver' => 'database',//env('SESSION_DRIVER', 'database'),
+    'driver' => env('SESSION_DRIVER', 'database'),
 
     /*
     |--------------------------------------------------------------------------

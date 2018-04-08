@@ -2,9 +2,8 @@
 
 $db_config = get_db_config();
 
-var_dump($db_config);
 
-var_dump( [
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -17,9 +16,9 @@ var_dump( [
     |
     */
 
-    //'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
-        'defalut'   =>  $db_config['connection'],
+        //'defalut'   =>  $db_config['connection'],
     /*
     |--------------------------------------------------------------------------
     | Database Connections
@@ -122,4 +121,4 @@ var_dump( [
 
     ],
 
-]);exit;
+];
