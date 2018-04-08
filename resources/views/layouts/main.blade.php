@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+@php
+    $lang = isset($lang) ? $lang : 'zh-CN';
+    app()->setLocale($lang);
+@endphp
 <html lang="{{ app()->getLocale() }}">
-    <!--[if lte IE 8]>              <html class="ie8 no-js" lang="en">     <![endif]-->
-    <!--[if IE 9]>					<html class="ie9 no-js" lang="en">     <![endif]-->
-    <!--[if (gt IE 9)|!(IE)]><!-->	<html class="not-ie no-js" lang="en">  <!--<![endif]-->
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,15 +12,36 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+
+
         <title>@yield('title','') - Karin's Home Diary </title>
 
         {{-- 科大博客 Google Fonts 加速 --}}
         {{-- 1-ajax.googleapis.com => ajax.lug.ustc.edu.cn --}}
         {{-- 2-fonts.googleapis.com => fonts.lug.ustc.edu.cn --}}
         {{-- 3-themes.googleusercontent.com => google-themes.lug.ustc.edu.cn --}}
-        <link href='http://fonts.lug.ustc.edu.cn/css?family=Salsa|Rancho|Jockey+One|Oswald|Yanone+Kaffeesatz|Nico+Moji' rel='stylesheet' type='text/css' />
+        {{--@if(Session::get('language') == 'en')--}}
+        {{--<link href='http://fonts.lug.ustc.edu.cn/css?family=Salsa|Rancho|Jockey+One|Oswald|Yanone+Kaffeesatz' rel='stylesheet' type='text/css' />--}}
+        <link href='http://fonts.lug.ustc.edu.cn/css?family=Salsa|Rancho|Jockey+One|Oswald|Yanone+Kaffeesatz' rel='stylesheet' type='text/css' />
+        @if(Session::get('language') == 'ja' or Session::get('language') == 'en')
         <link href="https://fonts.lug.ustc.edu.cn/earlyaccess/nicomoji.css" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.lug.ustc.edu.cn/earlyaccess/sawarabigothic.css" rel="stylesheet" type="text/css" />
+        @elseif(Session::get('language') == 'ko')
+        <link href='http://fonts.lug.ustc.edu.cn/css?family=Salsa|Rancho|Jockey+One|Oswald|Yanone+Kaffeesatz|Jua' rel='stylesheet' type='text/css' />
+        @endif
         <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+
+        <style type="text/css">
+            .select2-container .select2-selection--single{
+                height:40px;
+                line-height: 40px;
+            }
+
+            .select2-container--default .select2-selection--single .select2-selection__arrow {
+                top: 7px;
+            }
+        </style>
+
     </head>
 
     <body class="t-blue t-pattern-1 secondary-page t-menu-1 t-header-1 t-text-1">
@@ -35,7 +57,6 @@
 
             @include('layouts._header')
 
-
             <div class="inner_copyright"></div>
             {{--@yield('content')--}}
 
@@ -43,31 +64,32 @@
                 @include('layouts._slider')
             @endif
 
-
         </div><!-- .bg-level-1 -->
 
         @include('layouts._middle')
 
-
         @include('layouts._footer')
 
-<div id="kids_theme_control_panel">
-    <a href="#" id="kids_theme_control_label"></a>
-</div><!-- #kids_theme_control_panel -->
+        <div id="kids_theme_control_panel">
+            <a href="#" id="kids_theme_control_label"></a>
+        </div><!-- #kids_theme_control_panel -->
 
-{{--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>--}}
-{{--<!--[if lt IE 9]>--}}
-{{--<script src="js/selectivizr-and-extra-selectors.min.js"></script>--}}
-{{--<![endif]-->--}}
-{{--<script src="js/jquery-ui-1.8.16.custom.min.js"></script>--}}
-{{--<script src="js/jquery.easing-1.3.min.js"></script>--}}
-{{--<script src="js/jquery.nivo.slider.pack.js"></script>--}}
-{{--<script src="js/jquery.jcarousel.min.js"></script>--}}
-{{--<script src="js/video.js"></script>--}}
-{{--<script src="js/jquery.prettyPhoto.js"></script>--}}
-{{--<script src="js/scripts.js"></script>--}}
-{{--<script src="themeChanger/js/colorpicker.js"></script>--}}
-{{--<script src="themeChanger/js/themeChanger.js"></script>--}}
-<script src="{{ asset('js/app.js') }}"></script>
-</body>
+        <script src="{{ asset('js/app.js') }}"></script>
+
+        @if(Session::get('language') == 'zh-CN')
+        <script type="text/javascript" src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
+        <script type="text/javascript">
+            $youziku.load("#kids_main_nav", "6a0b49f78cb24eb0a18a1b8a58d6a7f8", "JetLinkBoldDoubleRound");
+            /*$youziku.load("#id1,.class1,h1", "6a0b49f78cb24eb0a18a1b8a58d6a7f8", "JetLinkBoldDoubleRound");*/
+            /*．．．*/
+            $youziku.draw();
+        </script>
+        @endif
+        @if(Session::get('language') == 'ko')
+            <script type="text/javascript">
+                $('.t-menu-1 #kids_main_nav').css('font-family','Jua')
+            </script>
+
+        @endif
+    </body>
 </html>

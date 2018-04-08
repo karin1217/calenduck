@@ -6,31 +6,46 @@
         <div class="bg-level-1-right" id="bg-level-1-right"></div>
 
         <ul class="kids_social">
+            {{--<li style="width: 160px;text-align: center;padding-top: 5px;padding-left: 70px;">--}}
             <li>
-                <form id="search-form" action="/" method="post" />
-                <input type="text" value="" />
-                <input type="submit" id="search-submit" />
-                </form><!--/ #search-form-->
+                <select id="select-language" style="width: 100px;  margin-left: 250px;margin-top: 10px; height: 50px;">
+                    <option value="zh-CN" imgPath="/images/lang_icons/flag_cn.png" {{ Session::get('language')=='zh-CN' ? 'selected="selected"' : '' }}>中文</option>
+                    <option value="en" imgPath="/images/lang_icons/flag_gb.png" {{ Session::get('language')=='en' ? 'selected="selected"' : '' }}>英文</option>
+                    <option value="ja" imgPath="/images/lang_icons/flag_jp.png" {{ Session::get('language')=='ja' ? 'selected="selected"' : '' }}>日文</option>
+                    {{--<option value="ko" imgPath="/images/lang_icons/flag_kr.png" {{ Session::get('language')=='ko' ? 'selected="selected"' : '' }}>韩文</option>--}}
+                </select>
             </li>
-            <li class="search"><a href="#" title="Search"></a></li>
-            <li class="vimeo"><a href="#" title="Vimeo"></a></li>
-            <li class="flickr"><a href="#" title="Flickr"></a></li>
-            <li class="facebook"><a href="#" title="Facebook"></a></li>
-            <li class="rss"><a href="#" title="RSS"></a></li>
-            <li class="openbtn"><a href="#"></a></li>
+            {{--<li class="lang-btn-en"><button class="lang-btn btn" href="/language/en">English</button></li>--}}
+            {{--<li class="lang-btn-cn"><button class="lang-btn btn" href="/language/zh-CN">Chinese</button></li>--}}
+            {{--<li class="lang-btn-jp"><button class="lang-btn btn" href="/language/ja">Japanese</button></li>--}}
+            {{--<li class="lang-btn-kr"><button class="lang-btn btn" href="/language/kr">Korean</button></li>--}}
+            {{--<li>--}}
+                {{--<form id="search-form" action="/" method="post" />--}}
+                {{--<input type="text" value="" />--}}
+                {{--<input type="submit" id="search-submit" />--}}
+                {{--</form><!--/ #search-form-->--}}
+            {{--</li>--}}
+            {{--<li class="search"><a href="#" title="Search"></a></li>--}}
+            {{--<li class="vimeo"><a href="#" title="Vimeo"></a></li>--}}
+            {{--<li class="flickr"><a href="#" title="Flickr"></a></li>--}}
+            {{--<li class="facebook"><a href="#" title="Facebook"></a></li>--}}
+            {{--<li class="rss"><a href="#" title="RSS"></a></li>--}}
+            {{--<li class="openbtn"><a href="#"></a></li>--}}
         </ul><!-- .kids_social -->
 
         <div id="kids_logo_block">
             <a id="kids_logo_text" href="index.html" title="Happy Kids">
-                <img src="images/logo.png" alt="" />
+                <img src="/images/logo.png" alt="" />
             </a>
         </div><!--/ #kids_logo_block-->
 
+        {{--<nav id="kids_main_nav" style="width: 100%;position: absolute;top: 61px;">--}}
         <nav id="kids_main_nav">
 
+            {{--<ul class="clearfix" style="position: absolute;right: 20px;">--}}
             <ul class="clearfix">
                 <li class="current-menu-item">
-                    <a href="index.html">ホーム</a>
+                    <a href="index.html">{{ trans('menu.main.home', [], Session::get('language')) }}</a>
                     <ul>
                         <li class="current-menu-item"><a href="index.html">Nivo Slider</a></li>
                         <li><a href="anything-slider.html">Anything Slider</a></li>
@@ -42,7 +57,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="color-variations.html">フィーチャー</a>
+                    <a href="color-variations.html">{{ trans('menu.main.feature', [], Session::get('language')) }}</a>
                     <ul>
                         <li><a href="color-variations.html">6 Color Variations</a></li>
                         <li>
@@ -59,7 +74,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="full-width.html">ページ</a>
+                    <a href="full-width.html">{{ trans('menu.main.page', [], Session::get('language')) }}</a>
                     <ul>
                         <li><a href="full-width.html">Full Width Page</a></li>
                         <li><a href="double-sidebars.html">Double Sidebars</a></li>
@@ -72,7 +87,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="portfolio-1col.html">ギャラリー</a>
+                    <a href="portfolio-1col.html">{{ trans('menu.main.portfolio', [], Session::get('language')) }}</a>
                     <ul>
                         <li><a href="portfolio-1col.html">Portfolio 1 column</a></li>
                         <li><a href="portfolio-2col.html">Portfolio 2 columns</a></li>
@@ -84,7 +99,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="blog-style-1.html">ブログ</a>
+                    <a href="blog-style-1.html">{{ trans('menu.main.blog', [], Session::get('language')) }}</a>
                     <ul>
                         <li><a href="blog-style-1.html">BlogStyle 1</a></li>
                         <li><a href="blog-details-1.html">BlogDetails 1</a></li>
@@ -93,7 +108,7 @@
                         <li><a href="blog-style-double-sidebars.html">DoubleSidebars</a></li>
                     </ul>
                 </li>
-                <li><a href="contact.html">コンタクト</a></li>
+                <li><a href="contact.html">{{ trans('menu.main.contact', [], Session::get('language')) }}</a></li>
 
             </ul></nav><!-- #kids_main_nav -->
 

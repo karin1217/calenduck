@@ -100,9 +100,28 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
+//        'attribute-name' => [
+//            'rule-name' => 'custom-message',
+//        ],
+//        'name'                  =>  [
+//            'required'              =>      'The :attribute field is required.',
+//        ],
+//
+//        'email'                 =>  [
+//            'required'              =>      'The :attribute field is required.',
+//            'email'                 =>      'The :attribute must be a valid email address.',
+//        ],
+//
+//        'password'              =>  [
+//            'required'              =>      'The :attribute field is required.',
+//            'min'                   =>      'The :attribute must be at least :min characters.',
+//            'confirmed'             =>      'The :attribute must be at least :min characters.',
+//        ],
+//
+//        'password_confirmation' => [
+//            'required'              =>      'The :attribute field is required.',
+//            'confirmed'             =>      'The :attribute must be at least :min characters.',
+//        ],
     ],
 
     /*
@@ -116,6 +135,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes'    =>      [
+        'name'          =>          'User Name',
+        'email'         =>          'E-Mail',
+        'password'      =>          'Password',
+        'password_confirmation' =>  'Password(Confirmation)'
+    ],
 
 ];

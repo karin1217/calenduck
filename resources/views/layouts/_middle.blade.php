@@ -49,6 +49,7 @@
 
     </div><!-- .kids_top_content -->
 
+
     @yield('content')
 
     @if(isset($isShowRecent))

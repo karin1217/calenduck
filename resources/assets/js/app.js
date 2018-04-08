@@ -17,18 +17,20 @@ require('nivo-slider/jquery.nivo.slider');
 require('jquery-ui');
 require('./plugins/jquery.easing-1.3.min');
 //require('owl.carousel');
-require('jcarousel');
+//require('jcarousel');
 //require('./plugins/jquery.jcarousel.min');
-require('./plugins/video');
-require('./plugins/jquery.prettyPhoto');
+// require('./plugins/video');
+// require('./plugins/jquery.prettyPhoto');
 
 require('./plugins/themeChanger/js/colorpicker');
 require('./plugins/themeChanger/js/themeChanger');
 
 
 require('fullcalendar');
-require('fullcalendar/dist/locale/zh-cn');
+require('fullcalendar/dist/locale/ja');
 require('fullcalendar-scheduler');
+
+require('select2')
 
 
 // jquery.tweet.js - See http://tweet.seaofclouds.com/ or https://github.com/seaofclouds/tweet for more info
@@ -89,17 +91,17 @@ jQuery(document).ready(function($) {
 
     /* Social Icons --> Begin */
 
-    $('.kids_social li').not('li:first, li:last', this).append('<span></span>').hover(function() {
-        $(this).find('span').stop(true,false).animate({
-            height: "100%",
-            opacity: "1"
-        }, 'normal');
-    }, function() {
-        $(this).find('span').stop(true,false).animate({
-            height: "0",
-            opacity: "0"
-        }, 'normal');
-    });
+    // $('.kids_social li').not('li:first, li:last', this).append('<span></span>').hover(function() {
+    //     $(this).find('span').stop(true,false).animate({
+    //         height: "100%",
+    //         opacity: "1"
+    //     }, 'normal');
+    // }, function() {
+    //     $(this).find('span').stop(true,false).animate({
+    //         height: "0",
+    //         opacity: "0"
+    //     }, 'normal');
+    // });
 
     /* Social Icons --> End */
 
@@ -347,171 +349,79 @@ jQuery(document).ready(function($) {
 
     /* Lofslidernews --> End */
 
-    console.log($('.jcarousel').length);
-
-
-
-
-    var photoWidth = 222, //图宽
-        photoMargin = 10, //图片间距
-        borderMargin = 5; //边缘距离
-
-
-    /* jCarousel --> Begin */
-    (function () {
-
-
-        console.log('Begin...');
-        $('.jcarousel')
-            .on('jcarousel:create jcarousel:reload', function() {
-                var element = $(this),
-                    width = element.innerWidth();
-
-                if (width > 600) {
-                    width = width / 4;
-                } else if (width > 200) {
-                    width = width / 2;
-                }
-
-                //element.jcarousel('items').css('width', width + 'px');
-                element.jcarousel('items').css({
-                    'width': photoWidth + 'px',
-                    'margin-top': borderMargin+'px',
-                    'margin-right': photoMargin+'px',
-                    'margin-left': borderMargin+'px'
-                });
-            })
-        .jcarousel();
-
-        //$('.jcarousel').jcarousel();
-        console.log('Started...');
-
-        //$('.jcarousel-control-prev')
-        $('.jcarousel-prev')
-            .on('jcarouselcontrol:active', function() {
-                $(this).removeClass('inactive');
-            })
-            .on('jcarouselcontrol:inactive', function() {
-                $(this).addClass('inactive');
-            })
-            .jcarouselControl({
-                target: '-=1'
-            });
-
-        //$('.jcarousel-control-next')
-        $('.jcarousel-next')
-            .on('jcarouselcontrol:active', function() {
-                $(this).removeClass('inactive');
-            })
-            .on('jcarouselcontrol:inactive', function() {
-                $(this).addClass('inactive');
-            })
-            .jcarouselControl({
-                target: '+=1'
-            });
-
-        $('.jcarousel-pagination')
-            .on('jcarouselpagination:active', 'a', function() {
-                $(this).addClass('active');
-            })
-            .on('jcarouselpagination:inactive', 'a', function() {
-                $(this).removeClass('active');
-            })
-            .jcarouselPagination();
-    })();
-
-
-
-
-
-    // var $carousel = $('.best-seller-carousel');
-    // console.log($carousel.length);
-    // $carousel.owlCarousel({
-    //     autoPlay: true,
-    //     slideSpeed:2000,
-    //     pagination:false,
-    //     navigation:true,
-    //     items : 4,
-    //     /* transitionStyle : "fade", */    /* [This code for animation ] */
-    //     // navigationText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
-    //     itemsDesktop : [1199,4],
-    //     itemsDesktopSmall : [991,4],
-    //     itemsTablet: [767,4],
-    //     itemsMobile: [479,4]
-    // });
-
-    // if($carousel.length) {
-    //     console.log($carousel.length);
-    //     // $carousel.jcarousel({
-    //     //     animation : 600,
-    //     //     easing    : 'easeOutCubic',
-    //     //     scroll    : 2
-    //     // });
-    //     $carousel.jcarousel(//{
-    //         // animation: {
-    //         //     duration: 800,
-    //         //     easing:   'linear'
-    //         //     //scroll:    2
-    //         // }
-    //         //});
-    //     );
+    // console.log($('.jcarousel').length);
     //
-    // }
-
-
-
-
-
-    // (function() {
     //
-    //     var $carousel = $('.projects_carousel');
-    //     if($carousel.length) {
-    //         console.log($carousel.length);
-    //         // $carousel.jcarousel({
-    //         //     animation : 600,
-    //         //     easing    : 'easeOutCubic',
-    //         //     scroll    : 2
-    //         // });
-    //         $carousel.jcarousel({
-    //             animation: 'slow'
-    //             // animation: {
-    //             //     duration: 800,
-    //             //     easing:   'linear'
-    //             //     //scroll:    2
-    //             // }
+    //
+    //
+    // var photoWidth = 222, //图宽
+    //     photoMargin = 10, //图片间距
+    //     borderMargin = 5; //边缘距离
+    //
+    //
+    // /* jCarousel --> Begin */
+    // (function () {
+    //
+    //
+    //     console.log('Begin...');
+    //     $('.jcarousel')
+    //         .on('jcarousel:create jcarousel:reload', function() {
+    //             var element = $(this),
+    //                 width = element.innerWidth();
+    //
+    //             if (width > 600) {
+    //                 width = width / 4;
+    //             } else if (width > 200) {
+    //                 width = width / 2;
+    //             }
+    //
+    //             //element.jcarousel('items').css('width', width + 'px');
+    //             element.jcarousel('items').css({
+    //                 'width': photoWidth + 'px',
+    //                 'margin-top': borderMargin+'px',
+    //                 'margin-right': photoMargin+'px',
+    //                 'margin-left': borderMargin+'px'
+    //             });
+    //         })
+    //     .jcarousel();
+    //
+    //     //$('.jcarousel').jcarousel();
+    //     console.log('Started...');
+    //
+    //     //$('.jcarousel-control-prev')
+    //     $('.jcarousel-prev')
+    //         .on('jcarouselcontrol:active', function() {
+    //             $(this).removeClass('inactive');
+    //         })
+    //         .on('jcarouselcontrol:inactive', function() {
+    //             $(this).addClass('inactive');
+    //         })
+    //         .jcarouselControl({
+    //             target: '-=1'
     //         });
-    //     }
     //
+    //     //$('.jcarousel-control-next')
+    //     $('.jcarousel-next')
+    //         .on('jcarouselcontrol:active', function() {
+    //             $(this).removeClass('inactive');
+    //         })
+    //         .on('jcarouselcontrol:inactive', function() {
+    //             $(this).addClass('inactive');
+    //         })
+    //         .jcarouselControl({
+    //             target: '+=1'
+    //         });
+    //
+    //     $('.jcarousel-pagination')
+    //         .on('jcarouselpagination:active', 'a', function() {
+    //             $(this).addClass('active');
+    //         })
+    //         .on('jcarouselpagination:inactive', 'a', function() {
+    //             $(this).removeClass('active');
+    //         })
+    //         .jcarouselPagination();
     // })();
 
-
-
-
-    // if($('.minigallery-list .minigallery').length) {
-    //     $(".minigallery-list .minigallery").jCarouselLite({
-    //         btnNext: ".next",
-    //         btnPrev: ".prev",
-    //         scroll: 3,
-    //         visible: 9,
-    //         speed: 400,
-    //         mouseWheel: true,
-    //         circular:false,
-    //         easing: "easeInOutCubic"
-    //     });
-    // }
-    //
-    // if($('.minigallery-list2 .minigallery').length) {
-    //     $(".minigallery-list2 .minigallery").jCarouselLite({
-    //         btnNext: ".next2",
-    //         btnPrev: ".prev2",
-    //         scroll: 3,
-    //         visible: 9,
-    //         speed: 400,
-    //         mouseWheel: true,
-    //         circular:false,
-    //         easing: "easeInOutCubic"
-    //     });
-    // }
 
     /* jCarousel --> End */
 
@@ -607,24 +517,24 @@ jQuery(document).ready(function($) {
 
     /* Pretty photo popup --> Begin */
 
-    $("a.prettyPhoto").prettyPhoto();
+    // $("a.prettyPhoto").prettyPhoto();
+    // //
+    // if($('.prettyPhoto').length) {
     //
-    if($('.prettyPhoto').length) {
-
-        console.log('Pretty Photo will be init');
-
-        (function() {
-            $('a.prettyPhoto').prettyPhoto().each(function() {
-
-                //console.log('Pretty Photo accessing...');
-                $(this).append('<span class="kids_curtain">&nbsp;</span>');
-            });
-        })();
-
-    }
-
-
-    $('p + blockquote').prev().css('margin-bottom','0');
+    //     console.log('Pretty Photo will be init');
+    //
+    //     (function() {
+    //         $('a.prettyPhoto').prettyPhoto().each(function() {
+    //
+    //             //console.log('Pretty Photo accessing...');
+    //             $(this).append('<span class="kids_curtain">&nbsp;</span>');
+    //         });
+    //     })();
+    //
+    // }
+    //
+    //
+    // $('p + blockquote').prev().css('margin-bottom','0');
 
 
     /* Pretty photo popup --> End */
@@ -876,15 +786,16 @@ jQuery(document).ready(function($) {
     //Create a calendar and fill it with AJAX events
     $('#calendar').fullCalendar({
         schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
-        themeSystem: 'jquery-ui',
+        themeSystem: 'bootstrap3',
         //timeFormat: ' ', /*Trick to remove the start time of the event*/
-        timeFormat: 'h(:mm)t',
+        timeFormat: 'H(:mm)t',
 
         header: {
             left: "prev,next today",
             center: "title",
             right: "month,agendaWeek,agendaDay"
         },
+        titleFormat: 'YYYY-MM',
         selectable: true,
         navLinks: true,
         navLinkDayClick: function(date, jsEvent) {
@@ -895,31 +806,34 @@ jQuery(document).ready(function($) {
 
         },
         select: function(startDate, endDate, jsEvent, view){
-            alert('selected ' + startDate.format() + ' to ' + endDate.format() );
-            $('#calendar').fullCalendar( 'addEventSource',
-                [ // put the array in the `events` property
-                    {
-                        title  : 'event1',
-                        start  : startDate.format(),
-                        color: 'rgb(248,143,49)',     // an option!
-                        textColor: 'yellow' // an option!
-                    },
-                    {
-                        title  : 'event2',
-                        start  : startDate.format(),
-                        end    : endDate.format(),
-                        color: '#374006',     // an option!
-                        textColor: 'yellow' // an option!
-                    },
-                    {
-                        title  : 'event3',
-                        start  : startDate.format() + 'T12:30:00',
-                        color: '#F78006',     // an option!
-                        textColor: 'yellow', // an option!
-                        allDay: false
-                    }
-                ]
-            )
+            console.log('selected ' + startDate.format() + ' to ' + endDate.format() );
+
+            $('#myModal').modal({ keyboard: false });  // initialized with no keyboard
+            $('#myModal').modal('show');                // 初始化后立即调用 show 方法
+            // $('#calendar').fullCalendar( 'addEventSource',
+            //     [ // put the array in the `events` property
+            //         {
+            //             title  : 'event1',
+            //             start  : startDate.format(),
+            //             color: 'rgb(248,143,49)',     // an option!
+            //             textColor: 'yellow' // an option!
+            //         },
+            //         {
+            //             title  : 'event2',
+            //             start  : startDate.format(),
+            //             end    : endDate.format(),
+            //             color: '#374006',     // an option!
+            //             textColor: 'yellow' // an option!
+            //         },
+            //         {
+            //             title  : 'event3',
+            //             start  : startDate.format() + 'T12:30:00',
+            //             color: '#F78006',     // an option!
+            //             textColor: 'yellow', // an option!
+            //             allDay: false
+            //         }
+            //     ]
+            // )
         },
         // dayClick: function(date, jsEvent, view) {
         //
@@ -1002,43 +916,46 @@ jQuery(document).ready(function($) {
     });
     /* Full Calendar --> End */
 
+    /* Change Language --> Start */
+    $('.lang-btn').on('click',function(){
+        $('.lang-btn').attr('disabled','disabled');
+    });
 
 
-    // $('#calendar-x').fullCalendar({
-    //     defaultView: 'timelineDay'
-    // });
-    //
-    // $('#calendar-x').fullCalendar({
-    //     header: [
-    //         {center:'month,timelineFourDays'}
-    //     ],
-    //     views: {
-    //         timelineFourDays: {
-    //             type: 'timeline',
-    //                 duration: { days: 4 }
-    //         }
-    //     }
+
+    // $("select").select2({
+    //     templateResult: formatState
     // });
 
+    $("#select-language").select2({
+        //language: "zh-CN", //设置 提示语言
+        width: "140px", //设置下拉框的宽度
+        placeholder: "Please select...",
+        tags: true,
+        maximumSelectionLength: 5,  //设置最多可以选择多少项
+        templateResult: function (state) {
+            if (!state.id) {
+                return state.text;
+            }
+            console.log(state.element.getAttribute("imgPath"));
+            var $state = $('<span><img style="width: 40px;height: 40px; vertical-align: middle;" src="' + state.element.getAttribute("imgPath") + '" class="img-flag" /> ' + state.text + '</span>');
+            return $state;
+        },
+        templateSelection: function (state) {
+            if (!state.id) return state.text; // optgroup
+            var $state = $('<span><img style="width: 40px;height: 40px; vertical-align: middle;" src="' + state.element.getAttribute("imgPath") + '" class="img-flag" /> ' + state.text + '</span>');
+            return $state;
+        }
+    });
 
+    $("#select-language").on('change',function(){
+        console.log('Language will be changed');
+        $(this).prop('disabled',true);
+        window.location.href = '/language/' + $(this).val();
+    });
 
-        // $('#calendar-x').fullCalendar({
-        //     defaultView: 'timelineDay',
-        //     header: {
-        //         left: 'prev,next',
-        //         center: 'title',
-        //         right: 'timelineDay,timelineWeek,timelineMonth'
-        //     },
-        //     // resourceLabelText: 'Rooms',
-        //     // resources: [{"id":"a","title":"Auditorium A"},{"id":"b","title":"Auditorium B"},{"id":"c","title":"Auditorium C"}],//'https://fullcalendar.io/demo-resources.json',
-        //     events: [
-        //         {
-        //             title  : 'event1',
-        //             start  : '10:00',
-        //             end:     '17:00'
-        //         }
-        //     ]
-        // });
+    //$('select').select2();
+    /* Change Language --> End */
 
 
 });/* ######################### DOM READY - END ######################### */
