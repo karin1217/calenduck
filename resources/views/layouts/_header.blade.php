@@ -108,7 +108,7 @@
                         <li><a href="blog-style-double-sidebars.html">DoubleSidebars</a></li>
                     </ul>
                 </li>
-                <li><a href="contact.html">{{ trans('menu.main.contact', [], Session::get('language')) }}</a></li>
+                <li><a href="/login">{{ trans('menu.main.login', [], Session::get('language')) }}</a></li>
 
             </ul></nav><!-- #kids_main_nav -->
 
