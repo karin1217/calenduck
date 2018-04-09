@@ -10,5 +10,7 @@ return [
     'pages' =>  [
         'register'  =>  'New ID',
         'signup'    =>  'SignUp',
+
+        'profile'   =>  'Profile',
     ],
 ];

@@ -10,5 +10,7 @@ return [
     'pages' =>  [
         'register'  =>  '新账号注册',
         'signup'    =>  '注册',
+
+        'profile'   =>  '个人简介',
     ],
 ];

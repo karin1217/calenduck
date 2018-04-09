@@ -21,7 +21,6 @@ class CheckLang
         if( ! $lang ) {
             $lang = session('language');
         }
-
 //        dd($lang);
 //        $lang = $request->lang;//两者均可
         if( ! in_array($lang, ['en','ja','zh-CN']) ) {
