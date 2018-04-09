@@ -53,13 +53,5 @@ class UsersController extends Controller
         return view('users.show', compact('user'));
     }
 
-    public function test(Request $request, User $user)
-    {
 
-        //var_dump($request->session()->all());
-
-        App::setLocale($request->session()->get('language'));
-
-        return view('users.show', compact('user'));
-    }
 }

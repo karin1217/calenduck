@@ -10,8 +10,8 @@
             <li>
                 <select id="select-language" style="width: 100px;  margin-left: 250px;margin-top: 10px; height: 50px;">
                     <option value="zh-CN" imgPath="/images/lang_icons/flag_cn.png" {{ Session::get('language')=='zh-CN' ? 'selected="selected"' : '' }}>中文</option>
-                    <option value="en" imgPath="/images/lang_icons/flag_gb.png" {{ Session::get('language')=='en' ? 'selected="selected"' : '' }}>英文</option>
-                    <option value="ja" imgPath="/images/lang_icons/flag_jp.png" {{ Session::get('language')=='ja' ? 'selected="selected"' : '' }}>日文</option>
+                    <option value="en" imgPath="/images/lang_icons/flag_gb.png" {{ Session::get('language')=='en' ? 'selected="selected"' : '' }}>English</option>
+                    <option value="ja" imgPath="/images/lang_icons/flag_jp.png" {{ Session::get('language')=='ja' ? 'selected="selected"' : '' }}>日本語</option>
                     {{--<option value="ko" imgPath="/images/lang_icons/flag_kr.png" {{ Session::get('language')=='ko' ? 'selected="selected"' : '' }}>韩文</option>--}}
                 </select>
             </li>
