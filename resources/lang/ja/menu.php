@@ -15,6 +15,8 @@ return [
         'blog'      => 'ブログ',
         'contact'   => 'コンタクト',
         'signup'    => 'サインアップ',
+        'personal_center'   => 'ユーザーセンター',
+        'help'              =>      'ヘルプ',
         'login'     => 'ログイン',
         'logout'    => 'ログアウト',
     ],

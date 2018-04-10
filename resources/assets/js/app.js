@@ -951,11 +951,17 @@ jQuery(document).ready(function($) {
     $("#select-language").on('change',function(){
         console.log('Language will be changed');
         $(this).prop('disabled',true);
-        window.location.href = '/language/' + $(this).val();
+        window.location.href = '/lang/' + $(this).val();
     });
 
     //$('select').select2();
     /* Change Language --> End */
+
+    /* Logout --> End */
+    $('#logout').on('click',function(){
+        $('#logout-form').submit();
+    });
+    /* Logout --> End */
 
 
 });/* ######################### DOM READY - END ######################### */

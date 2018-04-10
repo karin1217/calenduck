@@ -2,34 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class LanguageController extends Controller
 {
-    public function change(Request $request, $lang='ja')
+    /**
+     *  言語切り替え処理
+     */
+    public function switchLang($lang)
     {
-        $lang = $request->route('lang');
-
-
-        if(in_array($lang, ['en','ja','kr','zh-CN'])) {
-            //设置全局Session
-            //session(['language' => $lang]);
-            $request->session()->put('language',$lang);
-
-            App::setLocale($lang);
-
-            $app = app();
-
-            $app->setLocale($lang);
-
-
-
-            //dd(App::getLocale());
-//            $prevUrl = session()->get('_previous')['url'];
-//            if ($prevUrl && !strpos($prevUrl, '/language/')) {
-//                return redirect($prevUrl);
-//            }
+        if (array_key_exists($lang, Config::get('languages'))) {
+            Session::put('applocale', $lang);
         }
+
+        //dd(Session('applocale'));
+        return Redirect::back();
     }
 }

@@ -14,6 +14,8 @@ return [
         'email'                 =>      'E-Mail',
         'password'              =>      'Password',
         'password_confirmation' =>      'Password(Confirmation)',
+        'signup'                =>      'Sign Up',
+        'remember'              =>      'Remember me',
     ],
 
     'hint'                      =>  [
@@ -26,6 +28,10 @@ return [
         'email'                 =>      'The :attribute must be a valid email address.',
         'password'              =>      'The :attribute more than :min alphanumeric characters.',
         'confirm'               =>      'Enter the same contents with the :other.',
+    ],
+
+    'bottom'                    =>  [
+        'have_no_account'       =>      'Sinup Now!',
     ],
 
 

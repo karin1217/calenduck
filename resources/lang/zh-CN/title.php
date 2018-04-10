@@ -8,6 +8,9 @@
 
 return [
     'pages' =>  [
+
+        'login'     =>  '登录',
+
         'register'  =>  '新账号注册',
         'signup'    =>  '注册',
 

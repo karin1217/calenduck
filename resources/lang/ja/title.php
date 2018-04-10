@@ -8,6 +8,8 @@
 
 return [
     'pages' =>  [
+        'login'     =>  'ログイン',
+
         'register'  =>  'IDを新規作成',
         'signup'    =>  '新規登録',
 

@@ -8,4 +8,9 @@
 
 return [
     'welcome' => 'Welcomes! You are going to open a new journey here.',
+
+    'login'     =>  [
+        'success'   =>  'Welcome back!',
+        'failed'    =>  'Sorry, your password does not match the account!'
+    ],
 ];

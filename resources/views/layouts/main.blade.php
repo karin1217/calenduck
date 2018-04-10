@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-@php
-    $lang = isset($lang) ? $lang : 'zh-CN';
-    app()->setLocale($lang);
-@endphp
 <html lang="{{ app()->getLocale() }}">
     <head>
         <meta charset="utf-8" />
@@ -20,13 +16,13 @@
         {{-- 1-ajax.googleapis.com => ajax.lug.ustc.edu.cn --}}
         {{-- 2-fonts.googleapis.com => fonts.lug.ustc.edu.cn --}}
         {{-- 3-themes.googleusercontent.com => google-themes.lug.ustc.edu.cn --}}
-        {{--@if(Session::get('language') == 'en')--}}
+        {{--@if(App::getLocale() == 'en')--}}
         {{--<link href='http://fonts.lug.ustc.edu.cn/css?family=Salsa|Rancho|Jockey+One|Oswald|Yanone+Kaffeesatz' rel='stylesheet' type='text/css' />--}}
         <link href='http://fonts.lug.ustc.edu.cn/css?family=Salsa|Rancho|Jockey+One|Oswald|Yanone+Kaffeesatz' rel='stylesheet' type='text/css' />
-        @if(Session::get('language') == 'ja' or Session::get('language') == 'en')
+        @if(App::getLocale() == 'ja' or App::getLocale() == 'en')
         <link href="https://fonts.lug.ustc.edu.cn/earlyaccess/nicomoji.css" rel="stylesheet" type="text/css" />
         <link href="https://fonts.lug.ustc.edu.cn/earlyaccess/sawarabigothic.css" rel="stylesheet" type="text/css" />
-        @elseif(Session::get('language') == 'ko')
+        @elseif(App::getLocale() == 'ko')
         <link href='http://fonts.lug.ustc.edu.cn/css?family=Salsa|Rancho|Jockey+One|Oswald|Yanone+Kaffeesatz|Jua' rel='stylesheet' type='text/css' />
         @endif
         <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
@@ -76,7 +72,7 @@
 
         <script src="{{ asset('js/app.js') }}"></script>
 
-        @if(Session::get('language') == 'zh-CN')
+        @if(App::getLocale() == 'zh-CN')
         <script type="text/javascript" src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
         <script type="text/javascript">
             $youziku.load("#kids_main_nav", "6a0b49f78cb24eb0a18a1b8a58d6a7f8", "JetLinkBoldDoubleRound");
@@ -85,7 +81,7 @@
             $youziku.draw();
         </script>
         @endif
-        @if(Session::get('language') == 'ko')
+        @if(App::getLocale() == 'ko')
             <script type="text/javascript">
                 $('.t-menu-1 #kids_main_nav').css('font-family','Jua')
             </script>

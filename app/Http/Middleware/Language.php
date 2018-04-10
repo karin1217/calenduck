@@ -3,7 +3,13 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
+
 //use Illuminate\Session\Middleware\StartSession;
 
 class Language
@@ -17,24 +23,15 @@ class Language
      */
     public function handle($request, Closure $next)
     {
-        //中间件获取路由参数
-        $lang = $request->route('lang');
-//        dd($lang);
-//        $lang = $request->lang;//两者均可
-        if(in_array($lang, ['en','ja','ko','zh-CN'])) {
-            //设置全局Session
-            session(['language' => $lang]);
 
-            App::setLocale($lang);
+//        dd(Config::get('languages'));
 
-            //dd(App::getLocale());
-            $prevUrl = session()->get('_previous')['url'];
-            if ($prevUrl && !strpos($prevUrl, '/language/')) {
-                return redirect($prevUrl);
-            }
+        if (Session::has('applocale') AND array_key_exists(Session::get('applocale'), Config::get('languages'))) {
+            App::setLocale(Session::get('applocale'));
+        } else {
+            App::setLocale(Config::get('app.fallback_locale'));
         }
 
-        return redirect('/');
-        //return $next($request);
+        return $next($request);
     }
 }

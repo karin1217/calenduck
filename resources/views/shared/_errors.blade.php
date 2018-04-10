@@ -2,7 +2,7 @@
     <div class="alert alert-danger">
         <ul>
             @foreach($errors->all() as $error)
-                <li>{{ trans($error,[],Session::get('language')) }}</li>
+                <li>{{ $error }}</li>
             @endforeach
         </ul>
     </div>
