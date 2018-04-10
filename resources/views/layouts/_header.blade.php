@@ -130,9 +130,7 @@
                         <li><a href="blog-style-double-sidebars.html">DoubleSidebars</a></li>
                     </ul>
                 </li>
-<<<<<<< HEAD
-                <li><a href="/login">{{ trans('menu.main.login', [], Session::get('language')) }}</a></li>
-=======
+
 
                 @if(Auth::check())
                     <li>
@@ -151,9 +149,10 @@
                     <li><a href="/login">{{ __('menu.main.help') }}</a></li>
                     <li><a href="/login">{{ __('menu.main.login') }}</a></li>
                 @endif
->>>>>>> login-logout
 
-            </ul></nav><!-- #kids_main_nav -->
+
+            </ul>
+        </nav><!-- #kids_main_nav -->
 
     </div><!--/ .l-page-width-->
 
