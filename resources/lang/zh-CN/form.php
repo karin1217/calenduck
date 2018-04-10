@@ -14,6 +14,8 @@ return [
         'email'                 =>      '邮箱地址',
         'password'              =>      '密码',
         'password_confirmation' =>      '确认密码',
+        'signup'                =>      '注册',
+        'remember'              =>      '记住我',
     ],
 
     'hint'                      =>  [
@@ -26,6 +28,10 @@ return [
         'email'                 =>      '填写有效的邮箱地址。',
         'password'              =>      ':attribute必须由英文数字组成，并且在 3 个字符以上。',
         'confirm'               =>      '输入和:other一样的内容。',
+    ],
+
+    'bottom'                    =>  [
+        'have_no_account'       =>      '马上注册！',
     ],
 
 

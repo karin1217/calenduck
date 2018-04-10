@@ -8,14 +8,16 @@
 
 return [
     'main' => [
-        'home'      => 'HOME',
-        'feature'   => 'PARTS',
-        'page'      => 'PAGES',
-        'portfolio' => 'GALLERY',
-        'blog'      => 'BLOG',
-        'contact'   => 'CONTACT',
-        'signup'    => 'SIGN UP',
-        'login'     => 'LOGIN',
-        'logout'    => 'LOGOUT',
+        'home'              =>      'HOME',
+        'feature'           =>      'PARTS',
+        'page'              =>      'PAGES',
+        'portfolio'         =>      'GALLERY',
+        'blog'              =>      'BLOG',
+        'contact'           =>      'CONTACT',
+        'signup'            =>      'SIGN UP',
+        'personal_center'   =>      'Personal Center',
+        'help'              =>      'Help',
+        'login'             =>      'LOGIN',
+        'logout'            =>      'LOGOUT',
     ],
 ];

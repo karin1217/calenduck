@@ -18379,8 +18379,22 @@ PAGES STYLES -> Begin
 
 /* -- SignUp Form  --> Begin --  */
 
+.form-header {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: -10px;
+  position: relative;
+  top: -18px;
+  text-align: center;
+  text-shadow: #888888 1px 1px 1px;
+  letter-spacing: 10px;
+}
+
 .signupForm {
   margin-top: 1.7em;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .signupForm fieldset {
@@ -18455,6 +18469,80 @@ PAGES STYLES -> Begin
 }
 
 /* -- SignUp Form  --> End --  */
+
+/* -- Login Form  --> Start --  */
+
+.loginForm {
+  margin-top: 1.7em;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.loginForm fieldset {
+  border: 1px solid #9bc0dd;
+  border-radius: 5px;
+  background: #eaf7fb;
+  padding: 3em 3.5em 0 3.5em;
+}
+
+.loginForm .row {
+  margin-bottom: 2em;
+}
+
+.loginForm label {
+  color: #2f2f2f;
+  display: block;
+  margin-bottom: .4em;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.loginForm .row input {
+  background: #fafdfe;
+  height: 28px;
+  line-height: 28px;
+  width: 100%;
+  padding: 0 10px;
+  border: 1px solid #9bc0dd;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.loginForm .row input.error {
+  background: #ed4f6d14;
+  border: 1px solid #ed4f7073;
+}
+
+.loginForm .row input.error::-webkit-input-placeholder {
+  color: #ff000095;
+}
+
+.loginForm .row input.error:-ms-input-placeholder {
+  color: #ff000095;
+}
+
+.loginForm .row input.error::-ms-input-placeholder {
+  color: #ff000095;
+}
+
+.loginForm .row input.error::placeholder {
+  color: #ff000095;
+}
+
+.loginForm .row textarea {
+  padding: 10px;
+  font-size: 13px;
+  border: 1px solid #9bc0dd;
+  border-radius: 2px;
+  width: 100% !important;
+  min-height: 128px;
+  max-height: 500px;
+  margin-bottom: 1em;
+  font-family: Arial;
+}
+
+/* -- Login Form  --> End --  */
 
 div.pp_default .pp_top,
 div.pp_default .pp_top .pp_middle,

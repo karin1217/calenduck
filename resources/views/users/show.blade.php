@@ -7,19 +7,17 @@
         <div class="bg-level-2-page-width-container l-page-width no-padding">
             <section class="kids_bottom_content_container">
                 <div class="header_container">
-                    <h1>{{ trans('title.pages.profile', [], Session::get('language')) }}</h1>
+                    <h1>{{ __('title.pages.profile') }}</h1>
                     <ul id="breadcrumbs">
-                        <li><a href="/">{{ trans('menu.main.home',[],Session::get('language')) }}</a></li>
-                        <li>{{ trans('title.pages.profile',[],Session::get('language')) }}</li>
+                        <li><a href="/">{{ __('menu.main.home') }}</a></li>
+                        <li>{{ __('title.pages.profile') }}</li>
                     </ul>
                 </div>
                 <div class="entry-container">
 
                     @include('shared._messages')
 
-
-                    <div style="font-family:'Sawarabi Gothic'">{{ Session::get('language') }}</div>
-                    <div style="font-family:'Sawarabi Gothic'">{{ trans('messages.welcome',[], Session::get('language')) }}</div>
+                    {{--<div style="font-family:'Sawarabi Gothic'">{{ trans('messages.welcome',[], Session::get('language')) }}</div>--}}
 
                     <div style="width: 80%; margin: 3px auto; text-align: center;">@include('shared._user_info')</div>
 

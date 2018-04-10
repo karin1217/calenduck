@@ -8,6 +8,8 @@
 
 return [
     'pages' =>  [
+        'login'     =>  'Login',
+
         'register'  =>  'New ID',
         'signup'    =>  'SignUp',
 

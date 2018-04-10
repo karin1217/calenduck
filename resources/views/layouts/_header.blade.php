@@ -7,11 +7,33 @@
 
         <ul class="kids_social">
             {{--<li style="width: 160px;text-align: center;padding-top: 5px;padding-left: 70px;">--}}
+
+            {{--<!-- 言語切り替え -->--}}
+            {{--<li class="dropdown" id="nav-lang">--}}
+                {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
+                    {{--{{ Config::get('languages')[App::getLocale()] }}--}}
+                    {{--<span class="caret"></span></a>--}}
+                {{--<ul class="dropdown-menu">--}}
+                    {{--@foreach (Config::get('languages') as $lang => $language)--}}
+                        {{--@if ($lang != App::getLocale())--}}
+                            {{--<li>--}}
+                                {{--<a href="{{ route('lang.switch', $lang) }}">{{$language}}</a>--}}
+                            {{--</li>--}}
+                        {{--@endif--}}
+                    {{--@endforeach--}}
+                {{--</ul>--}}
+            {{--</li>--}}
+
+
+
             <li>
                 <select id="select-language" style="width: 100px;  margin-left: 250px;margin-top: 10px; height: 50px;">
-                    <option value="zh-CN" imgPath="/images/lang_icons/flag_cn.png" {{ Session::get('language')=='zh-CN' ? 'selected="selected"' : '' }}>中文</option>
-                    <option value="en" imgPath="/images/lang_icons/flag_gb.png" {{ Session::get('language')=='en' ? 'selected="selected"' : '' }}>English</option>
-                    <option value="ja" imgPath="/images/lang_icons/flag_jp.png" {{ Session::get('language')=='ja' ? 'selected="selected"' : '' }}>日本語</option>
+                    @foreach(Config::get('languages') as $lang => $languageText)
+                        <option value="{{ $lang }}" imgPath="/images/lang_icons/flag_{{ $lang }}.png" {{ $lang != App::getLocale() ? "" : 'selected="selected"' }}>{{$languageText}}</option>
+                    @endforeach
+                    {{--<option value="zh-CN" imgPath="/images/lang_icons/flag_cn.png" {{ Session::get('language')=='zh-CN' ? 'selected="selected"' : '' }}>中文</option>--}}
+                    {{--<option value="en" imgPath="/images/lang_icons/flag_gb.png" {{ Session::get('language')=='en' ? 'selected="selected"' : '' }}>English</option>--}}
+                    {{--<option value="ja" imgPath="/images/lang_icons/flag_jp.png" {{ Session::get('language')=='ja' ? 'selected="selected"' : '' }}>日本語</option>--}}
                     {{--<option value="ko" imgPath="/images/lang_icons/flag_kr.png" {{ Session::get('language')=='ko' ? 'selected="selected"' : '' }}>韩文</option>--}}
                 </select>
             </li>
@@ -45,7 +67,7 @@
             {{--<ul class="clearfix" style="position: absolute;right: 20px;">--}}
             <ul class="clearfix">
                 <li class="current-menu-item">
-                    <a href="index.html">{{ trans('menu.main.home', [], Session::get('language')) }}</a>
+                    <a href="index.html">{{ __('menu.main.home') }}</a>
                     <ul>
                         <li class="current-menu-item"><a href="index.html">Nivo Slider</a></li>
                         <li><a href="anything-slider.html">Anything Slider</a></li>
@@ -57,7 +79,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="color-variations.html">{{ trans('menu.main.feature', [], Session::get('language')) }}</a>
+                    <a href="color-variations.html">{{ __('menu.main.feature') }}</a>
                     <ul>
                         <li><a href="color-variations.html">6 Color Variations</a></li>
                         <li>
@@ -74,7 +96,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="full-width.html">{{ trans('menu.main.page', [], Session::get('language')) }}</a>
+                    <a href="full-width.html">{{ __('menu.main.page') }}</a>
                     <ul>
                         <li><a href="full-width.html">Full Width Page</a></li>
                         <li><a href="double-sidebars.html">Double Sidebars</a></li>
@@ -87,7 +109,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="portfolio-1col.html">{{ trans('menu.main.portfolio', [], Session::get('language')) }}</a>
+                    <a href="portfolio-1col.html">{{ __('menu.main.portfolio') }}</a>
                     <ul>
                         <li><a href="portfolio-1col.html">Portfolio 1 column</a></li>
                         <li><a href="portfolio-2col.html">Portfolio 2 columns</a></li>
@@ -99,7 +121,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="blog-style-1.html">{{ trans('menu.main.blog', [], Session::get('language')) }}</a>
+                    <a href="blog-style-1.html">{{ __('menu.main.blog') }}</a>
                     <ul>
                         <li><a href="blog-style-1.html">BlogStyle 1</a></li>
                         <li><a href="blog-details-1.html">BlogDetails 1</a></li>
@@ -108,7 +130,28 @@
                         <li><a href="blog-style-double-sidebars.html">DoubleSidebars</a></li>
                     </ul>
                 </li>
+<<<<<<< HEAD
                 <li><a href="/login">{{ trans('menu.main.login', [], Session::get('language')) }}</a></li>
+=======
+
+                @if(Auth::check())
+                    <li>
+                        <a href="javascript:;">{{ __('menu.main.personal_center') }}</a>
+                        <ul>
+                            <li><a href="{{ route('users.show', Auth::user()->id) }}">{{ __('title.pages.profile') }}</a></li>
+                            <li><a id="logout" href="javascript:;">{{ __('menu.main.logout') }}</a></li>
+                        </ul>
+                    </li>
+                    <form id='logout-form' method="post" action="{{ route('logout') }}">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        {{--<a href="javascript:;">{{ trans('menu.main.logout',[],Session::get('language')) }}</a>--}}
+                    </form>
+                @else
+                    <li><a href="/login">{{ __('menu.main.help') }}</a></li>
+                    <li><a href="/login">{{ __('menu.main.login') }}</a></li>
+                @endif
+>>>>>>> login-logout
 
             </ul></nav><!-- #kids_main_nav -->
 

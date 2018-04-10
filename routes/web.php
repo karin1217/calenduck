@@ -14,13 +14,16 @@
 use \Illuminate\Support\Facades\Route;
 
 /**
- * 切换语言
+ * 言語切替
  */
-Route::get('/language/{lang}', [
-        //指定Language中间件
-        'middleware' => 'language',
-        'uses' => 'LanguageController@change'
-    ]);
+Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
+//Route::get('/language/{lang}', [
+//        //指定Language中间件
+//        'middleware' => 'language',
+//        'uses' => 'LanguageController@change'
+//    ]);
+
+
 
 //Route::get('/language/{lang}', 'LanguageController@change');
 
@@ -36,7 +39,11 @@ Route::get('/calendar', 'StaticPagesController@calendar');
 
 Route::resource('/users', 'UsersController');
 /** 注册 **/
-Route::get('signup', 'UsersController@create')->name('signup');
+Route::get('/signup', 'UsersController@create')->name('signup');
+/** 登录 **/
+Route::get('/login', 'SessionsController@create')->name('login');
+Route::post('/login', 'SessionsController@store')->name('login');
+Route::delete('/logout', 'SessionsController@destroy')->name('logout');
 
 Route::resource('/events', 'CalendarController');
 /**

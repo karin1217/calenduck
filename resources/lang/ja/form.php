@@ -14,6 +14,8 @@ return [
         'email'                 =>      'メールアドレス',
         'password'              =>      'パスワード',
         'password_confirmation' =>      'パスワード(確認用)',
+        'signup'                =>      '登 録',
+        'remember'              =>      'ログイン状態を保持',
     ],
 
     'hint'                      =>  [
@@ -26,6 +28,10 @@ return [
         'email'                 =>      '有効なメールアドレスを入力してください。',
         'password'              =>      ':attributeは半角英数:min文字以上にして下さい。',
         'confirm'               =>      ':otherと同じ内容を入力してください。',
+    ],
+
+    'bottom'                    =>  [
+        'have_no_account'       =>      '今すぐ登録！',
     ],
 
 
