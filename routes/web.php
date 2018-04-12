@@ -32,6 +32,8 @@ Route::get('/calendar', 'StaticPagesController@calendar');
 Route::resource('/users', 'UsersController');
 /** 注册 **/
 Route::get('/signup', 'UsersController@create')->name('signup');
+Route::get('/signup/confirm/{token}', 'UsersController@confirmEmail')->name('confirm_email');
+
 /** 登录 **/
 Route::get('/login', 'SessionsController@create')->name('login');
 Route::post('/login', 'SessionsController@store')->name('login');

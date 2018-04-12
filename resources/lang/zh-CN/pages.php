@@ -32,6 +32,14 @@ return [
                 'redirect_if_authenticated' =>  '您已登录，无需再次操作。'
             ],
         ],
+
+        'store' =>  [
+            'message'   =>  [
+                'unactivated'   =>  '账号未激活，请检查邮箱中的注册邮件进行激活。',
+                'success'       =>  '欢迎回来 !',
+                'failed'        =>  '很报歉，您的账号与密码不匹配 !',
+            ],
+        ],
     ],
 
     'user'  =>  [
@@ -67,8 +75,11 @@ return [
                 'success'       =>  '用户删除成功。',
                 'failed'        =>  '用户删除失败。',
             ],
-
-
         ],
+
+        'email_confirmation'    =>  [
+            'message'   =>  '感谢注册 Calenduck 应用！请确认你的邮箱。',
+            'success'   =>  '验证邮件已发送到你的注册邮箱上，请注意查收。',
+        ]
     ],
 ];

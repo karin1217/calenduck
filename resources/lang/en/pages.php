@@ -29,8 +29,15 @@ return [
             ],
 
             'message'   =>  [
-                'redirect_if_authenticated' =>  'You have logged in, without reoperation.'
+                'redirect_if_authenticated' =>  'You have logged in, without reoperation.',
+            ],
+        ],
 
+        'store' =>  [
+            'message'   =>  [
+                'unactivated'   =>  'Your account is not activated. Please check the registered mail for activation.',
+                'success'       =>  'Welcome back!',
+                'failed'        =>  'Sorry, your password does not match the account!',
             ],
         ],
     ],
@@ -68,8 +75,11 @@ return [
                 'success'       =>  'Delete user successful.',
                 'failed'        =>  'Delete user failure.'
             ],
-
-
         ],
+
+        'email_confirmation'    =>  [
+            'message'   =>  'Thank you for the registration of the Calenduck application! Please confirm your email address.',
+            'success'   =>  'The verify mail has been sent to your registered mailbox, please check it.',
+        ]
     ],
 ];

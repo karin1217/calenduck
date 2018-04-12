@@ -50,11 +50,25 @@ class SessionsController extends Controller
 
         // 认证邮箱和密码是否匹配
         if (Auth::attempt($credentials, $request->has('remember'))) {
-            session()->flash('success', trans('messages.login.success'));
-            return redirect()->intended(route('users.show', [Auth::user()]));
+
+            if(Auth::user()->activated) {
+
+                session()->flash('success', trans('pages.session.store.message.success'));
+                return redirect()->intended(route('users.show', [Auth::user()]));
+
+            } else {
+
+                Auth::logout();
+                session()->flash('warning', trans('pages.session.store.message.unactivated'));
+                return redirect()->route('users.index');
+
+            }
+
         } else {
-            session()->flash('danger', trans('messages.login.failed'));
+
+            session()->flash('danger', trans('pages.session.store.message.failed'));
             return redirect()->back();
+
         }
     }
 
