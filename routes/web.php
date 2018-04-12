@@ -17,15 +17,7 @@ use \Illuminate\Support\Facades\Route;
  * 言語切替
  */
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
-//Route::get('/language/{lang}', [
-//        //指定Language中间件
-//        'middleware' => 'language',
-//        'uses' => 'LanguageController@change'
-//    ]);
 
-
-
-//Route::get('/language/{lang}', 'LanguageController@change');
 
 Route::get('/', 'StaticPagesController@home');
 Route::get('/help', 'StaticPagesController@help');

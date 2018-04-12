@@ -6,53 +6,13 @@
         <div class="bg-level-1-right" id="bg-level-1-right"></div>
 
         <ul class="kids_social">
-            {{--<li style="width: 160px;text-align: center;padding-top: 5px;padding-left: 70px;">--}}
-
-            {{--<!-- 言語切り替え -->--}}
-            {{--<li class="dropdown" id="nav-lang">--}}
-                {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
-                    {{--{{ Config::get('languages')[App::getLocale()] }}--}}
-                    {{--<span class="caret"></span></a>--}}
-                {{--<ul class="dropdown-menu">--}}
-                    {{--@foreach (Config::get('languages') as $lang => $language)--}}
-                        {{--@if ($lang != App::getLocale())--}}
-                            {{--<li>--}}
-                                {{--<a href="{{ route('lang.switch', $lang) }}">{{$language}}</a>--}}
-                            {{--</li>--}}
-                        {{--@endif--}}
-                    {{--@endforeach--}}
-                {{--</ul>--}}
-            {{--</li>--}}
-
-
-
             <li>
                 <select id="select-language" style="width: 100px;  margin-left: 250px;margin-top: 10px; height: 50px;">
                     @foreach(Config::get('languages') as $lang => $languageText)
                         <option value="{{ $lang }}" imgPath="/images/lang_icons/flag_{{ $lang }}.png" {{ $lang != App::getLocale() ? "" : 'selected="selected"' }}>{{$languageText}}</option>
                     @endforeach
-                    {{--<option value="zh-CN" imgPath="/images/lang_icons/flag_cn.png" {{ Session::get('language')=='zh-CN' ? 'selected="selected"' : '' }}>中文</option>--}}
-                    {{--<option value="en" imgPath="/images/lang_icons/flag_gb.png" {{ Session::get('language')=='en' ? 'selected="selected"' : '' }}>English</option>--}}
-                    {{--<option value="ja" imgPath="/images/lang_icons/flag_jp.png" {{ Session::get('language')=='ja' ? 'selected="selected"' : '' }}>日本語</option>--}}
-                    {{--<option value="ko" imgPath="/images/lang_icons/flag_kr.png" {{ Session::get('language')=='ko' ? 'selected="selected"' : '' }}>韩文</option>--}}
                 </select>
             </li>
-            {{--<li class="lang-btn-en"><button class="lang-btn btn" href="/language/en">English</button></li>--}}
-            {{--<li class="lang-btn-cn"><button class="lang-btn btn" href="/language/zh-CN">Chinese</button></li>--}}
-            {{--<li class="lang-btn-jp"><button class="lang-btn btn" href="/language/ja">Japanese</button></li>--}}
-            {{--<li class="lang-btn-kr"><button class="lang-btn btn" href="/language/kr">Korean</button></li>--}}
-            {{--<li>--}}
-                {{--<form id="search-form" action="/" method="post" />--}}
-                {{--<input type="text" value="" />--}}
-                {{--<input type="submit" id="search-submit" />--}}
-                {{--</form><!--/ #search-form-->--}}
-            {{--</li>--}}
-            {{--<li class="search"><a href="#" title="Search"></a></li>--}}
-            {{--<li class="vimeo"><a href="#" title="Vimeo"></a></li>--}}
-            {{--<li class="flickr"><a href="#" title="Flickr"></a></li>--}}
-            {{--<li class="facebook"><a href="#" title="Facebook"></a></li>--}}
-            {{--<li class="rss"><a href="#" title="RSS"></a></li>--}}
-            {{--<li class="openbtn"><a href="#"></a></li>--}}
         </ul><!-- .kids_social -->
 
         <div id="kids_logo_block">
@@ -134,9 +94,9 @@
 
                 @if(Auth::check())
                     <li>
-                        <a href="javascript:;">{{ __('menu.main.personal_center') }}</a>
+                        <a href="{{ route('users.show', Auth::user()->id) }}}">{{ __('menu.main.personal_center') }}</a>
                         <ul>
-                            <li><a href="{{ route('users.show', Auth::user()->id) }}">{{ __('title.pages.profile') }}</a></li>
+                            <li><a href="{{ route('users.edit', Auth::user()->id) }}">{{ __('title.pages.profile') }}</a></li>
                             <li><a id="logout" href="javascript:;">{{ __('menu.main.logout') }}</a></li>
                         </ul>
                     </li>

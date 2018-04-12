@@ -18377,7 +18377,41 @@ PAGES STYLES -> Begin
 
 /* ----- Sidebar Right  --> End ----- */
 
-/* -- SignUp Form  --> Begin --  */
+/* ----- Users List  --> Begin ----- */
+
+.users {
+  width: 80%;
+  border: solid 1px #eeeeee;
+  border-radius: 8px;
+  margin: 0 auto;
+  list-style: none;
+  padding-left: 0;
+}
+
+.users li {
+  overflow: auto;
+  padding: 10px 15px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.users li a {
+  line-height: 48px;
+}
+
+.users li form {
+  display: inline-block;
+  float: right;
+  margin-top: 10px;
+}
+
+.users .gravatar {
+  float: left;
+  margin-right: 10px;
+  max-width: 50px;
+  border-radius: 50%;
+}
+
+/* ----- Users List  --> End ----- */
 
 .form-header {
   margin-left: auto;
@@ -18389,6 +18423,8 @@ PAGES STYLES -> Begin
   text-shadow: #888888 1px 1px 1px;
   letter-spacing: 10px;
 }
+
+/* -- SignUp Form  --> Begin --  */
 
 .signupForm {
   margin-top: 1.7em;
@@ -18543,6 +18579,98 @@ PAGES STYLES -> Begin
 }
 
 /* -- Login Form  --> End --  */
+
+/* -- User Edit Form  --> Begin --  */
+
+.gravatar_edit {
+  margin: 15px auto;
+  text-align: center;
+}
+
+.gravatar_edit .gravatar {
+  float: none;
+  max-width: 100px;
+}
+
+.userEditForm {
+  margin-top: 1.7em;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.userEditForm fieldset {
+  border: 1px solid #9bc0dd;
+  border-radius: 5px;
+  background: #eaf7fb;
+  padding: 3em 3.5em 0 3.5em;
+}
+
+.userEditForm .row {
+  margin-bottom: 2em;
+}
+
+.userEditForm label {
+  color: #2f2f2f;
+  display: block;
+  margin-bottom: .4em;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.userEditForm .row input {
+  background: #fafdfe;
+  height: 28px;
+  line-height: 28px;
+  width: 100%;
+  padding: 0 10px;
+  border: 1px solid #9bc0dd;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.userEditForm .row input.error {
+  background: #ed4f6d14;
+  border: 1px solid #ed4f7073;
+}
+
+.userEditForm .row input.error::-webkit-input-placeholder {
+  color: #ff000095;
+}
+
+.userEditForm .row input.error:-ms-input-placeholder {
+  color: #ff000095;
+}
+
+.userEditForm .row input.error::-ms-input-placeholder {
+  color: #ff000095;
+}
+
+.userEditForm .row input.error::placeholder {
+  color: #ff000095;
+}
+
+.userEditForm .row textarea {
+  padding: 10px;
+  font-size: 13px;
+  border: 1px solid #9bc0dd;
+  border-radius: 2px;
+  width: 100% !important;
+  min-height: 128px;
+  max-height: 500px;
+  margin-bottom: 1em;
+  font-family: Arial;
+}
+
+.userEditForm hint {
+  width: 50%;
+  /* border: #9bc0dd6b solid 2px; */
+  /* border-radius: 5px; */
+  color: #777;
+  margin-left: 20px;
+}
+
+/* -- User Edit Form  --> End --  */
 
 div.pp_default .pp_top,
 div.pp_default .pp_top .pp_middle,

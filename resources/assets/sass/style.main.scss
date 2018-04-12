@@ -7271,4 +7271,40 @@ PAGES STYLES -> Begin
 
 /* ----- Sidebar Right  --> End ----- */
 
+/* ----- Users List  --> Begin ----- */
+
+
+
+.users {
+  width: 80%;
+  border: solid 1px $gray-lighter;
+  border-radius: 8px;
+  margin: 0 auto;
+  list-style: none;
+  padding-left: 0;
+  li {
+    overflow: auto;
+    padding: 10px 15px;
+    border-bottom: 1px solid $gray-lighter;
+
+    a{
+      line-height: 48px;
+    }
+    form {
+      display: inline-block;
+      float: right;
+      margin-top: 10px;
+    }
+  }
+
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    max-width: 50px;
+    border-radius: 50%;
+  }
+}
+
+/* ----- Users List  --> End ----- */
+
 

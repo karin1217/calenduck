@@ -1,4 +1,4 @@
-/* -- SignUp Form  --> Begin --  */
+
 $elm-half-width: 50%;
 $elm-full-width: 100%;
 $elm-span-8: 80%;
@@ -14,7 +14,7 @@ $elm-span-8: 80%;
   letter-spacing: 10px;
 }
 
-
+/* -- SignUp Form  --> Begin --  */
 .signupForm {
   margin-top:1.7em;
   width: $elm-span-8;
@@ -88,17 +88,6 @@ $elm-span-8: 80%;
     color: #777;
     margin-left: 20px;
   }
-
-  //.form-header {
-  //  margin-left: auto;
-  //  margin-right: auto;
-  //  margin-bottom: -10px;
-  //  position: relative;
-  //  top: -18px;
-  //  text-align: center;
-  //  text-shadow: #888888 1px 1px 1px;
-  //  letter-spacing: 10px;
-  //}
 }
 
 /* -- SignUp Form  --> End --  */
@@ -170,7 +159,93 @@ $elm-span-8: 80%;
     font-family: Arial;
   }
 
-
 }
 
 /* -- Login Form  --> End --  */
+
+/* -- User Edit Form  --> Begin --  */
+.gravatar_edit {
+  margin: 15px auto;
+  text-align: center;
+  .gravatar {
+    float: none;
+    max-width: 100px;
+  }
+}
+
+.userEditForm {
+  margin-top:1.7em;
+  width: $elm-half-width;
+  margin-left: auto;
+  margin-right: auto;
+
+  fieldset {
+    border:1px solid #9bc0dd;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    background:#eaf7fb;
+    padding:3em 3.5em 0 3.5em;
+  }
+
+  .row {
+    margin-bottom:2em;
+  }
+
+  label {
+    color:#2f2f2f;
+    display:block;
+    margin-bottom:.4em;
+    font-size:13px;
+    font-weight:700;
+  }
+
+  //.row input[type="text"]
+  .row input {
+    background:#fafdfe;
+    height:28px;
+    line-height:28px;
+    width:$elm-full-width;
+    padding:0 10px;
+    border:1px solid #9bc0dd;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    border-radius:2px;
+    display: inline-block;
+  }
+
+  .row input.error {
+    background: #ed4f6d14;
+    border:1px solid #ed4f7073;
+  }
+
+  .row input.error::placeholder {
+    //background: #ed4f6d14;
+    color: #ff000095;
+  }
+
+
+  .row textarea {
+    padding:10px;
+    font-size:13px;
+    border:1px solid #9bc0dd;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    border-radius:2px;
+    width:$elm-full-width !important;
+    min-height:128px;
+    max-height:500px;
+    margin-bottom:1em;
+    font-family: Arial;
+  }
+
+  hint {
+    width: 50%;
+    /* border: #9bc0dd6b solid 2px; */
+    /* border-radius: 5px; */
+    color: #777;
+    margin-left: 20px;
+  }
+}
+
+/* -- User Edit Form  --> End --  */

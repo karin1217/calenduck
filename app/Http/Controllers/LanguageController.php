@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\Session;
 class LanguageController extends Controller
 {
     /**
-     *  言語切り替え処理
+     * 语言切换处理
+     *
+     * @param $lang
+     * @return mixed
      */
     public function switchLang($lang)
     {
@@ -19,7 +22,6 @@ class LanguageController extends Controller
             Session::put('applocale', $lang);
         }
 
-        //dd(Session('applocale'));
         return Redirect::back();
     }
 }

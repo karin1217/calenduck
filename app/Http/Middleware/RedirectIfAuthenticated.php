@@ -18,7 +18,10 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+
+            session()->flash('info', trans('pages.session.create.message.redirect_if_authenticated'));
+
+            return redirect( route('users.show', [Auth::user()]) );
         }
 
         return $next($request);

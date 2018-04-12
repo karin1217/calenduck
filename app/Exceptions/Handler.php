@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -36,6 +37,12 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        /**
+         * 如果捕捉到的例外属于“权限外”, 可以在这里作处理
+         */
+//        if($exception instanceof AuthorizationException) {
+//            dd('it works over here');
+//        }
         parent::report($exception);
     }
 

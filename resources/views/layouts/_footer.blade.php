@@ -1,7 +1,7 @@
 <div class="kids_bottom_container">
 
     <div class="l-page-width clearfix" style="text-align: center">
-        <h9 class="widget-title">Copyright (c) 2017-<script>document.write(new Date().getFullYear());</script> Karin.</h9>
+        <h9 class="widget-title">Copyright (c) 2017-{{ date('Y') }} Karin.</h9>
 
         {{--<div class="one_fourth">--}}
 

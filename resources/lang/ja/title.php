@@ -13,6 +13,10 @@ return [
         'register'  =>  'IDを新規作成',
         'signup'    =>  '新規登録',
 
+
+
         'profile'   =>  'プロフィール',
+
+
     ],
 ];
