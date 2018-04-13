@@ -14,14 +14,13 @@
 use \Illuminate\Support\Facades\Route;
 
 
-var_dump('Route Start');
 /**
  * 言語切替
  */
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
 
 
-Route::get('/home', 'StaticPagesController@home');
+Route::get('/', 'StaticPagesController@home');
 Route::get('/help', 'StaticPagesController@help');
 Route::get('/about', 'StaticPagesController@about');
 Route::get('/test', 'StaticPagesController@test');
@@ -63,6 +62,3 @@ Route::resource('/events', 'CalendarController');
  *   Route::delete('/events/{event}', 'CalendarController@destroy')->name('events.destroy');  |
  * ===========================================================================================
  */
-
-
-var_dump('Route End');
