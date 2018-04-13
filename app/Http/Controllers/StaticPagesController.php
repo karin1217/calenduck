@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-echo 'Enter Pages';exit;
+echo 'Enter Pages';
 
 class StaticPagesController extends Controller
 {
