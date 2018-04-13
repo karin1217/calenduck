@@ -73,7 +73,7 @@
         <script src="{{ asset('js/app.js') }}"></script>
 
         @if(App::getLocale() == 'zh-CN')
-        <script type="text/javascript" src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
+        <script type="text/javascript" src="https://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
         <script type="text/javascript">
             $youziku.load("#kids_main_nav", "6a0b49f78cb24eb0a18a1b8a58d6a7f8", "JetLinkBoldDoubleRound");
             /*$youziku.load("#id1,.class1,h1", "6a0b49f78cb24eb0a18a1b8a58d6a7f8", "JetLinkBoldDoubleRound");*/
