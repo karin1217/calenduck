@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class StaticPagesController extends Controller
 {
     public function home()
     {
+        $user = User::first();
 
-        return "Hello Calenduck";
+        return "$user->name";
 //        $isShowRecent = true;
 //        $isShowSlider = true;
 //        return view('static_pages/home', compact('isShowRecent', 'isShowSlider'));
