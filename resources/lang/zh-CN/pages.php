@@ -22,6 +22,7 @@ return [
                 'label' =>  [
                     'email'         =>  '邮箱地址',
                     'password'      =>  '密码',
+                    'forgot'        =>  '忘记密码',
                     'remember'      =>  '记住我',
                     'sign_up_link'  =>  '马上注册 ! ',
                 ],

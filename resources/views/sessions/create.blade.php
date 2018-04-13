@@ -34,7 +34,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <label for="password">{{ __('pages.session.create.form.label.password') }} : </label>
+                                    <label for="password">{{ __('pages.session.create.form.label.password') }} (<a href="{{ route('password.request') }}">{{ __('pages.session.create.form.label.forgot') }})</a> : </label>
                                     <input type="password" name="password" class="form-control{{ $errors->has('password')?' error':'' }}" value="" placeholder="{{ $errors->first('password') }}">
                                 </div>
 
