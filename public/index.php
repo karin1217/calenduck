@@ -10,7 +10,7 @@
 define('LARAVEL_START', microtime(true));
 
 
-echo LARAVEL_START; exit;
+//echo LARAVEL_START; exit;
 
 
 /*
