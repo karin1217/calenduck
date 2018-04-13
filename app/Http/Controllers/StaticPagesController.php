@@ -8,9 +8,11 @@ class StaticPagesController extends Controller
 {
     public function home()
     {
-        $isShowRecent = true;
-        $isShowSlider = true;
-        return view('static_pages/home', compact('isShowRecent', 'isShowSlider'));
+
+        return "Hello Calenduck";
+//        $isShowRecent = true;
+//        $isShowSlider = true;
+//        return view('static_pages/home', compact('isShowRecent', 'isShowSlider'));
     }
 
     public function help()

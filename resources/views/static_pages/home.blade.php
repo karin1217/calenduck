@@ -18,7 +18,7 @@
                     {{--@include('shared._messages')--}}
 
 
-                    {{--<div id='calendar'></div>--}}
+                    <div id='calendar'></div>
 
                     {{--<div class="kids_clear"></div>--}}
                 </div><!-- .entry-container -->
