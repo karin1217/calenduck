@@ -31,3 +31,28 @@ function get_db_config()
         ];
     }
 }
+
+function get_url_config()
+{
+    if (getenv('IS_IN_HEROKU')) {
+
+
+        //var_dump($url);exit;
+
+        return $url_config = [
+            'url'   =>  'https://calenduck.herokuapp.com',
+        ];
+    }
+    else {
+        return $url_config = [
+            'url' => env('APP_URL', 'http://localhost'),
+        ];
+//        return $db_config = [
+//            'connection' => env('DB_CONNECTION', 'mysql'),
+//            'host' => env('DB_HOST', 'localhost'),
+//            'database'  => env('DB_DATABASE', 'forge'),
+//            'username'  => env('DB_USERNAME', 'forge'),
+//            'password'  => env('DB_PASSWORD', ''),
+//        ];
+    }
+}

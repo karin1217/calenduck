@@ -1,5 +1,7 @@
 <?php
 
+$url_config = get_url_config();
+
 return [
 
     /*
@@ -13,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Calenduck'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +54,11 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    //'url' => env('APP_URL', 'http://localhost'),
+
+    'url'   =>  $url_config['url'],
+
+
 
     /*
     |--------------------------------------------------------------------------
