@@ -9,6 +9,7 @@ class StaticPagesController extends Controller
 {
     public function home()
     {
+        return 'hello';
         //var_dump('Hello');exit;
 
         //$users = User::all();
