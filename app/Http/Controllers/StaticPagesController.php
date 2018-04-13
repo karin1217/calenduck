@@ -13,7 +13,7 @@ class StaticPagesController extends Controller
         //$users = User::all();
         //var_dump($users);exit;
 
-        return view('static_pages/list');
+        return view('static_pages.list');
 
         //return "$user->name";
 //        $isShowRecent = true;
