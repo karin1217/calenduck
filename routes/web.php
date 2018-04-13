@@ -13,6 +13,8 @@
 
 use \Illuminate\Support\Facades\Route;
 
+
+var_dump('Route Start');
 /**
  * 言語切替
  */
@@ -61,3 +63,6 @@ Route::resource('/events', 'CalendarController');
  *   Route::delete('/events/{event}', 'CalendarController@destroy')->name('events.destroy');  |
  * ===========================================================================================
  */
+
+
+var_dump('Route End');exit;
