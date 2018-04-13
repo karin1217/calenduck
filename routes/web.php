@@ -65,4 +65,4 @@ Route::resource('/events', 'CalendarController');
  */
 
 
-var_dump('Route End');exit;
+var_dump('Route End');

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+echo 'Enter Pages';exit;
+
 class StaticPagesController extends Controller
 {
     public function home()
