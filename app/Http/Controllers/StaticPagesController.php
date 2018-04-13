@@ -10,8 +10,9 @@ class StaticPagesController extends Controller
     public function home()
     {
         $users = User::paginate(10);
+        var_dump($users);exit;
 
-        return view('users.index', compact('users'));
+        //return view('users.index', compact('users'));
 
         //return "$user->name";
 //        $isShowRecent = true;
