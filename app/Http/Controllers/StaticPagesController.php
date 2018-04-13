@@ -9,7 +9,7 @@ class StaticPagesController extends Controller
 {
     public function home()
     {
-        $users = User::paginate(10);
+        $users = User::first(); //User::all(10);
         var_dump($users);exit;
 
         //return view('users.index', compact('users'));
