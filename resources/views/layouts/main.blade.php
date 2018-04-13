@@ -18,14 +18,14 @@
         {{-- 3-themes.googleusercontent.com => google-themes.lug.ustc.edu.cn --}}
         {{--@if(App::getLocale() == 'en')--}}
         {{--<link href='http://fonts.lug.ustc.edu.cn/css?family=Salsa|Rancho|Jockey+One|Oswald|Yanone+Kaffeesatz' rel='stylesheet' type='text/css' />--}}
-        <link href='http://fonts.lug.ustc.edu.cn/css?family=Salsa|Rancho|Jockey+One|Oswald|Yanone+Kaffeesatz' rel='stylesheet' type='text/css' />
+        <link href='https://fonts.lug.ustc.edu.cn/css?family=Salsa|Rancho|Jockey+One|Oswald|Yanone+Kaffeesatz' rel='stylesheet' type='text/css' />
         @if(App::getLocale() == 'ja' or App::getLocale() == 'en')
         <link href="https://fonts.lug.ustc.edu.cn/earlyaccess/nicomoji.css" rel="stylesheet" type="text/css" />
         <link href="https://fonts.lug.ustc.edu.cn/earlyaccess/sawarabigothic.css" rel="stylesheet" type="text/css" />
         @elseif(App::getLocale() == 'ko')
-        <link href='http://fonts.lug.ustc.edu.cn/css?family=Salsa|Rancho|Jockey+One|Oswald|Yanone+Kaffeesatz|Jua' rel='stylesheet' type='text/css' />
+        <link href='https://fonts.lug.ustc.edu.cn/css?family=Salsa|Rancho|Jockey+One|Oswald|Yanone+Kaffeesatz|Jua' rel='stylesheet' type='text/css' />
         @endif
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+        <link rel="stylesheet" href="https://{{ asset('css/app.css') }}" />
 
         <style type="text/css">
             .select2-container .select2-selection--single{
