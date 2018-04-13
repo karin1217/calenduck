@@ -9,9 +9,11 @@ class StaticPagesController extends Controller
 {
     public function home()
     {
-        $user = User::first();
+        $users = User::paginate(10);
 
-        return "$user->name";
+        return view('users.index', compact('users'));
+
+        //return "$user->name";
 //        $isShowRecent = true;
 //        $isShowSlider = true;
 //        return view('static_pages/home', compact('isShowRecent', 'isShowSlider'));
