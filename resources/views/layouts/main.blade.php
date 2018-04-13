@@ -25,7 +25,7 @@
         @elseif(App::getLocale() == 'ko')
         <link href='https://fonts.lug.ustc.edu.cn/css?family=Salsa|Rancho|Jockey+One|Oswald|Yanone+Kaffeesatz|Jua' rel='stylesheet' type='text/css' />
         @endif
-        <link rel="stylesheet" href="https://{{ asset('css/app.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
 
         <style type="text/css">
             .select2-container .select2-selection--single{
