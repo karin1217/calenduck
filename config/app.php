@@ -1,7 +1,5 @@
 <?php
 
-$url_config = get_url_config();
-
 return [
 
     /*
@@ -54,10 +52,7 @@ return [
     |
     */
 
-    //'url' => env('APP_URL', 'http://localhost'),
-
-    'url'   =>  $url_config['url'],
-
+    'url' => env('APP_URL', 'https://calenduck.herokuapp.com'),
 
 
     /*
