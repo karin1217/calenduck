@@ -9,10 +9,10 @@ class StaticPagesController extends Controller
 {
     public function home()
     {
-        $users = User::first(); //User::all(10);
-        var_dump($users);exit;
+        $users = User::all();
+        //var_dump($users);exit;
 
-        //return view('users.index', compact('users'));
+        return view('static_pages/list', compact('users'));
 
         //return "$user->name";
 //        $isShowRecent = true;
