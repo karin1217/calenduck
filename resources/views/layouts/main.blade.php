@@ -7,7 +7,10 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+        @if(env('APP_ENV')!='local')
+            <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+        @endif
+
 
 
 
@@ -25,6 +28,8 @@
         <link href="https://fonts.lug.ustc.edu.cn/earlyaccess/sawarabigothic.css" rel="stylesheet" type="text/css" />
         @elseif(App::getLocale() == 'ko')
         <link href='https://fonts.lug.ustc.edu.cn/css?family=Salsa|Rancho|Jockey+One|Oswald|Yanone+Kaffeesatz|Jua' rel='stylesheet' type='text/css' />
+        @elseif(App::getLocale() == 'zh-CN')
+        <link href="https://fonts.googleapis.com/earlyaccess/notosanssc.css" rel="stylesheet" type="text/css" />
         @endif
         <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
 
@@ -74,13 +79,16 @@
         <script src="{{ asset('js/app.js') }}"></script>
 
         @if(App::getLocale() == 'zh-CN')
-        <script type="text/javascript" src="https://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
-        <script type="text/javascript">
-            $youziku.load("#kids_main_nav", "6a0b49f78cb24eb0a18a1b8a58d6a7f8", "JetLinkBoldDoubleRound");
-            /*$youziku.load("#id1,.class1,h1", "6a0b49f78cb24eb0a18a1b8a58d6a7f8", "JetLinkBoldDoubleRound");*/
-            /*．．．*/
-            $youziku.draw();
-        </script>
+        {{--<script type="text/javascript" src="https://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>--}}
+        {{--<script type="text/javascript">--}}
+            {{--$youziku.load("#kids_main_nav", "6a0b49f78cb24eb0a18a1b8a58d6a7f8", "JetLinkBoldDoubleRound");--}}
+            {{--/*$youziku.load("#id1,.class1,h1", "6a0b49f78cb24eb0a18a1b8a58d6a7f8", "JetLinkBoldDoubleRound");*/--}}
+            {{--/*．．．*/--}}
+            {{--$youziku.draw();--}}
+        {{--</script>--}}
+            <script type="text/javascript">
+                $('.t-menu-1 #kids_main_nav').css({'font-family':'Noto Sans SC','font-weight': 900});
+            </script>
         @endif
         @if(App::getLocale() == 'ko')
             <script type="text/javascript">
