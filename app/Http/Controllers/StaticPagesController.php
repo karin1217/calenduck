@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-echo 'Enter Pages';
+
 
 class StaticPagesController extends Controller
 {
     public function home()
     {
-        return 'hello';
+        //return 'hello';
         //var_dump('Hello');exit;
 
         //$users = User::all();
