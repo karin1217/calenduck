@@ -11,7 +11,33 @@ return [
      *              Home
      ************************************/
     'home'  =>  [
-        'title' =>  '主页',
+        'title'     =>  '主页',
+
+        'top_menu'  =>  [
+            'wish_list'     =>  '愿望清单',
+            'my_account'        =>  [
+                'title'         =>  '账号中心',
+                'sub'           =>  [
+                    'list'      =>  '用户列表',
+                    'login'     =>  '登录',
+                    'logout'    =>  '退出',
+                    'profile'   =>  '个人简介',
+                    'update'    =>  '编缉个人信息',
+                    'help'      =>  '帮助',
+                ],
+            ],
+            'shopping_cart' =>  '购物车',
+            'check_out'     =>  '查看购物车',
+        ],
+
+        'nav'  =>  [
+            'home'          =>  '主页',
+            'shops'         =>  '商店列表',
+            'categories'    =>  '商品分类',
+            'gallery'       =>  '相册',
+            'blog'          =>  '博客',
+            'contact'       =>  '联系我们',
+        ],
     ],
 
     'session'   =>  [
@@ -46,6 +72,10 @@ return [
     'user'  =>  [
         'index' =>  [
             'title' =>  '用户列表',
+        ],
+
+        'create'    =>  [
+            'title' =>  '注册',
         ],
 
         'show'  =>  [

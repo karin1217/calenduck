@@ -103,13 +103,14 @@ class UsersController extends Controller
     {
         $view = 'emails.confirm';
         $data = compact('user');
-        $from = 'karin1217@gmail.com';
-        $name = 'karin1217';
+        $from = '1946294910@qq.com';
+        $name = '1946294910@qq.com';
         $to   = $user->email;
         $subject = trans('pages.user.email_confirmation.message');
 
         Mail::send($view, $data, function ($message) use ($from, $name, $to, $subject){
             $message->from($from, $name)->to($to)->subject($subject);
+//            $message->to($to)->subject($subject);
         });
     }
 

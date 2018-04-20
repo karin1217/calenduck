@@ -6,20 +6,73 @@
  */
 require('./bootstrap');
 
-require('jquery-ui');
-require('./plugins/jquery.easing-1.3.min');
+/*--------------------------------------------------------------------
+ * jQuery UI
+ * http://jqueryui.com
+ * Includes: core.js, widget.js, mouse.js, slider.js
+ * Copyright jQuery Foundation and other contributors; Licensed MIT
+ *--------------------------------------------------------------------*/
+require('jquery-ui/ui/core');
+require('jquery-ui/ui/widget');
+require('jquery-ui/ui/effect');
+require('jquery-ui/ui/widgets/mouse');
+require('jquery-ui/ui/widgets/slider');
 
+// /*!
+//  * jQuery UI Widget 1.12.1
+//  * http://jqueryui.com
+//  *
+//  * Copyright jQuery Foundation and other contributors
+//  * Released under the MIT license.
+//  * http://jquery.org/license
+//  */
+// require('jquery-ui');
+//require('./plugins/jquery.easing-1.3.min');
+/*--------------------------------------------------------------------
+ * FullCalendar v3.9.0
+ * Docs & License: https://fullcalendar.io/
+ * (c) 2018 Adam Shaw
+ *--------------------------------------------------------------------*/
 require('fullcalendar');
 require('fullcalendar/dist/locale/ja');
 require('fullcalendar-scheduler');
 
+/*--------------------------------------------------------------------
+ * Select2 4.0.6-rc.1
+ * https://select2.github.io
+ *
+ * Released under the MIT license
+ * https://github.com/select2/select2/blob/master/LICENSE.md
+ *--------------------------------------------------------------------*/
 require('select2');
-
+/*--------------------------------------------------------------------
+ * File: jquery.flexisel.js
+ * Version: 1.0.0
+ * Description: Responsive carousel jQuery plugin
+ * Author: 9bit Studios
+ * Copyright 2012, 9bit Studios
+ * http://www.9bitstudios.com
+ * Free to use and abuse under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ *--------------------------------------------------------------------*/
 require('./main/plugins/jquery.flexisel');
-require('./main/plugins/jquery.flexslider');
-require('./main/plugins/nav');
-require('./main/plugins/responsiveslides.min');
+/*--------------------------------------------------------------------
+ * jQuery FlexSlider v2.7.0
+ * Copyright 2012 WooThemes
+ * Contributing Author: Tyler Smith
+ *--------------------------------------------------------------------*/
+require('flexslider');
+/*--------------------------------------------------------------------
+ * ResponsiveSlides.js v1.55
+ * http://responsiveslides.com
+ * http://viljamis.com
+ *
+ * Copyright (c) 2011-2012 @viljamis
+ * Available under the MIT license
+ *--------------------------------------------------------------------*/
+require('./main/plugins/responsiveSlides/responsiveslides');
 
+require('./main/plugins/nav');
 
 jQuery(document).ready(function($) {
 
@@ -28,7 +81,7 @@ jQuery(document).ready(function($) {
     (function() {
 
         var extend = {
-            button      : '#kids-back-top',
+            button      : '#back-top',
             text        : 'Back to Top',
             min         : 200,
             fadeIn      : 400,
@@ -236,12 +289,12 @@ jQuery(document).ready(function($) {
                 return state.text;
             }
             console.log(state.element.getAttribute("imgPath"));
-            var $state = $('<span><img style="width: 40px;height: 40px; vertical-align: middle;" src="' + state.element.getAttribute("imgPath") + '" class="img-flag" /> ' + state.text + '</span>');
+            var $state = $('<span><img style="width: 30px;height: 30px; vertical-align: middle;" src="' + state.element.getAttribute("imgPath") + '" class="img-flag" /> ' + state.text + '</span>');
             return $state;
         },
         templateSelection: function (state) {
             if (!state.id) return state.text; // optgroup
-            var $state = $('<span><img style="width: 40px;height: 40px; vertical-align: middle;" src="' + state.element.getAttribute("imgPath") + '" class="img-flag" /> ' + state.text + '</span>');
+            var $state = $('<span><img style="width: 30px;height: 30px; vertical-align: middle;" src="' + state.element.getAttribute("imgPath") + '" class="img-flag" /> ' + state.text + '</span>');
             return $state;
         }
     }).on('change',function(){
@@ -333,6 +386,54 @@ jQuery(document).ready(function($) {
             $('.message1').remove();
         });
     });
+
+
+    /* Top Panel --> Begin */
+
+    var $panel = $(".top-panel");
+    // console.log('Init...');
+
+    $panel.slideUp('200');
+    $('.openbtn > a').removeClass('hidd');
+
+    $('.openbtn').on('click','a',function(e) {
+
+        console.log('Clicked');
+        var $target = $(e.target);
+
+        if($target.hasClass('hidd')) {
+            $panel.stop(true,false).animate({
+                opacity: '1'
+            },200);
+            $target.blur();
+        }
+
+        $panel.slideToggle(600, function(){
+
+            $target.toggleClass('hidd');
+
+            if($(this).css('display') == 'block') {
+                $(this).stop(true,false).animate({
+                    opacity:'1'
+                },200);
+            } else {
+                $(this).stop(true,false).animate({
+                    opacity:'1'
+                },200);
+            }
+        });
+
+        e.preventDefault();
+    });
+
+    /* Top Panel --> End */
+
+    // $('.header-bottom').on('mouseenter',function(){
+    //     $('.header-bottom-in').slideDown('slow');
+    // }).on('mouseleave',function () {
+    //     $('.header-bottom-in').slideUp('slow');
+    // });
+
     /*
     var defaults = {
           containerID: 'toTop', // fading element id
@@ -342,7 +443,7 @@ jQuery(document).ready(function($) {
      };
     */
 
-    $().UItoTop({ easingType: 'easeOutQuart' });
+    //$().UItoTop({ easingType: 'easeOutQuart' });
 
 });/* ######################### DOM READY - END ######################### */
 

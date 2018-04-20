@@ -10485,7 +10485,7 @@ a.cart-in {
   width: 100%;
   height: 63px;
   background: url(/images/back2.png?eec08fca07037f9fd2c34320a4c661a0) 0px 0px;
-  display: block;
+  display: none;
 }
 
 .header-bottom-on {
@@ -10510,12 +10510,12 @@ p.wel a:hover {
 
 .header-can {
   float: right;
-  width: 40%;
+  width: 50%;
 }
 
 ul.social-in {
   float: left;
-  width: 23%;
+  width: 100%;
   margin-top: 0.5em;
 }
 
@@ -10611,7 +10611,7 @@ ul.icon1 {
   opacity: 0;
   visibility: hidden;
   position: absolute;
-  top: 70px;
+  top: 44px;
   z-index: 1;
   right: -100px;
   background: #ffffff;
@@ -10670,11 +10670,11 @@ ul.icon1 {
 .icon1 ul li:first-child > a:after {
   content: '';
   position: absolute;
-  left: 45%;
-  top: -30px;
+  left: 8em;
+  top: -24px;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 10px solid #f0f0f0;
+  border-bottom: 10px solid #FFFFFF;
 }
 
 .icon1 ul ul li:first-child a:after {
@@ -10844,7 +10844,7 @@ select.in-drop option {
 .search {
   float: left;
   position: relative;
-  width: 47%;
+  width: 100%;
   border-top: 1px solid #DADADA;
   border-left: 1px solid #DADADA;
   background: #fff;
@@ -10886,6 +10886,8 @@ select.in-drop option {
 
 .nav {
   list-style: none;
+  font-size: 17px;
+  font-weight: 500;
   *zoom: 1;
 }
 
@@ -10929,7 +10931,7 @@ select.in-drop option {
   background: #f2e6bc;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #f2e6bc), to(#fbf2d3));
   background: linear-gradient(to bottom, #f2e6bc 1%, #fbf2d3 100%);
-  padding: 1.93em;
+  padding: 1.41em 2em 1.41em 2em;
 }
 
 .nav li {
@@ -10937,7 +10939,7 @@ select.in-drop option {
 }
 
 .nav li.active {
-  padding: 1.93em;
+  padding: 1.41em;
   background: #f2e6bc;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #f2e6bc), to(#fbf2d3));
   background: linear-gradient(to bottom, #f2e6bc 1%, #fbf2d3 100%);
@@ -10945,16 +10947,18 @@ select.in-drop option {
 
 .nav > li {
   float: left;
-  padding: 1.93em;
+  padding: 1.41em 2em 1.41em 2em;
 }
 
 .nav > li > a:hover {
   color: #7d7253;
+  background: none;
 }
 
 .nav > li.hover > ul {
   left: -1px;
   top: 40px;
+  opacity: 0.9;
 }
 
 .nav li li.hover ul {
@@ -10996,8 +11000,13 @@ select.in-drop option {
   padding: 0;
   z-index: 9999;
   background: #fbf2d3;
-  margin-top: 2.2em;
+  margin-top: 1.87em;
   padding: 1em;
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
 }
 
 .nav ul.drop li {
@@ -11895,7 +11904,7 @@ span.word {
 }
 
 .account {
-  padding: 4em 1em;
+  padding: 2em 10em;
 }
 
 /*--checkout--*/
@@ -12710,6 +12719,257 @@ ul.start li a i.next {
   .contact-top input[type="submit"] {
     width: 30%;
   }
+}
+
+/**
+ * Back To Top Button --> Begin
+ */
+
+#back-top span {
+  display: block;
+  margin-bottom: 7px;
+  width: 34px;
+  height: 57px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+  text-indent: -9999px;
+  -webkit-transition: all .25s linear;
+  transition: all .25s linear;
+  background-image: url("/images/up.png");
+}
+
+#back-top {
+  position: fixed;
+  bottom: 30px;
+  right: 10px;
+}
+
+/**
+ * Back To Top Button --> End
+ */
+
+/**----------------------------------------------------------
+ *	Select2 customize
+ ------------------------------------------------------------*/
+
+.select2-container .select2-selection--single {
+  height: 30px;
+  line-height: 30px;
+  border-color: #DBDBDB;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 2px;
+}
+
+.select2 .select2-container .select2-container--default .select2-container--below .select2-container--focus {
+  margin-top: -20px;
+}
+
+/**---------------------------------------------------------------
+ *	Top Panel
+ -----------------------------------------------------------------*/
+
+.switch-panel {
+  float: right;
+  margin-right: 10px;
+  margin-bottom: 25px;
+}
+
+.switch-panel li {
+  position: relative;
+  float: left;
+  margin: 0 0 0 1px;
+  padding: 8px;
+  /* border: 1px solid #DBDBDB; */
+  background-color: #F9F9F9;
+  width: 48px;
+  list-style: none;
+  height: 48px;
+  right: -10px;
+  border-bottom-left-radius: 5px;
+}
+
+.switch-panel a {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 36px;
+  height: 35px;
+  background-image: url(/images/social-icons.png);
+  background-repeat: no-repeat;
+  text-decoration: none;
+  text-indent: -9999px;
+  border-radius: 0 0 2px 2px;
+  -webkit-transition: all .25s linear;
+  transition: all .25s linear;
+}
+
+.switch-panel .openbtn .hidd {
+  background-position: -180px -35px;
+}
+
+.switch-panel .openbtn a {
+  background-position: -180px 0px;
+}
+
+.top-panel {
+  background-color: #3d7bb3;
+  border-color: #F9F9F9;
+  border-bottom-width: 6px;
+  border-bottom-style: solid;
+  color: #d9edf7;
+  display: block;
+}
+
+.header {
+  border-top: 6px solid #f9f9f9;
+}
+
+.search-bar {
+  float: right;
+}
+
+.search-bar > li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.language > span {
+  position: relative;
+  bottom: 10px;
+}
+
+form input.error {
+  background: #ed4f6d14;
+  border: 1px solid #ed4f7073;
+}
+
+form input.error::-webkit-input-placeholder {
+  color: #ff000095;
+}
+
+form input.error:-ms-input-placeholder {
+  color: #ff000095;
+}
+
+form input.error::-ms-input-placeholder {
+  color: #ff000095;
+}
+
+form input.error::placeholder {
+  color: #ff000095;
+}
+
+/*******************************************
+         * Sub Navigation
+         *******************************************/
+
+ul.sub-nav {
+  width: 150px;
+  right: 0;
+}
+
+ul.sub-nav li:first-child a {
+  padding-top: unset;
+}
+
+ul.sub-nav li a {
+  color: #ef5b30;
+  border-bottom: solid 1px #f5f5f5;
+}
+
+ul.sub-nav li:last-child a {
+  border-bottom: none;
+  padding-bottom: unset;
+}
+
+ul.sub-nav li {
+  width: 100%;
+}
+
+/*******************************************
+ * Container Wrapper
+ *******************************************/
+
+.wrapper {
+  padding: 2em 10em;
+}
+
+.wrapper .title {
+  color: #747272;
+  padding: 0 0 1em;
+}
+
+.wrapper .title:after {
+  content: "";
+  background: url(/images/line.png?8b581b2…) 0px 0px;
+  width: 100%;
+  height: 10px;
+  display: block;
+  vertical-align: middle;
+}
+
+/*******************************************
+ * Form Style
+ *******************************************/
+
+form > .row > span {
+  margin-top: 10px;
+}
+
+form > div {
+  margin: 1em;
+}
+
+form input[type=submit] {
+  background: #fc5e35;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(55%, #fc5e35), color-stop(55%, #fc5e35), to(#e94722));
+  background: linear-gradient(to bottom, #fc5e35 55%, #fc5e35 55%, #e94722 100%);
+  color: #fff;
+  font-size: 1.1em;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -o-transition: 0.5s all;
+  /*margin: 0 0 0 7em;*/
+  width: 100px;
+}
+
+/* Login Form */
+
+.loginForm p {
+  float: right;
+  right: 40%;
+  position: relative;
+}
+
+.form-panel {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.form-panel .panel-heading {
+  text-align: center;
+  letter-spacing: 10px;
+  font-size: larger;
+}
+
+.form-panel .panel-footer {
+  text-align: right;
+}
+
+.submit {
+  width: 100px;
+  margin: 0 auto;
 }
 
 /*!

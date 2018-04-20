@@ -12,6 +12,36 @@ return [
      ************************************/
     'home'  =>  [
         'title' =>  'ホーム',
+
+        'top_menu'  =>  [
+            'wish_list'     =>  'ウィッシュリスト',
+            'my_account'        =>  [
+                'title'         =>  'マイアカウント',
+                'sub'           =>  [
+                    'list'      =>  'ユーザーリスト',
+                    'login'     =>  'ログイン',
+                    'logout'    =>  'ログアウト',
+                    'profile'   =>  'プロファイル',
+                    'update'    =>  '情報更新',
+                    'help'      =>  'ヘルプ',
+                ],
+            ],
+            'shopping_cart' =>  'ショッピングカート',
+            'check_out'     =>  'チェックアウト',
+        ],
+
+        'nav'  =>  [
+            'home'          =>  'ホーム',
+            'shops'         =>  'ショップ',
+            'categories'    =>  'カテゴリー',
+            'gallery'       =>  'ギャラリー',
+            'blog'          =>  'ブログ',
+            'contact'       =>  'コンタクト',
+        ],
+
+        'message'   =>  [
+            'visitor'   =>  ''
+        ],
     ],
 
     'session'   =>  [
@@ -22,6 +52,7 @@ return [
                 'label' =>  [
                     'email'         =>  'メールアドレス',
                     'password'      =>  'パスワード',
+                    'forgot'        =>  'パスワードを忘れた',
                     'remember'      =>  'ログイン状態を保持',
                     'sign_up_link'  =>  '今すぐ登録',
                 ],
@@ -45,6 +76,10 @@ return [
     'user'  =>  [
         'index' =>  [
             'title' =>  'ユーザーリスト',
+        ],
+
+        'create'    =>  [
+            'title' =>  'サインアップ',
         ],
 
         'show'  =>  [

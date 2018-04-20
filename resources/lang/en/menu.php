@@ -16,7 +16,7 @@ return [
         'contact'           =>      'CONTACT',
         'signup'            =>      'SIGN UP',
         'personal_center'   =>      'Personal Center',
-        'help'              =>      'Help',
+        'help'              =>      'HELP',
         'login'             =>      'LOGIN',
         'logout'            =>      'LOGOUT',
     ],

@@ -12,6 +12,33 @@ return [
      ************************************/
     'home'      =>  [
         'title' =>  'Home',
+
+        'top_menu'  =>  [
+            'wish_list'         =>  'Wish List',
+            'my_account'        =>  [
+                'title'         =>  'My Account',
+                'sub'           =>  [
+                    'list'      =>  'Users List',
+                    'login'     =>  'Login',
+                    'logout'    =>  'Logout',
+                    'profile'   =>  'Profile',
+                    'update'    =>  'Update',
+                    'help'      =>  'Help',
+                ],
+            ],
+
+            'shopping_cart' =>  'Shopping Cart',
+            'check_out'     =>  'Check Out',
+        ],
+
+        'nav'  =>  [
+            'home'          =>  'Home',
+            'shops'         =>  'Shops List',
+            'categories'    =>  'Categories',
+            'gallery'       =>  'Gallery',
+            'blog'          =>  'Blog',
+            'contact'       =>  'Contact',
+        ],
     ],
 
     'session'   =>  [
@@ -22,6 +49,7 @@ return [
                 'label' =>  [
                     'email'         =>  'E-Mail',
                     'password'      =>  'Password',
+                    'forgot'        =>  'Forgot password',
                     'remember'      =>  'Remember Me',
                     'sign_up_link'  =>  'Sing Up Now ! ',
                 ],
@@ -45,6 +73,10 @@ return [
     'user'      =>  [
         'index' =>  [
             'title' =>  'All Users',
+        ],
+
+        'create'    =>  [
+            'title' =>  'Sign Up',
         ],
 
         'show'  =>  [

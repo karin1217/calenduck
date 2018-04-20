@@ -41,9 +41,18 @@ var adjustMenu = function() {
 		$(".nav").show();
 		$(".nav li").removeClass("hover");
 		$(".nav li a").unbind('click');
-		$(".nav li").unbind('mouseenter mouseleave').bind('mouseenter mouseleave', function() {
+		$(".nav li").unbind('mouseenter mouseleave').bind('mouseenter mouseleave', function(e) {
 		 	// must be attached to li so that mouseleave is not triggered when hover over submenu
-		 	$(this).toggleClass('hover');
+
+
+			//console.log(e);
+			if( e.type == 'mouseenter') {
+                $(this).addClass('hover');
+                //$('.drop').slideDown('slow');
+            } else {
+                $(this).removeClass('hover');
+                //$('.drop').slideUp('slow');
+			}
 		});
 	}
 }
