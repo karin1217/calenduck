@@ -4,25 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class StaticPagesController extends Controller
 {
     public function home()
     {
-        //return 'hello';
-        //var_dump('Hello');exit;
+        $feed_items = [];
 
-        //$users = User::all();
-        //var_dump($users);exit;
+        if(Auth::user())
+        {
+            $feed_items = Auth::user()->feed()->paginate(9);
+        }
 
-        return view('static_pages.list');
-
-        //return "$user->name";
-//        $isShowRecent = true;
-//        $isShowSlider = true;
-//        return view('static_pages/home', compact('isShowRecent', 'isShowSlider'));
+        return view('static_pages.list', compact('feed_items'));
     }
 
     public function help()

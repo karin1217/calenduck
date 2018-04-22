@@ -14,7 +14,7 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\Models\User::class, function (Faker $faker) {
-    $faker = \Faker\Factory::create('zh_CN');
+    //$faker = \Faker\Factory::create('zh_CN');
     $date_time = $faker->date . ' ' . $faker->time;
     static $password;
 

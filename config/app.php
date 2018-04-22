@@ -99,6 +99,8 @@ return [
 
     'fallback_locale' => 'zh-CN',
 
+    'faker_locale'    => 'ja_JP',
+
     /*
     |--------------------------------------------------------------------------
     | Encryption Key

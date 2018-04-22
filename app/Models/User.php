@@ -6,6 +6,8 @@ use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -53,5 +55,10 @@ class User extends Authenticatable
     public function blogs()
     {
         return $this->hasMany(Blog::class);
+    }
+
+    public function feed()
+    {
+        return $this->blogs()->orderBy('created_at', 'desc');
     }
 }

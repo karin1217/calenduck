@@ -114,4 +114,31 @@ return [
             'success'   =>  'The verify mail has been sent to your registered mailbox, please check it.',
         ]
     ],
+
+    'blog'  =>  [
+        'create'    =>  [
+            'title' =>  'Blog',
+
+            'form'  =>  [
+                'title' =>  'Write a blog',
+
+                'label' =>  [
+                    'submit'    =>  'Write',
+                ]
+            ]
+        ],
+
+        'destroy'   =>  [
+            'form'  =>  [
+                'label' =>  [
+                    'submit'    =>  'Delete',
+                ]
+            ],
+            'message'   =>  [
+                'access_denied' =>  'This action is unauthorized! ',
+                'success'       =>  'Delete blog successful.',
+                'failed'        =>  'Delete blog failure.'
+            ],
+        ],
+    ],
 ];

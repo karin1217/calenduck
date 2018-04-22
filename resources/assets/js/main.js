@@ -325,7 +325,7 @@ jQuery(document).ready(function($) {
     $("#flexiselDemo1").flexisel({
         visibleItems: 4,
         animationSpeed: 1000,
-        autoPlay: true,
+        autoPlay: false,
         autoPlaySpeed: 3000,
         pauseOnHover: true,
         enableResponsiveBreakpoints: true,
@@ -345,10 +345,12 @@ jQuery(document).ready(function($) {
         }
     });
 
+
+
     $("#flexiselDemo2").flexisel({
         visibleItems: 4,
         animationSpeed: 1000,
-        autoPlay: true,
+        autoPlay: false,
         autoPlaySpeed: 3000,
         pauseOnHover: true,
         enableResponsiveBreakpoints: true,

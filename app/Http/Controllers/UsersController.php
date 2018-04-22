@@ -189,7 +189,11 @@ class UsersController extends Controller
      */
     public function show(Request $request, User $user)
     {
-        return view('users.show', compact('user'));
+        $blogs = $user->blogs()
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(5);
+
+        return view('users.show', compact('user','blogs'));
     }
 
     /**

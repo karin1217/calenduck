@@ -62,3 +62,5 @@ Route::resource('/events', 'CalendarController');
  *   Route::delete('/events/{event}', 'CalendarController@destroy')->name('events.destroy');  |
  * ===========================================================================================
  */
+
+Route::resource('/blogs', 'BlogsController', ['only'=>['store','destroy']]);
