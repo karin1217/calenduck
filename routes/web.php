@@ -34,6 +34,15 @@ Route::resource('/users', 'UsersController');
 /** 注册 **/
 Route::get('/signup', 'UsersController@create')->name('signup');
 Route::get('/signup/confirm/{token}', 'UsersController@confirmEmail')->name('confirm_email');
+/** 关注列表 **/
+Route::get('/users/{user}/followings', 'UsersController@followings')->name('users.followings');
+/** 粉丝列表 **/
+Route::get('/users/{user}/fans', 'UsersController@fans')->name('users.fans');
+
+/** 添加关注 **/
+Route::post('/users/followers/{user}', 'FollowersController@store')->name('followers.store');
+/** 删除关注 **/
+Route::delete('/users/followers/{user}', 'FollowersController@destroy')->name('followers.destroy');
 
 /** 登录 **/
 Route::get('/login', 'SessionsController@create')->name('login');
@@ -64,3 +73,4 @@ Route::resource('/events', 'CalendarController');
  */
 
 Route::resource('/blogs', 'BlogsController', ['only'=>['store','destroy']]);
+

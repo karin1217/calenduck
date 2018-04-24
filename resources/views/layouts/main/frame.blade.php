@@ -17,6 +17,10 @@
     <link href="https://fonts.lug.ustc.edu.cn/earlyaccess/notosanssc.css" rel="stylesheet" type="text/css" />
 
     <style>
+        .wrapper.wrapper-full {
+            padding: 2em 0;
+        }
+
         ul.blogs {
             width: 80%;
             margin: 0 auto;
@@ -74,14 +78,14 @@
 
 
         .blog-form {
-            color: #f95a32;
-            width: 80%;
+            /*color: #f95a32;*/
+            /*width: 80%;*/
             line-height: 1.2em;
-            background: #F7F7F7;
+            /*background: #F7F7F7;*/
             padding: 1em;
 
-            margin: 7em auto 0.5em auto;
-            border-radius: 5px;
+            /*margin: 7em auto 0.5em auto;*/
+            /*border-radius: 5px;*/
         }
 
         .blog-form h6 {

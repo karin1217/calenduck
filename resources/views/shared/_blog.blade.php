@@ -7,7 +7,7 @@
             </form>
             @endcan
 
-            <img src="{{ $blog->user->gravatar(30) }}" />
+            <img src="{{ $blog->user->gravatar(100) }}" />
             <h5><a href="{{ route('users.show', [$blog->user->id]) }}">{{ $blog->user->name }}</a></h5><br/>
             <h9>{{ $blog->created_at }}</h9>
             <div class="white">

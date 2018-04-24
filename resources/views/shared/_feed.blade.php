@@ -26,7 +26,7 @@
         line-height: 16px;
     }
     .feed-items li>div{
-        background: #d9d9d9;
+        background: #F7F7F7;
         padding: 0.5em;
         border: 1px solid #BBBBBB;
         border-radius: 5px;

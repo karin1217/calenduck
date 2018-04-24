@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class User extends Authenticatable
@@ -41,24 +41,110 @@ class User extends Authenticatable
         });
     }
 
+    /**
+     *
+     * 按给定的尺寸动态生成头像(第三方工具)
+     *
+     * @param int $size
+     * @return string
+     */
     public function gravatar($size = 100)
     {
         $hash = md5(strtolower(trim($this->attributes['email'])));
         return "http://www.gravatar.com/avatar/$hash?s=$size";
     }
 
+    /**
+     *
+     * 密码重置消息
+     *
+     * @param string $token
+     */
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPassword($token));
     }
 
+    /**
+     *
+     * 用户发布的博客
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function blogs()
     {
         return $this->hasMany(Blog::class);
     }
 
+    /**
+     *
+     * 关注用户的最新动态（用于首页滚动显示）
+     *
+     * @return mixed
+     */
     public function feed()
     {
-        return $this->blogs()->orderBy('created_at', 'desc');
+        $user_ids = Auth::user()->followings->pluck('id')->toArray();
+
+        return Blog::whereIn('user_id', $user_ids)->with('user')->orderBy('created_at','desc');
+    }
+
+    /**
+     *
+     * 粉丝列表
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function fans()
+    {
+        return $this->belongsToMany(User::class, 'fans', 'user_id', 'fans_id');
+    }
+
+    /**
+     *
+     * 关注列表
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function followings()
+    {
+        return $this->belongsToMany(User::class, 'fans', 'fans_id', 'user_id');
+    }
+
+    /**
+     *
+     * 添加关注操作
+     *
+     * @param $user_ids
+     * @return array
+     */
+    public function follow($user_ids)
+    {
+        if( ! is_array($user_ids) ) {
+            $user_ids = compact('user_ids');
+        }
+
+        return $this->followings()->sync($user_ids, false);
+    }
+
+    /**
+     *
+     * 取消关注
+     *
+     * @param $user_ids
+     * @return int
+     */
+    public function unfollow($user_ids)
+    {
+        if( ! is_array($user_ids) ) {
+            $user_ids = compact('user_ids');
+        }
+
+        return $this->followings()->detach($user_ids);
+    }
+
+    public function isFollowing($user_id)
+    {
+        return $this->followings->contains($user_id);
     }
 }

@@ -12,7 +12,7 @@ class BlogsTableSeeder extends Seeder
      */
     public function run()
     {
-        $user_ids = ['1','2','3'];
+        $user_ids = range(1, 50);
 
         $faker = app(Faker\Generator::class);
 

@@ -230,4 +230,18 @@ class UsersController extends Controller
         session()->flash('success', trans('pages.user.destroy.message.success'));
         return back();
     }
+
+    public function followings(User $user)
+    {
+        $users = $user->followings()->paginate(30);
+
+        return view('users.index', compact('users'));
+    }
+
+    public function fans(User $user)
+    {
+        $users = $user->fans()->paginate(30);
+
+        return view('users.index', compact('users'));
+    }
 }
