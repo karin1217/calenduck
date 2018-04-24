@@ -112,7 +112,7 @@
     </style>
 
 
-    <div class="container">
+    <div class="container {{ route_class() }}-page">
         <div class="wrapper wrapper-full">
 
             <div class="col-md-9">

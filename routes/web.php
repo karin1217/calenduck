@@ -20,7 +20,7 @@ use \Illuminate\Support\Facades\Route;
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
 
 
-Route::get('/', 'StaticPagesController@home');
+Route::get('/', 'PagesController@root')->name('root');
 Route::get('/help', 'StaticPagesController@help');
 Route::get('/about', 'StaticPagesController@about');
 Route::get('/test', 'StaticPagesController@test');

@@ -46,7 +46,7 @@
             float: right;
         }
     </style>
-    <div class="container">
+    <div class="container {{ route_class() }}-page">
         <div class="wrapper">
             <h2 class="title">{{ __('pages.user.index.title') }}</h2>
 

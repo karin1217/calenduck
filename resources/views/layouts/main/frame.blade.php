@@ -17,12 +17,30 @@
     <link href="https://fonts.lug.ustc.edu.cn/earlyaccess/notosanssc.css" rel="stylesheet" type="text/css" />
 
     <style>
-        .wrapper.wrapper-full {
-            padding: 2em 0;
+        .blog-form {
+            line-height: 1.2em;
+            padding: 1em;
         }
 
-        ul.blogs {
-            width: 80%;
+        .blog-form h6 {
+            width: 100px;
+            margin: 0 auto;
+            font-size: 1.5em;
+            padding: 0 0 0.8em 0;
+            text-shadow: #9F9F9F 1px 1px 3px;
+        }
+
+        .blog-form .submit {
+            margin-top: 5px;
+        }
+
+        .blog-form form {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .blog-form form textarea {
+            width: 90%;
             margin: 0 auto;
         }
 
@@ -76,39 +94,19 @@
             float: right;
         }
 
-
-        .blog-form {
-            /*color: #f95a32;*/
-            /*width: 80%;*/
-            line-height: 1.2em;
-            /*background: #F7F7F7;*/
-            padding: 1em;
-
-            /*margin: 7em auto 0.5em auto;*/
-            /*border-radius: 5px;*/
-        }
-
-        .blog-form h6 {
-            width: 100px;
-            margin: 0 auto;
-            font-size: 1.5em;
-            padding: 0 0 0.8em 0;
-            text-shadow: #9F9F9F 1px 1px 3px;
-        }
-
-        .blog-form .submit {
-            margin-top: 5px;
-        }
-
-        .blog-form form {
-            width: 100%;
+        ul.blogs {
+            width: 80%;
             margin: 0 auto;
         }
 
-        .blog-form form textarea {
-            width: 90%;
-            margin: 0 auto;
+        .wrapper.wrapper-full {
+            padding: 2em 0;
         }
+
+
+
+
+
 
     </style>
 </head>
@@ -116,7 +114,9 @@
 <body>
     @include('layouts.main._header')
 
-    {{--@include('layouts.main._slider')--}}
+    @if(route_class() == 'root')
+        @include('layouts.main._slider')
+    @endif
 
     @yield('content')
 

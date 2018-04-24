@@ -50,3 +50,10 @@ function get_url_config()
 
     }
 }
+
+function route_class()
+{
+    $routeClass = str_replace('.', '-', Route::currentRouteName());
+
+    return $routeClass ? $routeClass : 'home';
+}
