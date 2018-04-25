@@ -16,6 +16,8 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('css/main.css') }}" />
     <link href="https://fonts.lug.ustc.edu.cn/earlyaccess/notosanssc.css" rel="stylesheet" type="text/css" />
 
+
+
     <style>
         .blog-form {
             line-height: 1.2em;
@@ -109,16 +111,21 @@
 
 
     </style>
+
+    {{--<script src='https://www.google.com/recaptcha/api.js'></script>--}}
 </head>
 
 <body>
+
     @include('layouts.main._header')
 
     @if(route_class() == 'root')
         @include('layouts.main._slider')
     @endif
 
-    @yield('content')
+    <div class="container {{ route_class() }}-page">
+        @yield('content')
+    </div>
 
     @include('layouts.main._footer')
 

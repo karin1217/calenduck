@@ -14,13 +14,42 @@
 use \Illuminate\Support\Facades\Route;
 
 
+/** 主页 **/
+Route::get('/', 'PagesController@root')->name('root');
+/** 生成认证相关路由 **/
+Auth::routes();
+/**
+ * =================================================================================================================
+ *                                                                                                                  |
+ *                                上 述 代 码 等 同 于                                                                |
+ *                                                                                                                  |
+ * -----------------------------------------------------------------------------------------------------------------
+ *   // Authentication Routes...                                                                                    |
+ *   Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');                                      |
+ *   Route::post('login', 'Auth\LoginController@login');                                                            |
+ *   Route::post('logout', 'Auth\LoginController@logout')->name('logout');                                          |
+ *                                                                                                                  |
+ *   // Registration Routes...                                                                                      |
+ *   Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');                      |
+ *   Route::post('register', 'Auth\RegisterController@register');                                                   |
+ *                                                                                                                  |
+ *   // Password Reset Routes...                                                                                    |
+ *   Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');   |
+ *   Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');     |
+ *   Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');    |
+ *   Route::post('password/reset', 'Auth\ResetPasswordController@reset');                                           |
+ * ==================================================================================================================
+ */
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 /**
  * 言語切替
  */
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
 
 
-Route::get('/', 'PagesController@root')->name('root');
+
 Route::get('/help', 'StaticPagesController@help');
 Route::get('/about', 'StaticPagesController@about');
 Route::get('/test', 'StaticPagesController@test');
@@ -73,4 +102,3 @@ Route::resource('/events', 'CalendarController');
  */
 
 Route::resource('/blogs', 'BlogsController', ['only'=>['store','destroy']]);
-

@@ -108,6 +108,7 @@ return [
     ],
     'boolean'              => ':attributeはtrueかfalseにしてください。',
     'confirmed'            => ':attributeは確認用項目と一致していません。',
+    'captcha'              => ':attributeは正しく入力されていません。',
     'date'                 => ':attributeは正しい日付ではありません。',
     'date_format'          => ':attributeは":format"書式と一致していません。',
     'different'            => ':attributeは:otherと違うものにしてください。',
@@ -217,6 +218,7 @@ return [
         'name'          =>          'ユーザ名',
         'email'         =>          'メールアドレス',
         'password'      =>          'パスワード',
-        'password_confirmation' =>  'パスワード'
+        'password_confirmation' =>  'パスワード',
+        'captcha'       =>          'キャプチャー',
     ],
 ];

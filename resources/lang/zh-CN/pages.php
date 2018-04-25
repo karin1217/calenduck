@@ -50,6 +50,7 @@ return [
                     'password'      =>  '密码',
                     'forgot'        =>  '忘记密码',
                     'remember'      =>  '记住我',
+                    'captcha'       =>  '验证码',
                     'sign_up_link'  =>  '马上注册 ! ',
                 ],
 

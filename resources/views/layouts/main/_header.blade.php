@@ -57,31 +57,26 @@
                         <li>
                             <a href="javascript:;">  {{ __('pages.home.top_menu.my_account.title') }}</a>
                             <ul class="sub-nav">
-                                @if(Auth::check())
-                                    {{--<li>--}}
-                                        {{--<a href="{{ route('users.show', Auth::user()->id) }}}">{{ __('menu.main.personal_center') }}</a>--}}
-                                        {{--<ul>--}}
-                                            @if(Auth::user()->is_admin)
-                                            <li><a href="{{ route('users.index') }}">{{ __('pages.home.top_menu.my_account.sub.list') }}</a></li>
-                                            @endif
-                                            <li><a href="{{ route('users.show', [Auth::user()]) }}">{{ __('pages.home.top_menu.my_account.sub.profile') }}</a></li>
-                                            <li><a href="{{ route('users.edit', Auth::user()->id) }}">{{ __('pages.home.top_menu.my_account.sub.update') }}</a></li>
-                                            <li>
-                                                <a id="logout" href="javascript:;">{{ __('pages.home.top_menu.my_account.sub.logout') }}</a>
-
-                                                <form id='logout-form' method="post" action="{{ route('logout') }}">
-                                                    {{ csrf_field() }}
-                                                    {{ method_field('DELETE') }}
-                                                    {{--<a href="javascript:;">{{ trans('menu.main.logout',[],Session::get('language')) }}</a>--}}
-                                                </form>
-                                            </li>
-                                        {{--</ul>--}}
-                                    {{--</li>--}}
-
-                                @else
+                                {{--@if(Auth::check())--}}
+                                @guest
                                     <li><a href="/login">{{ __('pages.home.top_menu.my_account.sub.help') }}</a></li>
                                     <li><a href="/login">{{ __('pages.home.top_menu.my_account.sub.login') }}</a></li>
-                                @endif
+                                @else
+                                    @if(Auth::user()->is_admin)
+                                        <li><a href="{{ route('users.index') }}">{{ __('pages.home.top_menu.my_account.sub.list') }}</a></li>
+                                    @endif
+                                    <li><a href="{{ route('users.show', [Auth::user()]) }}">{{ __('pages.home.top_menu.my_account.sub.profile') }}</a></li>
+                                    <li><a href="{{ route('users.edit', Auth::user()->id) }}">{{ __('pages.home.top_menu.my_account.sub.update') }}</a></li>
+                                    <li>
+                                        <a id="logout" href="javascript:;">{{ __('pages.home.top_menu.my_account.sub.logout') }}</a>
+
+                                        <form id='logout-form' method="post" action="{{ route('logout') }}">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            {{--<a href="javascript:;">{{ trans('menu.main.logout',[],Session::get('language')) }}</a>--}}
+                                        </form>
+                                    </li>
+                                @endguest
                             </ul>
                         </li>
 

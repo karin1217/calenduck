@@ -66,6 +66,7 @@ class UsersController extends Controller
             'email'     =>              'required|email|unique:users|max:255',
             'password'  =>              'required|min:6|confirmed',
             'password_confirmation' =>  'required',
+            'captcha'   =>              'required|captcha',
         ]);
 
         // 存储用户数据

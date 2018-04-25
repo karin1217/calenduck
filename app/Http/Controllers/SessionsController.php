@@ -44,8 +44,8 @@ class SessionsController extends Controller
     {
         // 验证用户请求的邮箱、密码
         $credentials = $this->validate($request, [
-            'email' => 'required|email|max:255',
-            'password' => 'required',
+            'email'     => 'required|email|max:255',
+            'password'  => 'required',
         ]);
 
         // 认证邮箱和密码是否匹配
