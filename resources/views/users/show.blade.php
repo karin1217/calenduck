@@ -109,6 +109,11 @@
         .side-bar-items .row.user-counts > div:last-child {
             border-right: none;
         }
+
+        .side-bar-items .row.introduction {
+            padding: 4% 9%;
+            text-align: left;
+        }
     </style>
 
 
@@ -146,6 +151,9 @@
                             </a>
                         </div>
 
+                    </div>
+                    <div class="row introduction">
+                        {{ $user->introduction }}
                     </div>
                     <div class="row user-counts">
                         <div class="col-xs-4">

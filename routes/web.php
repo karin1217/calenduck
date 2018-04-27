@@ -59,7 +59,7 @@ Route::get('/main/', 'StaticPagesController@main');
 Route::get('/slider/', 'StaticPagesController@slider');
 Route::get('/calendar', 'StaticPagesController@calendar');
 
-Route::resource('/users', 'UsersController');
+Route::resource('/users', 'UsersController', ['only'=>['show','update','edit']]);
 /** 注册 **/
 Route::get('/signup', 'UsersController@create')->name('signup');
 Route::get('/signup/confirm/{token}', 'UsersController@confirmEmail')->name('confirm_email');

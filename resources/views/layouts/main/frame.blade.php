@@ -159,6 +159,31 @@
                 }
             }
         });
+
+
+
+        console.log($('.alert').length);
+        if($('.alert').length > 0) {
+            var type = 'info';
+            var classString = $('.alert').attr('class').substring(12);
+
+            switch ( classString ) {
+                case 'danger':
+                    type = 'error';
+                    break;
+                default:
+                    type = classString;
+                    break;
+
+            }
+
+            $("body").overhang({
+                type : type,
+                message: $('.alert').text(),
+                duration: 3,
+                overlay: true
+            });
+        }
     });
 
 </script>

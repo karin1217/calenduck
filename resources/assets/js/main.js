@@ -62,6 +62,12 @@ require('./main/plugins/jquery.flexisel');
  * Contributing Author: Tyler Smith
  *--------------------------------------------------------------------*/
 require('flexslider');
+
+
+require('overhang/lib/overhang');
+
+
+
 /*--------------------------------------------------------------------
  * ResponsiveSlides.js v1.55
  * http://responsiveslides.com

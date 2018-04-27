@@ -92,7 +92,8 @@ return [
                     'email'                 =>      '电子邮箱',
                     'password'              =>      '密码',
                     'password_confirmation' =>      '确认密码',
-                    'update'                =>      '更新',
+                    'update'                =>      '保存',
+                    'introduction'          =>      '简介',
                 ],
             ],
 

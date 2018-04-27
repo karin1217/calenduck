@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -141,7 +142,11 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        $this->authorize('update', $user);
+        try {
+            $this->authorize('update', $user);
+        } catch (AuthorizationException $e) {
+
+        }
 
         return view('users.edit', compact('user'));
     }
@@ -150,33 +155,42 @@ class UsersController extends Controller
      *
      * 更新用户数据
      *
-     * @param Request $request
+     * @param UserRequest $request
      * @param User $user
      * @return \Illuminate\Http\RedirectResponse
      *
      */
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
-        $this->authorize('update', $user);
+        try {
+            $this->authorize('update', $user);
+        } catch (AuthorizationException $e) {
+
+        }
+
+        /**
         // 验证请求
         $this->validate($request, [
             'name'      =>  'required|min:3|max:50',
             'password'  =>  'nullable|min:6|confirmed'
         ]);
+         */
 
         // 更新数据
-        $data = [];
-        $data['name'] = $request->name;
-        if( $request->password ) // 判断是否更新密码
-        {
-            $data['password'] = bcrypt($request->password);
-        }
-        $user->update($data);
+//        $data = [];
+//        $data['name'] = $request->name;
+//        if( $request->password ) // 判断是否更新密码
+//        {
+//            $data['password'] = bcrypt($request->password);
+//        }
+//        $user->update($data);
+
+        $user->update($request->all());
 
         // 更新成功的提示消息闪存至 Session
-        session()->flash('success', trans('pages.user.edit.message.success'));
+//        session()->flash('success', trans('pages.user.edit.message.success'));
         // 跳转回用户简介页面
-        return redirect()->route('users.show', $user->id);
+        return redirect()->route('users.show', $user->id)->with('success', trans('pages.user.edit.message.success'));
     }
 
     /**

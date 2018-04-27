@@ -93,7 +93,8 @@ return [
                     'email'                 =>      'E-Mail',
                     'password'              =>      'Password',
                     'password_confirmation' =>      'Password(Confirmation)',
-                    'update'                =>      'Update',
+                    'update'                =>      'Save',
+                    'introduction'          =>      'Introduction',
                 ],
             ],
 

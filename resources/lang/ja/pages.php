@@ -98,6 +98,7 @@ return [
                     'password'              =>      'パスワード',
                     'password_confirmation' =>      'パスワード(確認用)',
                     'update'                =>      '更　新',
+                    'introduction'          =>      '自己紹介',
                 ],
             ],
 

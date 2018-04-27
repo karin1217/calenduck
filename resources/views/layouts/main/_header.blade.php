@@ -62,9 +62,9 @@
                                     <li><a href="/login">{{ __('pages.home.top_menu.my_account.sub.help') }}</a></li>
                                     <li><a href="/login">{{ __('pages.home.top_menu.my_account.sub.login') }}</a></li>
                                 @else
-                                    @if(Auth::user()->is_admin)
-                                        <li><a href="{{ route('users.index') }}">{{ __('pages.home.top_menu.my_account.sub.list') }}</a></li>
-                                    @endif
+                                    {{--@if(Auth::user()->is_admin)--}}
+                                        {{--<li><a href="{{ route('users.index') }}">{{ __('pages.home.top_menu.my_account.sub.list') }}</a></li>--}}
+                                    {{--@endif--}}
                                     <li><a href="{{ route('users.show', [Auth::user()]) }}">{{ __('pages.home.top_menu.my_account.sub.profile') }}</a></li>
                                     <li><a href="{{ route('users.edit', Auth::user()->id) }}">{{ __('pages.home.top_menu.my_account.sub.update') }}</a></li>
                                     <li>
