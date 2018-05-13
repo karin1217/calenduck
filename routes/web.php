@@ -60,6 +60,8 @@ Route::get('/slider/', 'StaticPagesController@slider');
 Route::get('/calendar', 'StaticPagesController@calendar');
 
 Route::resource('/users', 'UsersController', ['only'=>['show','update','edit']]);
+Route::post('/users/{user}/avatar', 'UsersController@uploadAvatar')->name('users.upload.avatar');
+Route::post('/users/{user}/crop', 'UsersController@cropAvatar')->name('users.crop.avatar');
 /** 注册 **/
 Route::get('/signup', 'UsersController@create')->name('signup');
 Route::get('/signup/confirm/{token}', 'UsersController@confirmEmail')->name('confirm_email');

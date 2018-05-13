@@ -8,6 +8,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Handlers\ImageUploadHandler;
 
 class UsersController extends Controller
 {
@@ -191,6 +192,61 @@ class UsersController extends Controller
 //        session()->flash('success', trans('pages.user.edit.message.success'));
         // 跳转回用户简介页面
         return redirect()->route('users.show', $user->id)->with('success', trans('pages.user.edit.message.success'));
+    }
+
+    /**
+     *
+     * 上传头像
+     *
+     * @param ImageUploadHandler $uploadHandler
+     */
+    public function uploadAvatar(/*ImageUploadHandler $uploadHandler,*/ User $user)
+    {
+        $folderName = 'avatars';
+
+        // 构建存储的文件夹规则，值如：uploads/images/avatars/201709/21/
+        // 文件夹切割能让查找效率更高。
+        $fullFolderName = "uploads/images/$folderName/" . date("Ym/d");
+
+        $uploadHandler = ImageUploadHandler::getInstance('uploadfile');
+
+        // Handle the upload
+        $result = $uploadHandler->handleUpload($fullFolderName);
+
+        if (!$result) {
+            exit(json_encode(['success' => false, 'msg' => $uploadHandler->getErrorMsg(), 'image'=>null]));
+        }
+
+        $data['avatar'] = $result['image'];
+
+        $user->update($data);
+
+
+        return json_encode(['success' => true, 'msg' => '上传成功', 'image'=>$result['image'], 'mimeType'=>$result['mimeType']]);
+    }
+
+    public function cropAvatar(Request $request, User $user)
+    {
+//        var_dump($_FILES);
+//        var_dump($_REQUEST);
+//        exit;
+
+        $width = $request->width;
+        $height = $request->height;
+
+        $uploadHandler = ImageUploadHandler::getInstance('croppedImage', $user->avatar, $width, $height);
+
+        $result = $uploadHandler->handleUpload();
+
+        if (!$result) {
+            exit(json_encode(['success' => false, 'msg' => $uploadHandler->getErrorMsg(), 'image'=>null]));
+        }
+
+        $data['avatar'] = $result['image'];
+
+        $user->update($data);
+
+        exit(json_encode(['success' => true, 'msg' => '上传成功', 'image'=>$result['image'], 'mimeType'=>$result['mimeType']]));
     }
 
     /**

@@ -146,7 +146,7 @@
                     <div class="row">
                         <div class="photo">
                             <a href="{{ route('users.show', $user->id) }}">
-                                <img src="{{ $user->gravatar('100') }}" alt="{{ $user->name }}" class="gravatar"/>
+                                <img src="{{ $user->avatar ? config('app.url').'/'.$user->avatar : $user->gravatar('100') }}" alt="{{ $user->name }}" class="gravatar" width="100"/>
                                 <h2>{{ $user->name }}</h2>
                             </a>
                         </div>

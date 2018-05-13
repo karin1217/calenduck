@@ -53,9 +53,9 @@
                 </div>
                 <div class="header-in">
                     <ul class="icon1 sub-icon1">
-                        <li><a href="wishlist.html">{{ __('pages.home.top_menu.wish_list') }} (0)</a> </li>
+                        <li><a href="wishlist.html"><i class="fa fa-clipboard-list"></i> {{ __('pages.home.top_menu.wish_list') }} (0)</a> </li>
                         <li>
-                            <a href="javascript:;">  {{ __('pages.home.top_menu.my_account.title') }}</a>
+                            <a href="javascript:;">  <i class="fa fa-user-cog"></i> {{ __('pages.home.top_menu.my_account.title') }}</a>
                             <ul class="sub-nav">
                                 {{--@if(Auth::check())--}}
                                 @guest
@@ -82,7 +82,7 @@
 
 
                         <li >
-                            <a href="#" > {{ __('pages.home.top_menu.shopping_cart') }}</a>
+                            <a href="#" > <i class="fa fa-shopping-cart"></i> {{ __('pages.home.top_menu.shopping_cart') }}</a>
 
                             <ul class="sub-nav">
                                 <li><a href="products.html">Sony(2)</a></li>
@@ -93,7 +93,7 @@
                                 <li><a href="products.html">Intel(5)</a></li>
                             </ul>
                         </li>
-                        <li > <a href="checkout.html" >{{ __('pages.home.top_menu.check_out') }}</a> </li>
+                        <li > <a href="checkout.html" > <i class="fa fa-cart-arrow-down"></i> {{ __('pages.home.top_menu.check_out') }}</a> </li>
 
                         <li><div class="cart">
                                 <a href="#" class="cart-in"> </a>
@@ -145,8 +145,8 @@
             <div class="h_menu4">
                 <a class="toggleMenu" href="#">Menu</a>
                 <ul class="nav">
-                    <li class="active"><a href="/">{{ __('pages.home.nav.home') }}</a></li>
-                    <li> <a href="#" >{{ __('pages.home.nav.shops') }}</a>
+                    <li class="active"><a href="/"><i class="fa fa-home"></i>{{ __('pages.home.nav.home') }}</a></li>
+                    <li> <a href="#" ><i class="fa fa-building"></i>{{ __('pages.home.nav.shops') }}</a>
                         <ul class="drop">
                             <li><a href="products.html">Sony(2)</a></li>
                             <li><a href="products.html">Android(4)</a></li>
@@ -156,10 +156,10 @@
                             <li><a href="products.html">Intel(5)</a></li>
                         </ul>
                     </li>
-                    <li><a href="products.html" >  {{ __('pages.home.nav.categories') }}</a></li>
-                    <li><a href="products.html" >{{ __('pages.home.nav.gallery') }}</a></li>
-                    <li><a href="products.html" >{{ __('pages.home.nav.blog') }}</li>
-                    <li><a href="products.html" >{{__('pages.home.nav.contact') }} </a></li>
+                    <li><a href="products.html"><i class="fa fa-list"></i>{{ __('pages.home.nav.categories') }}</a></li>
+                    <li><a href="products.html"><i class="fa fa-book"></i>{{ __('pages.home.nav.gallery') }}</a></li>
+                    <li><a href="products.html"><i class="fab fa-blogger"></i>{{ __('pages.home.nav.blog') }}</a></li>
+                    <li><a href="products.html"><i class="fa fa-address-card"></i>{{__('pages.home.nav.contact') }}</a></li>
 
 
                 </ul>

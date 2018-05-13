@@ -78,6 +78,12 @@ require('overhang/lib/overhang');
  *--------------------------------------------------------------------*/
 require('./main/plugins/responsiveSlides/responsiveslides');
 
+require('dm-file-uploader');
+
+require('@fortawesome/fontawesome');
+
+require('cropper/dist/cropper');
+
 require('./main/plugins/nav');
 
 jQuery(document).ready(function($) {
@@ -435,6 +441,8 @@ jQuery(document).ready(function($) {
     });
 
     /* Top Panel --> End */
+
+
 
     // $('.header-bottom').on('mouseenter',function(){
     //     $('.header-bottom-in').slideDown('slow');
