@@ -2,7 +2,7 @@
 
 @section('content')
     <!---->
-    <div class="container">
+    <div class="container {{ route_class() }}-page">
         <div class="content">
             <div class="content-top">
                 <h3 class="future">FEATURED</h3>
@@ -72,50 +72,13 @@
                         <li><img src="/images/main/ap1.png"/></li>
                         <li><img src="/images/main/ap2.png"/></li>
                         <li><img src="/images/main/ap3.png"/></li>
-                        <li>
-                            <div class="gravatar">
-                                <img src="http://www.gravatar.com/avatar/7a951efe9454b9521a84478bdb525451?s=100">
-                            </div>
-
-                            <div class="name">
-                                <a href="http://calenduck.test/users/1">karin1217</a>
-                                5
-                            </div>
-
-                            <div class="time">
-                                2005-01-23 21:16:24
-                            </div>
-
-                            <div class="text">
-                                奶香扑鼻，他正在哼哈有声的锻炼。“我们可没有什么。”老族长，我带些人出去，小心一点，过来，带着笑意。他们。“最近不太对劲
-                            </div>
-                        </li>
-
                     </ul>
-                    {{--<script type="text/javascript">--}}
-                    {{--$(window).load(function() {--}}
-
-
-                    {{--});--}}
-                    {{--</script>--}}
-                    {{--<script type="text/javascript" src="js/jquery.flexisel.js"></script>--}}
-
                 </div>
 
                 <h3 class="future">BLOGS</h3>
                 <div class="content-middle-in">
-
                     @include('shared._feed')
-                    {{--<ul id="flexiselDemo1">--}}
-                        {{--<li><img src="/images/main/ap.png"/></li>--}}
-                        {{--<li><img src="/images/main/ap1.png"/></li>--}}
-                        {{--<li><img src="/images/main/ap2.png"/></li>--}}
-                        {{--<li><img src="/images/main/ap3.png"/></li>--}}
-
-                    {{--</ul>--}}
                 </div>
-
-
             </div>
             <!---->
             <div class="content-bottom">

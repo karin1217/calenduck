@@ -21,9 +21,16 @@
                         <input type="password" name="password" class="form-control{{ $errors->has('password')?' error':'' }}" value="" placeholder="{{ $errors->first('password') }}">
                     </div>
 
+                    {{--<div>--}}
+                        {{--<span class="captcha">{{ __('pages.session.create.form.label.captcha') }}*</span>--}}
+                        {{--<input id="captcha" class="form-control{{ $errors->has('captcha')?' error':'' }}" name="captcha" value="" placeholder="{{ $errors->first('captcha') }}" >--}}
+                        {{--<img class="thumbnail captcha" src="{{ captcha_src('flat') }}" onclick="this.src='/captcha/flat?'+Math.random()" title="点击图片重新获取验证码">--}}
+                    {{--</div>--}}
+
                     <div>
                         <input type="checkbox" name="remember"><label for="remember" style="left: 10px;position: relative;"> {{ __('pages.session.create.form.label.remember') }}</label>
                     </div>
+
 
                     <div class="submit">
                         <input type="submit" value="{{ __('pages.session.create.title') }}">

@@ -45,8 +45,16 @@ function get_url_config()
     }
     else {
         return $url_config = [
-            'url' => env('APP_URL', 'http://calenduck.test'),
+            'url' => env('APP_URL'),
         ];
+        //return env('APP_URL', 'http://calenduck.test');
 
     }
+}
+
+function route_class()
+{
+    $routeClass = str_replace('.', '-', Route::currentRouteName());
+
+    return $routeClass ? $routeClass : 'home';
 }

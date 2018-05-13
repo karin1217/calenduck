@@ -50,6 +50,7 @@ return [
                     'email'         =>  'E-Mail',
                     'password'      =>  'Password',
                     'forgot'        =>  'Forgot password',
+                    'captcha'       =>  'Captcha',
                     'remember'      =>  'Remember Me',
                     'sign_up_link'  =>  'Sing Up Now ! ',
                 ],
@@ -92,7 +93,8 @@ return [
                     'email'                 =>      'E-Mail',
                     'password'              =>      'Password',
                     'password_confirmation' =>      'Password(Confirmation)',
-                    'update'                =>      'Update',
+                    'update'                =>      'Save',
+                    'introduction'          =>      'Introduction',
                 ],
             ],
 

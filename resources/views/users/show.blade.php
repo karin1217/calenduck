@@ -109,10 +109,15 @@
         .side-bar-items .row.user-counts > div:last-child {
             border-right: none;
         }
+
+        .side-bar-items .row.introduction {
+            padding: 4% 9%;
+            text-align: left;
+        }
     </style>
 
 
-    <div class="container">
+    <div class="container {{ route_class() }}-page">
         <div class="wrapper wrapper-full">
 
             <div class="col-md-9">
@@ -141,11 +146,14 @@
                     <div class="row">
                         <div class="photo">
                             <a href="{{ route('users.show', $user->id) }}">
-                                <img src="{{ $user->gravatar('100') }}" alt="{{ $user->name }}" class="gravatar"/>
+                                <img src="{{ $user->avatar ? config('app.url').'/'.$user->avatar : $user->gravatar('100') }}" alt="{{ $user->name }}" class="gravatar" width="100"/>
                                 <h2>{{ $user->name }}</h2>
                             </a>
                         </div>
 
+                    </div>
+                    <div class="row introduction">
+                        {{ $user->introduction }}
                     </div>
                     <div class="row user-counts">
                         <div class="col-xs-4">

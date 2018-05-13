@@ -53,6 +53,7 @@ return [
                     'email'         =>  'メールアドレス',
                     'password'      =>  'パスワード',
                     'forgot'        =>  'パスワードを忘れた',
+                    'captcha'       =>  'キャプチャー',
                     'remember'      =>  'ログイン状態を保持',
                     'sign_up_link'  =>  '今すぐ登録',
                 ],
@@ -97,6 +98,7 @@ return [
                     'password'              =>      'パスワード',
                     'password_confirmation' =>      'パスワード(確認用)',
                     'update'                =>      '更　新',
+                    'introduction'          =>      '自己紹介',
                 ],
             ],
 
