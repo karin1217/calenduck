@@ -99,7 +99,8 @@ return [
             ],
 
             'message'   =>  [
-                'success'   =>  'The information was successfully updated.',
+                'success'       =>  'The information was successfully updated.',
+                'access_denied' =>  'This action is unauthorized! ',
             ],
         ],
 

@@ -217,8 +217,9 @@
         });
         //$('#imageEditDialog').on('shown.bs.modal'){
 
-
-
+        /**
+         * 根据mimeType指定文件的扩展名
+         */
         function getFileExtension(mimeType){
             switch (mimeType)
             {

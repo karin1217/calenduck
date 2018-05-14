@@ -98,7 +98,8 @@ return [
             ],
 
             'message'   =>  [
-                'success'   =>  '个人资料更新成功。',
+                'success'       =>  '个人资料更新成功。',
+                'access_denied' =>  '您未被授权进行此项操作 ! ',
             ],
         ],
 

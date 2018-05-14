@@ -146,7 +146,8 @@ class UsersController extends Controller
         try {
             $this->authorize('update', $user);
         } catch (AuthorizationException $e) {
-
+            session()->flash('danger',trans('pages.user.edit.message.access_denied'));
+            return back();
         }
 
         return view('users.edit', compact('user'));
@@ -166,7 +167,8 @@ class UsersController extends Controller
         try {
             $this->authorize('update', $user);
         } catch (AuthorizationException $e) {
-
+            session()->flash('danger',trans('pages.user.edit.message.access_denied'));
+            return back();
         }
 
         /**
