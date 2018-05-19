@@ -668,6 +668,69 @@
             }
         });
 
+
+
+
+        function bindPlay(obj){
+            obj.on('click','.bg_music',function(){
+
+
+                //     var num = $('#bg_music_btn').attr('num');
+                // if(num == "1")
+                // {
+                //     $('#bg_music_btn').attr('num','0');
+                //mp3.pause();
+                // }
+                // if(num == "0")
+                // {
+                //     $('#bg_music_btn').attr('num','1');
+
+                //}
+            });
+        }
+
+        $('.play-sound').on('click',function(){
+            var $this = $(this);
+            var data = $this.data();
+            var mp3=$('#'+data.word)[0];
+
+            if( typeof mp3 !== 'undefined'){
+                mp3.play();
+                return false;
+            }
+            console.log(data.word);
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{ route('kids.word.voice') }}",
+                method: "POST",
+                data: {'word':data.word},
+                //processData: false,
+                //contentType: false,
+                dataType: 'text',
+                success: function (response) {
+                    if( ! response ) {
+                        $("body").overhang({
+                            type : 'error',
+                            message: '获取语音时发生异常，刷新后重试',
+                            duration: 3,
+                            overlay: true
+                        });
+                        return false;
+                    }
+                    //console.log(response);
+
+                    var $bgm = $('<div class="bg_music"></div>');
+                    $bgm.append('<audio id="'+data.word+'"  preload="auto" autoplay="autoplay" src="'+response+'" />');
+                    $this.append($bgm);
+                },
+                error: function () {
+                    console.log('Upload error');
+                }
+            });
+        });
+
     });
 
 </script>

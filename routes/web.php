@@ -104,3 +104,6 @@ Route::resource('/events', 'CalendarController');
  */
 
 Route::resource('/blogs', 'BlogsController', ['only'=>['store','destroy']]);
+
+Route::get('kids/words', 'KidsController@words');
+Route::post('kids/voice', 'KidsController@voice')->name('kids.word.voice');
