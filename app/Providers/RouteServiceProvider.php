@@ -26,6 +26,8 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+
+        //Route::model('p_category', \App\Models\ProductCategory::class);
     }
 
     /**

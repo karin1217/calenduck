@@ -859,7 +859,9 @@ p.dollar span{
   display: inline-block;
   color:#636363;
 }
-p.dollar span:nth-child(3){
+//p.dollar span:nth-child(3){
+
+p.dollar span:last-child {
 	border-right:none;
 }
 p.dollar span.in-dollar{
@@ -952,12 +954,20 @@ h2.products-in:after{
 .compare{
 	background: rgba(0, 0, 0, 0.52);
 	position: absolute;
-	top: 10px;
+	top: 1.7em;
 	display: none;
-	width: 236px;
-	height: 205px;
+	width: 16.95em;
+	height: 14.8em;
 	padding: 5em 0 0;
-	left: 25px;
+	left: 1.7em;
+	//background: rgba(0, 0, 0, 0.52);
+	//position: absolute;
+	//top: 10px;
+	//display: none;
+	//width: 236px;
+	//height: 205px;
+	//padding: 5em 0 0;
+	//left: 25px;
 }
 .in-compare{
 	left: 18px;

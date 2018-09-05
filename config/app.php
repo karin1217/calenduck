@@ -172,6 +172,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Overtrue\LaravelLang\TranslationServiceProvider::class,
+        Overtrue\LaravelUEditor\UEditorServiceProvider::class,
+        //Barryvdh\Cors\ServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -185,6 +187,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Sciku1\LaravelMatchAgainst\Providers\MatchAgainstServiceProvider::class,
 
     ],
 

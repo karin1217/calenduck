@@ -117,6 +117,6 @@
   }
 
   $(document).ready(function(){
-    $('[data-imagezoom]').imageZoom();
+    //$('[data-imagezoom]').imageZoom();
   });
 })(jQuery);

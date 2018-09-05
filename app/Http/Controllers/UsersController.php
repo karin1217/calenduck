@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\Goods;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -260,8 +261,19 @@ class UsersController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      *
      */
-    public function show(Request $request, User $user)
+    public function show(Request $request, User $user, Goods $goods)
     {
+
+        /**
+         * $ss = Goods::againstWhere(' MATCH (`name`) AGAINST (\'裤子\' IN NATURAL LANGUAGE MODE) ')->get();
+         */
+
+        /**
+         * $ss = $goods->searchName();
+         * print_r($ss);exit;
+         * exit;
+         */
+
         $blogs = $user->blogs()
                         ->orderBy('created_at', 'desc')
                         ->paginate(5);

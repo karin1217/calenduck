@@ -5,6 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 require('./bootstrap');
+require('./main/plugins/jquery.session');
 
 /*--------------------------------------------------------------------
  * jQuery UI
@@ -45,6 +46,9 @@ require('fullcalendar-scheduler');
  * https://github.com/select2/select2/blob/master/LICENSE.md
  *--------------------------------------------------------------------*/
 require('select2');
+//require('./main/plugins/imagezoom');
+//require('./main/plugins/jquery.jqzoom-core');
+require('./main/plugins/jquery.jqzoom-2.2');
 /*--------------------------------------------------------------------
  * File: jquery.flexisel.js
  * Version: 1.0.0
@@ -86,6 +90,11 @@ require('cropper/dist/cropper');
 
 require('./main/plugins/nav');
 
+require('./main/plugins/jQueryRotate');
+
+
+require('./main/pages/products/show');
+require('./main/admin/products/categories/index');
 jQuery(document).ready(function($) {
 
     /* To top --> Begin */
@@ -464,6 +473,11 @@ jQuery(document).ready(function($) {
 });/* ######################### DOM READY - END ######################### */
 
 // window.Vue = require('vue');
+//
+// Vue.component('vue-cropper', require('vue-cropper'));
+//Vue.component('vv-cropper', require('./components/ImageCropper.vue'));
+
+//Vue.component('example-component', require('./components/ExampleComponent.vue'));
 //
 // /**
 //  * Next, we will create a fresh Vue application instance and attach it to

@@ -13,6 +13,8 @@
 
 require __DIR__.'/helpers.php';
 
+require __DIR__.'/constants.php';
+
 $app = new Illuminate\Foundation\Application(
     realpath(__DIR__.'/../')
 );

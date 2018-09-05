@@ -58,3 +58,32 @@ function route_class()
 
     return $routeClass ? $routeClass : 'home';
 }
+
+function cws($str) {
+    //找出字符串中的英文单词和数字
+    if(preg_match_all('%[A-Za-z0-9_-]{1,}%', $str, $matches)) {
+        $arr = $matches[0];
+    }
+    //以非中文(中文包括简体和繁体)进行正则分割
+    $sections = preg_split('%[^\x{4e00}-\x{9fa5}]{1,}%u', $str);
+    foreach($sections as $v) {
+        //注意:foreach中多次正则匹配会降低性能
+        switch(true) {
+            case ($v === ''): continue; break;
+            case (mb_strlen($v, 'UTF-8') < 3): $arr[] = $v; break;
+            case (preg_match_all('%[\x{4e00}-\x{9fa5}]%u', $v, $matches)):
+                //前后俩俩组合,实现冗余分词.
+                //如"中国好声音"将被分词为: 中国 国好 好声 声音
+                $size = count($matches[0]);
+                for($i = 0; $i <= $size-2; $i++) {
+                    $word = '';
+                    for($j = 0; $j < 2; $j++) {
+                        $word .= $matches[0][$i+$j]; echo $i.' '.$j.' '.$matches[0][$i+$j]."\n<br/>";
+                    }
+                    $arr[] = $word; echo "\n<br/>";
+                }
+                break;
+        }
+    }
+    return array_unique($arr);
+}

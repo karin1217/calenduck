@@ -1902,7 +1902,7 @@ function loadLocale(name) {
         try {
             oldLocale = globalLocale._abbr;
             var aliasedRequire = require;
-            __webpack_require__(167)("./" + name);
+            __webpack_require__(168)("./" + name);
             getSetGlobalLocale(oldLocale);
         } catch (e) {}
     }
@@ -31677,7 +31677,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 		// AMD. Register as an anonymous module.
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 			__webpack_require__(1),
-			__webpack_require__(164),
+			__webpack_require__(165),
 			__webpack_require__(3),
 			__webpack_require__(6)
 		], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
@@ -43566,7 +43566,7 @@ return zhTw;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(139);
-module.exports = __webpack_require__(181);
+module.exports = __webpack_require__(186);
 
 
 /***/ }),
@@ -43580,6 +43580,7 @@ module.exports = __webpack_require__(181);
  * building robust, powerful web applications using Vue and Laravel.
  */
 __webpack_require__(140);
+__webpack_require__(162);
 
 /*--------------------------------------------------------------------
  * jQuery UI
@@ -43587,11 +43588,11 @@ __webpack_require__(140);
  * Includes: core.js, widget.js, mouse.js, slider.js
  * Copyright jQuery Foundation and other contributors; Licensed MIT
  *--------------------------------------------------------------------*/
-__webpack_require__(162);
-__webpack_require__(6);
 __webpack_require__(163);
+__webpack_require__(6);
+__webpack_require__(164);
 __webpack_require__(15);
-__webpack_require__(165);
+__webpack_require__(166);
 
 // /*!
 //  * jQuery UI Widget 1.12.1
@@ -43609,8 +43610,8 @@ __webpack_require__(165);
  * (c) 2018 Adam Shaw
  *--------------------------------------------------------------------*/
 __webpack_require__(7);
-__webpack_require__(168);
 __webpack_require__(169);
+__webpack_require__(170);
 
 /*--------------------------------------------------------------------
  * Select2 4.0.6-rc.1
@@ -43619,7 +43620,10 @@ __webpack_require__(169);
  * Released under the MIT license
  * https://github.com/select2/select2/blob/master/LICENSE.md
  *--------------------------------------------------------------------*/
-__webpack_require__(170);
+__webpack_require__(171);
+//require('./main/plugins/imagezoom');
+//require('./main/plugins/jquery.jqzoom-core');
+__webpack_require__(172);
 /*--------------------------------------------------------------------
  * File: jquery.flexisel.js
  * Version: 1.0.0
@@ -43630,15 +43634,15 @@ __webpack_require__(170);
  * Free to use and abuse under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  *--------------------------------------------------------------------*/
-__webpack_require__(171);
+__webpack_require__(173);
 /*--------------------------------------------------------------------
  * jQuery FlexSlider v2.7.0
  * Copyright 2012 WooThemes
  * Contributing Author: Tyler Smith
  *--------------------------------------------------------------------*/
-__webpack_require__(172);
+__webpack_require__(174);
 
-__webpack_require__(175);
+__webpack_require__(177);
 
 /*--------------------------------------------------------------------
  * ResponsiveSlides.js v1.55
@@ -43648,16 +43652,20 @@ __webpack_require__(175);
  * Copyright (c) 2011-2012 @viljamis
  * Available under the MIT license
  *--------------------------------------------------------------------*/
-__webpack_require__(176);
-
-__webpack_require__(177);
-
 __webpack_require__(178);
 
 __webpack_require__(179);
 
 __webpack_require__(180);
 
+__webpack_require__(181);
+
+__webpack_require__(182);
+
+__webpack_require__(183);
+
+__webpack_require__(184);
+__webpack_require__(185);
 jQuery(document).ready(function ($) {
 
     /* To top --> Begin */
@@ -44009,6 +44017,11 @@ jQuery(document).ready(function ($) {
 }); /* ######################### DOM READY - END ######################### */
 
 // window.Vue = require('vue');
+//
+// Vue.component('vue-cropper', require('vue-cropper'));
+//Vue.component('vv-cropper', require('./components/ImageCropper.vue'));
+
+//Vue.component('example-component', require('./components/ExampleComponent.vue'));
 //
 // /**
 //  * Next, we will create a fresh Vue application instance and attach it to
@@ -64462,6 +64475,129 @@ module.exports = function spread(callback) {
 
 /***/ }),
 /* 162 */
+/***/ (function(module, exports) {
+
+(function ($) {
+
+    $.session = {
+
+        _id: null,
+
+        _cookieCache: undefined,
+
+        _init: function _init() {
+            if (!window.name) {
+                window.name = Math.random();
+            }
+            this._id = window.name;
+            this._initCache();
+
+            // See if we've changed protcols
+
+            var matches = new RegExp(this._generatePrefix() + "=([^;]+);").exec(document.cookie);
+            if (matches && document.location.protocol !== matches[1]) {
+                this._clearSession();
+                for (var key in this._cookieCache) {
+                    try {
+                        window.sessionStorage.setItem(key, this._cookieCache[key]);
+                    } catch (e) {};
+                }
+            }
+
+            document.cookie = this._generatePrefix() + "=" + document.location.protocol + ';path=/;expires=' + new Date(new Date().getTime() + 120000).toUTCString();
+        },
+
+        _generatePrefix: function _generatePrefix() {
+            return '__session:' + this._id + ':';
+        },
+
+        _initCache: function _initCache() {
+            var cookies = document.cookie.split(';');
+            this._cookieCache = {};
+            for (var i in cookies) {
+                var kv = cookies[i].split('=');
+                if (new RegExp(this._generatePrefix() + '.+').test(kv[0]) && kv[1]) {
+                    this._cookieCache[kv[0].split(':', 3)[2]] = kv[1];
+                }
+            }
+        },
+
+        _setFallback: function _setFallback(key, value, onceOnly) {
+            var cookie = this._generatePrefix() + key + "=" + value + "; path=/";
+            if (onceOnly) {
+                cookie += "; expires=" + new Date(Date.now() + 120000).toUTCString();
+            }
+            document.cookie = cookie;
+            this._cookieCache[key] = value;
+            return this;
+        },
+
+        _getFallback: function _getFallback(key) {
+            if (!this._cookieCache) {
+                this._initCache();
+            }
+            return this._cookieCache[key];
+        },
+
+        _clearFallback: function _clearFallback() {
+            for (var i in this._cookieCache) {
+                document.cookie = this._generatePrefix() + i + '=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            }
+            this._cookieCache = {};
+        },
+
+        _deleteFallback: function _deleteFallback(key) {
+            document.cookie = this._generatePrefix() + key + '=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            delete this._cookieCache[key];
+        },
+
+        get: function get(key) {
+            return window.sessionStorage.getItem(key) || this._getFallback(key);
+        },
+
+        set: function set(key, value, onceOnly) {
+            try {
+                window.sessionStorage.setItem(key, value);
+            } catch (e) {}
+            this._setFallback(key, value, onceOnly || false);
+            return this;
+        },
+
+        'delete': function _delete(key) {
+            return this.remove(key);
+        },
+
+        remove: function remove(key) {
+            try {
+                window.sessionStorage.removeItem(key);
+            } catch (e) {};
+            this._deleteFallback(key);
+            return this;
+        },
+
+        _clearSession: function _clearSession() {
+            try {
+                window.sessionStorage.clear();
+            } catch (e) {
+                for (var i in window.sessionStorage) {
+                    window.sessionStorage.removeItem(i);
+                }
+            }
+        },
+
+        clear: function clear() {
+            this._clearSession();
+            this._clearFallback();
+            return this;
+        }
+
+    };
+
+    $.session._init();
+})(jQuery);
+
+/***/ }),
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;// This file is deprecated in 1.12.0 to be removed in 1.13
@@ -64492,7 +64628,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;// This file i
 
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -66136,7 +66272,7 @@ return $.effects;
 
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
@@ -66160,7 +66296,7 @@ return $.ui.ie = !!/msie [\w.]+/.exec( navigator.userAgent.toLowerCase() );
 
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -66188,7 +66324,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
 			__webpack_require__(1),
 			__webpack_require__(15),
-			__webpack_require__(166),
+			__webpack_require__(167),
 			__webpack_require__(3),
 			__webpack_require__(6)
 		], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
@@ -66921,7 +67057,7 @@ return $.widget( "ui.slider", $.ui.mouse, {
 
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -66975,7 +67111,7 @@ return $.ui.keyCode = {
 
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -67238,16 +67374,16 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 167;
+webpackContext.id = 168;
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 !function(e,t){ true?module.exports=t(__webpack_require__(0),__webpack_require__(7)):"function"==typeof define&&define.amd?define(["moment","fullcalendar"],t):"object"==typeof exports?t(require("moment"),require("fullcalendar")):t(e.moment,e.FullCalendar)}("undefined"!=typeof self?self:this,function(e,t){return function(e){function t(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,t),o.l=!0,o.exports}var n={};return t.m=e,t.c=n,t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=145)}({0:function(t,n){t.exports=e},1:function(e,n){e.exports=t},145:function(e,t,n){Object.defineProperty(t,"__esModule",{value:!0}),n(146);var r=n(1);r.datepickerLocale("ja","ja",{closeText:"閉じる",prevText:"&#x3C;前",nextText:"次&#x3E;",currentText:"今日",monthNames:["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],monthNamesShort:["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],dayNames:["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],dayNamesShort:["日","月","火","水","木","金","土"],dayNamesMin:["日","月","火","水","木","金","土"],weekHeader:"週",dateFormat:"yy/mm/dd",firstDay:0,isRTL:!1,showMonthAfterYear:!0,yearSuffix:"年"}),r.locale("ja",{buttonText:{month:"月",week:"週",day:"日",list:"予定リスト"},allDayText:"終日",eventLimitText:function(e){return"他 "+e+" 件"},noEventsMessage:"イベントが表示されないように"})},146:function(e,t,n){!function(e,t){t(n(0))}(0,function(e){return e.defineLocale("ja",{months:"1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月".split("_"),monthsShort:"1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月".split("_"),weekdays:"日曜日_月曜日_火曜日_水曜日_木曜日_金曜日_土曜日".split("_"),weekdaysShort:"日_月_火_水_木_金_土".split("_"),weekdaysMin:"日_月_火_水_木_金_土".split("_"),longDateFormat:{LT:"HH:mm",LTS:"HH:mm:ss",L:"YYYY/MM/DD",LL:"YYYY年M月D日",LLL:"YYYY年M月D日 HH:mm",LLLL:"YYYY年M月D日 HH:mm dddd",l:"YYYY/MM/DD",ll:"YYYY年M月D日",lll:"YYYY年M月D日 HH:mm",llll:"YYYY年M月D日 HH:mm dddd"},meridiemParse:/午前|午後/i,isPM:function(e){return"午後"===e},meridiem:function(e,t,n){return e<12?"午前":"午後"},calendar:{sameDay:"[今日] LT",nextDay:"[明日] LT",nextWeek:"[来週]dddd LT",lastDay:"[昨日] LT",lastWeek:"[前週]dddd LT",sameElse:"L"},dayOfMonthOrdinalParse:/\d{1,2}日/,ordinal:function(e,t){switch(t){case"d":case"D":case"DDD":return e+"日";default:return e}},relativeTime:{future:"%s後",past:"%s前",s:"数秒",ss:"%d秒",m:"1分",mm:"%d分",h:"1時間",hh:"%d時間",d:"1日",dd:"%d日",M:"1ヶ月",MM:"%dヶ月",y:"1年",yy:"%d年"}})})}})});
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -73590,7 +73726,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var require;var require;/*!
@@ -79446,7 +79582,124 @@ S2.define('jquery.select2',[
 
 
 /***/ }),
-/* 171 */
+/* 172 */
+/***/ (function(module, exports) {
+
+//**************************************************************
+// jQZoom allows you to realize a small magnifier window,close
+// to the image or images on your web page easily.
+//
+// jqZoom version 2.2
+// Author Doc. Ing. Renzi Marco(www.mind-projects.it)
+// First Release on Dec 05 2007
+// i'm looking for a job,pick me up!!!
+// mail: renzi.mrc@gmail.com
+//**************************************************************
+(function ($) {
+    $.fn.jqueryzoom = function (options) {
+        var settings = {
+            xzoom: 200, //zoomed width default width
+            yzoom: 200, //zoomed div default width
+            offset: 10, //zoomed div default offset
+            position: "right", //zoomed div default position,offset position is to the right of the image
+            lens: 1, //zooming lens over the image,by default is 1;
+            preload: 1,
+            zoomdiv: $(this)
+        };
+        if (options) {
+            $.extend(settings, options);
+        }
+        var noalt = '';
+        $(this).hover(function () {
+            console.log($(this).children('img').get(0));
+            var imageLeft = $(this).offset().left;
+            var imageTop = $(this).offset().top;
+            var imageWidth = $(this).children('img').get(0).offsetWidth;
+            var imageHeight = $(this).children('img').get(0).offsetHeight;
+            noalt = $(this).children("img").attr("alt");
+            var bigimage = $(this).children("img").attr("jqimg");
+            $(this).children("img").attr("alt", '');
+            if ($("div.zoomdiv").get().length == 0) {
+                //$(this).after("<div class='zoomdiv'><img class='bigimg' src='" + bigimage + "'/></div>");
+                settings.zoomdiv.append("<div class='zoomdiv'><img class='bigimg' src='" + bigimage + "'/></div>");
+                //settings.zoomdiv.append("<div class='jqZoomPup'>&nbsp;</div>");
+                $(this).append("<div class='jqZoomPup'>&nbsp;</div>");
+            }
+            if (settings.position == "right") {
+                if (imageLeft + imageWidth + settings.offset + settings.xzoom > screen.width) {
+                    leftpos = imageLeft - settings.offset - settings.xzoom;
+                } else {
+                    leftpos = imageLeft + imageWidth + settings.offset;
+                }
+            } else {
+                leftpos = imageLeft - settings.xzoom - settings.offset;
+                if (leftpos < 0) {
+                    leftpos = imageLeft + imageWidth + settings.offset;
+                }
+            }
+            $("div.zoomdiv").css({ top: imageTop, left: leftpos });
+            $("div.zoomdiv").width(settings.xzoom);
+            $("div.zoomdiv").height(settings.yzoom);
+            $("div.zoomdiv").show();
+            if (!settings.lens) {
+                $(this).css('cursor', 'crosshair');
+            }
+            $(document.body).mousemove(function (e) {
+                mouse = new MouseEvent(e);
+                /*$("div.jqZoomPup").hide();*/
+                var bigwidth = $(".bigimg").get(0).offsetWidth;
+                var bigheight = $(".bigimg").get(0).offsetHeight;
+                var scaley = 'x';
+                var scalex = 'y';
+                if (isNaN(scalex) | isNaN(scaley)) {
+                    var scalex = bigwidth / imageWidth;
+                    var scaley = bigheight / imageHeight;
+                    $("div.jqZoomPup").width(settings.xzoom / scalex);
+                    $("div.jqZoomPup").height(settings.yzoom / scaley);
+                    if (settings.lens) {
+                        $("div.jqZoomPup").css('visibility', 'visible');
+                    }
+                }
+                xpos = mouse.x - $("div.jqZoomPup").width() / 2 - imageLeft;
+                ypos = mouse.y - $("div.jqZoomPup").height() / 2 - imageTop;
+                if (settings.lens) {
+                    xpos = mouse.x - $("div.jqZoomPup").width() / 2 < imageLeft ? 0 : mouse.x + $("div.jqZoomPup").width() / 2 > imageWidth + imageLeft ? imageWidth - $("div.jqZoomPup").width() - 2 : xpos;
+                    ypos = mouse.y - $("div.jqZoomPup").height() / 2 < imageTop ? 0 : mouse.y + $("div.jqZoomPup").height() / 2 > imageHeight + imageTop ? imageHeight - $("div.jqZoomPup").height() - 2 : ypos;
+                }
+                if (settings.lens) {
+                    $("div.jqZoomPup").css({ top: ypos, left: xpos });
+                }
+                scrolly = ypos;
+                $("div.zoomdiv").get(0).scrollTop = scrolly * scaley;
+                scrollx = xpos;
+                $("div.zoomdiv").get(0).scrollLeft = scrollx * scalex;
+            });
+        }, function () {
+            $(this).children("img").attr("alt", noalt);
+            $(document.body).unbind("mousemove");
+            if (settings.lens) {
+                $("div.jqZoomPup").remove();
+            }
+            $("div.zoomdiv").remove();
+        });
+        count = 0;
+        if (settings.preload) {
+            $('body').append("<div style='display:none;' class='jqPreload" + count + "'>sdsdssdsd</div>");
+            $(this).each(function () {
+                var imagetopreload = $(this).children("img").attr("jqimg");
+                var content = jQuery('div.jqPreload' + count + '').html();
+                jQuery('div.jqPreload' + count + '').html(content + '<img src=\"' + imagetopreload + '\">');
+            });
+        }
+    };
+})(jQuery);
+function MouseEvent(e) {
+    this.x = e.pageX;
+    this.y = e.pageY;
+}
+
+/***/ }),
+/* 173 */
 /***/ (function(module, exports) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -79725,7 +79978,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 })(jQuery);
 
 /***/ }),
-/* 172 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate) {/*
@@ -80021,7 +80274,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               }
             }
 
-            // setup flags to prevent event duplication
+            //setup flags to prevent event duplication
             if (watchedEvent === "") {
               watchedEvent = event.type;
             }
@@ -80947,10 +81200,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   };
 })(jQuery);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(173).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(175).setImmediate))
 
 /***/ }),
-/* 173 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
@@ -81003,7 +81256,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(174);
+__webpack_require__(176);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -81017,7 +81270,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 174 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -81210,7 +81463,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(10)))
 
 /***/ }),
-/* 175 */
+/* 177 */
 /***/ (function(module, exports) {
 
 /**
@@ -81433,7 +81686,7 @@ $.fn.overhang = function (arguments) {
 
 
 /***/ }),
-/* 176 */
+/* 178 */
 /***/ (function(module, exports) {
 
 /*! ResponsiveSlides.js v1.55
@@ -81798,7 +82051,7 @@ $.fn.overhang = function (arguments) {
 })(jQuery, this, 0);
 
 /***/ }),
-/* 177 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -82469,7 +82722,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 }));
 
 /***/ }),
-/* 178 */
+/* 180 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -84291,7 +84544,7 @@ var config = api$1.config;
 
 
 /***/ }),
-/* 179 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -88058,7 +88311,7 @@ var config = api$1.config;
 
 
 /***/ }),
-/* 180 */
+/* 182 */
 /***/ (function(module, exports) {
 
 
@@ -88120,7 +88373,823 @@ var adjustMenu = function adjustMenu() {
 };
 
 /***/ }),
-/* 181 */
+/* 183 */
+/***/ (function(module, exports) {
+
+// VERSION: 2.3 LAST UPDATE: 11.07.2013
+/*
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
+ * Made by Wilq32, wilq32@gmail.com, Wroclaw, Poland, 01.2009
+ * Website: http://jqueryrotate.com
+ */
+
+(function ($) {
+  var supportedCSS,
+      supportedCSSOrigin,
+      styles = document.getElementsByTagName("head")[0].style,
+      toCheck = "transformProperty WebkitTransform OTransform msTransform MozTransform".split(" ");
+  for (var a = 0; a < toCheck.length; a++) {
+    if (styles[toCheck[a]] !== undefined) {
+      supportedCSS = toCheck[a];
+    }
+  }if (supportedCSS) {
+    supportedCSSOrigin = supportedCSS.replace(/[tT]ransform/, "TransformOrigin");
+    if (supportedCSSOrigin[0] == "T") supportedCSSOrigin[0] = "t";
+  }
+
+  // Bad eval to preven google closure to remove it from code o_O
+  eval('IE = "v"=="\v"');
+
+  jQuery.fn.extend({
+    rotate: function rotate(parameters) {
+      if (this.length === 0 || typeof parameters == "undefined") return;
+      if (typeof parameters == "number") parameters = { angle: parameters };
+      var returned = [];
+      for (var i = 0, i0 = this.length; i < i0; i++) {
+        var element = this.get(i);
+        if (!element.Wilq32 || !element.Wilq32.PhotoEffect) {
+
+          var paramClone = $.extend(true, {}, parameters);
+          var newRotObject = new Wilq32.PhotoEffect(element, paramClone)._rootObj;
+
+          returned.push($(newRotObject));
+        } else {
+          element.Wilq32.PhotoEffect._handleRotation(parameters);
+        }
+      }
+      return returned;
+    },
+    getRotateAngle: function getRotateAngle() {
+      var ret = [0];
+      for (var i = 0, i0 = this.length; i < i0; i++) {
+        var element = this.get(i);
+        if (element.Wilq32 && element.Wilq32.PhotoEffect) {
+          ret[i] = element.Wilq32.PhotoEffect._angle;
+        }
+      }
+      return ret;
+    },
+    stopRotate: function stopRotate() {
+      for (var i = 0, i0 = this.length; i < i0; i++) {
+        var element = this.get(i);
+        if (element.Wilq32 && element.Wilq32.PhotoEffect) {
+          clearTimeout(element.Wilq32.PhotoEffect._timer);
+        }
+      }
+    }
+  });
+
+  // Library agnostic interface
+
+  Wilq32 = window.Wilq32 || {};
+  Wilq32.PhotoEffect = function () {
+
+    if (supportedCSS) {
+      return function (img, parameters) {
+        img.Wilq32 = {
+          PhotoEffect: this
+        };
+
+        this._img = this._rootObj = this._eventObj = img;
+        this._handleRotation(parameters);
+      };
+    } else {
+      return function (img, parameters) {
+        this._img = img;
+        this._onLoadDelegate = [parameters];
+
+        this._rootObj = document.createElement('span');
+        this._rootObj.style.display = "inline-block";
+        this._rootObj.Wilq32 = {
+          PhotoEffect: this
+        };
+        img.parentNode.insertBefore(this._rootObj, img);
+
+        if (img.complete) {
+          this._Loader();
+        } else {
+          var self = this;
+          // TODO: Remove jQuery dependency
+          jQuery(this._img).bind("load", function () {
+            self._Loader();
+          });
+        }
+      };
+    }
+  }();
+
+  Wilq32.PhotoEffect.prototype = {
+    _setupParameters: function _setupParameters(parameters) {
+      this._parameters = this._parameters || {};
+      if (typeof this._angle !== "number") {
+        this._angle = 0;
+      }
+      if (typeof parameters.angle === "number") {
+        this._angle = parameters.angle;
+      }
+      this._parameters.animateTo = typeof parameters.animateTo === "number" ? parameters.animateTo : this._angle;
+
+      this._parameters.step = parameters.step || this._parameters.step || null;
+      this._parameters.easing = parameters.easing || this._parameters.easing || this._defaultEasing;
+      this._parameters.duration = 'duration' in parameters ? parameters.duration : parameters.duration || this._parameters.duration || 1000;
+      this._parameters.callback = parameters.callback || this._parameters.callback || this._emptyFunction;
+      this._parameters.center = parameters.center || this._parameters.center || ["50%", "50%"];
+      if (typeof this._parameters.center[0] == "string") {
+        this._rotationCenterX = parseInt(this._parameters.center[0], 10) / 100 * this._imgWidth * this._aspectW;
+      } else {
+        this._rotationCenterX = this._parameters.center[0];
+      }
+      if (typeof this._parameters.center[1] == "string") {
+        this._rotationCenterY = parseInt(this._parameters.center[1], 10) / 100 * this._imgHeight * this._aspectH;
+      } else {
+        this._rotationCenterY = this._parameters.center[1];
+      }
+
+      if (parameters.bind && parameters.bind != this._parameters.bind) {
+        this._BindEvents(parameters.bind);
+      }
+    },
+    _emptyFunction: function _emptyFunction() {},
+    _defaultEasing: function _defaultEasing(x, t, b, c, d) {
+      return -c * ((t = t / d - 1) * t * t * t - 1) + b;
+    },
+    _handleRotation: function _handleRotation(parameters, dontcheck) {
+      if (!supportedCSS && !this._img.complete && !dontcheck) {
+        this._onLoadDelegate.push(parameters);
+        return;
+      }
+      this._setupParameters(parameters);
+      if (this._angle == this._parameters.animateTo) {
+        this._rotate(this._angle);
+      } else {
+        this._animateStart();
+      }
+    },
+
+    _BindEvents: function _BindEvents(events) {
+      if (events && this._eventObj) {
+        // Unbinding previous Events
+        if (this._parameters.bind) {
+          var oldEvents = this._parameters.bind;
+          for (var a in oldEvents) {
+            if (oldEvents.hasOwnProperty(a))
+              // TODO: Remove jQuery dependency
+              jQuery(this._eventObj).unbind(a, oldEvents[a]);
+          }
+        }
+
+        this._parameters.bind = events;
+        for (var a in events) {
+          if (events.hasOwnProperty(a))
+            // TODO: Remove jQuery dependency
+            jQuery(this._eventObj).bind(a, events[a]);
+        }
+      }
+    },
+
+    _Loader: function () {
+      if (IE) return function () {
+        var width = this._img.width;
+        var height = this._img.height;
+        this._imgWidth = width;
+        this._imgHeight = height;
+        this._img.parentNode.removeChild(this._img);
+
+        this._vimage = this.createVMLNode('image');
+        this._vimage.src = this._img.src;
+        this._vimage.style.height = height + "px";
+        this._vimage.style.width = width + "px";
+        this._vimage.style.position = "absolute"; // FIXES IE PROBLEM - its only rendered if its on absolute position!
+        this._vimage.style.top = "0px";
+        this._vimage.style.left = "0px";
+        this._aspectW = this._aspectH = 1;
+
+        /* Group minifying a small 1px precision problem when rotating object */
+        this._container = this.createVMLNode('group');
+        this._container.style.width = width;
+        this._container.style.height = height;
+        this._container.style.position = "absolute";
+        this._container.style.top = "0px";
+        this._container.style.left = "0px";
+        this._container.setAttribute('coordsize', width - 1 + ',' + (height - 1)); // This -1, -1 trying to fix ugly problem with small displacement on IE
+        this._container.appendChild(this._vimage);
+
+        this._rootObj.appendChild(this._container);
+        this._rootObj.style.position = "relative"; // FIXES IE PROBLEM
+        this._rootObj.style.width = width + "px";
+        this._rootObj.style.height = height + "px";
+        this._rootObj.setAttribute('id', this._img.getAttribute('id'));
+        this._rootObj.className = this._img.className;
+        this._eventObj = this._rootObj;
+        var parameters;
+        while (parameters = this._onLoadDelegate.shift()) {
+          this._handleRotation(parameters, true);
+        }
+      };else return function () {
+        this._rootObj.setAttribute('id', this._img.getAttribute('id'));
+        this._rootObj.className = this._img.className;
+
+        this._imgWidth = this._img.naturalWidth;
+        this._imgHeight = this._img.naturalHeight;
+        var _widthMax = Math.sqrt(this._imgHeight * this._imgHeight + this._imgWidth * this._imgWidth);
+        this._width = _widthMax * 3;
+        this._height = _widthMax * 3;
+
+        this._aspectW = this._img.offsetWidth / this._img.naturalWidth;
+        this._aspectH = this._img.offsetHeight / this._img.naturalHeight;
+
+        this._img.parentNode.removeChild(this._img);
+
+        this._canvas = document.createElement('canvas');
+        this._canvas.setAttribute('width', this._width);
+        this._canvas.style.position = "relative";
+        this._canvas.style.left = -this._img.height * this._aspectW + "px";
+        this._canvas.style.top = -this._img.width * this._aspectH + "px";
+        this._canvas.Wilq32 = this._rootObj.Wilq32;
+
+        this._rootObj.appendChild(this._canvas);
+        this._rootObj.style.width = this._img.width * this._aspectW + "px";
+        this._rootObj.style.height = this._img.height * this._aspectH + "px";
+        this._eventObj = this._canvas;
+
+        this._cnv = this._canvas.getContext('2d');
+        var parameters;
+        while (parameters = this._onLoadDelegate.shift()) {
+          this._handleRotation(parameters, true);
+        }
+      };
+    }(),
+
+    _animateStart: function _animateStart() {
+      if (this._timer) {
+        clearTimeout(this._timer);
+      }
+      this._animateStartTime = +new Date();
+      this._animateStartAngle = this._angle;
+      this._animate();
+    },
+    _animate: function _animate() {
+      var actualTime = +new Date();
+      var checkEnd = actualTime - this._animateStartTime > this._parameters.duration;
+
+      // TODO: Bug for animatedGif for static rotation ? (to test)
+      if (checkEnd && !this._parameters.animatedGif) {
+        clearTimeout(this._timer);
+      } else {
+        if (this._canvas || this._vimage || this._img) {
+          var angle = this._parameters.easing(0, actualTime - this._animateStartTime, this._animateStartAngle, this._parameters.animateTo - this._animateStartAngle, this._parameters.duration);
+          this._rotate(~~(angle * 10) / 10);
+        }
+        if (this._parameters.step) {
+          this._parameters.step(this._angle);
+        }
+        var self = this;
+        this._timer = setTimeout(function () {
+          self._animate.call(self);
+        }, 10);
+      }
+
+      // To fix Bug that prevents using recursive function in callback I moved this function to back
+      if (this._parameters.callback && checkEnd) {
+        this._angle = this._parameters.animateTo;
+        this._rotate(this._angle);
+        this._parameters.callback.call(this._rootObj);
+      }
+    },
+
+    _rotate: function () {
+      var rad = Math.PI / 180;
+      if (IE) return function (angle) {
+        this._angle = angle;
+        this._container.style.rotation = angle % 360 + "deg";
+        this._vimage.style.top = -(this._rotationCenterY - this._imgHeight / 2) + "px";
+        this._vimage.style.left = -(this._rotationCenterX - this._imgWidth / 2) + "px";
+        this._container.style.top = this._rotationCenterY - this._imgHeight / 2 + "px";
+        this._container.style.left = this._rotationCenterX - this._imgWidth / 2 + "px";
+      };else if (supportedCSS) return function (angle) {
+        this._angle = angle;
+        this._img.style[supportedCSS] = "rotate(" + angle % 360 + "deg)";
+        this._img.style[supportedCSSOrigin] = this._parameters.center.join(" ");
+      };else return function (angle) {
+        this._angle = angle;
+        angle = angle % 360 * rad;
+        // clear canvas
+        this._canvas.width = this._width; //+this._widthAdd;
+        this._canvas.height = this._height; //+this._heightAdd;
+
+        // REMEMBER: all drawings are read from backwards.. so first function is translate, then rotate, then translate, translate..
+        this._cnv.translate(this._imgWidth * this._aspectW, this._imgHeight * this._aspectH); // at least center image on screen
+        this._cnv.translate(this._rotationCenterX, this._rotationCenterY); // we move image back to its orginal
+        this._cnv.rotate(angle); // rotate image
+        this._cnv.translate(-this._rotationCenterX, -this._rotationCenterY); // move image to its center, so we can rotate around its center
+        this._cnv.scale(this._aspectW, this._aspectH); // SCALE - if needed ;)
+        this._cnv.drawImage(this._img, 0, 0); // First - we draw image
+      };
+    }()
+  };
+
+  if (IE) {
+    Wilq32.PhotoEffect.prototype.createVMLNode = function () {
+      document.createStyleSheet().addRule(".rvml", "behavior:url(#default#VML)");
+      try {
+        !document.namespaces.rvml && document.namespaces.add("rvml", "urn:schemas-microsoft-com:vml");
+        return function (tagName) {
+          return document.createElement('<rvml:' + tagName + ' class="rvml">');
+        };
+      } catch (e) {
+        return function (tagName) {
+          return document.createElement('<' + tagName + ' xmlns="urn:schemas-microsoft.com:vml" class="rvml">');
+        };
+      }
+    }();
+  }
+})(jQuery);
+
+/***/ }),
+/* 184 */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+    /** ---------------------------------------------------------------------------------------------
+     *
+     * 图片展示及放大镜
+     *
+     * ----------------------------------------------------------------------------------------------*/
+    // $('.flexslider').flexslider({
+    //     animation: "slide",
+    //     controlNav: "thumbnails",
+    //     customDirectionNav: $(".custom-navigation a"),
+    //     initDelay:100000000000,
+    //     touch: false,
+    //     itemWidth: 400
+    //     //itemMargin: 5
+    // });
+
+    //放大镜实现js
+    $(".jqzoom").jqueryzoom({
+        xzoom: 200, //放大图的宽度(默认是 200)
+        yzoom: 200, //放大图的高度(默认是 200)
+        offset: 10, //离原图的距离(默认是 10)
+        position: "right", //放大图的定位(默认是 "right")
+        preload: 1,
+        zoomdiv: $('#zoom-zone')
+    });
+
+    //底部图片hover切换实现js
+    $('.b_container img').hover(function () {
+        $('.jqzoom img').attr('src', $(this).attr('src'));
+        $('.jqzoom img').attr('jqimg', $(this).attr('src'));
+    }, function () {
+        $.noop();
+    });
+    /** ---------------------------------------------------------------------------------------------
+     *
+     * 图片展示及放大镜
+     *
+     * ----------------------------------------------------------------------------------------------*/
+
+    /** ---------------------------------------------------------------------------------------------
+     *
+     * SKU展示
+     *
+     * ----------------------------------------------------------------------------------------------*/
+    console.log($('.add-to').length);
+    if ($('.add-to').length !== 0) {
+        $.ajax({
+            url: "/storage/data/sku" + $('.add-to').data().id, //json文件位置
+            type: "GET", //请求方式为get
+            dataType: 'json', //返回数据格式为json
+            success: function success(content) {
+                //请求成功完成后要执行的方法
+                // var key = '10_' + str;
+                // if(content[key] === undefined) {
+                //     console.log('he');
+                //     return false;
+                // }
+                // $('.stocks>span').empty().text(content[key].stocks);
+                // $('.add-to').empty().text('¥'+content[key].price);
+
+
+                //console.log(content['10_1123'].stocks);
+                var attributes = content.attributes_list;
+
+                var sku_list = content.sku_list;
+
+                console.log('Attributes', attributes);
+                console.log('SKU LIST', sku_list);
+
+                /**
+                 * 属性集
+                 * 下面一共有4个属性
+                 * 属性item1 下面有 2个属性值 分别是 10,11
+                 * （举个常见的例子 属性尺码 下有 S M L XL 4个属性值 ）
+                 */
+                var keys = {
+                    'attr1': ['10', '11'],
+                    'attr2': ['20', '21', '22', '23'],
+                    'attr3': ['30', '31', '32'],
+                    'attr4': ['40', '41']
+                };
+                //SKU，Stock Keeping Uint(库存量单位)
+                // var sku_list=[
+                //     {'attrs':'10|20|11|40','stocks':120},
+                //     {'attrs':'10|21|30|40','stocks':10},
+                //     {'attrs':'10|22|30|40','stocks':28},
+                //     {'attrs':'10|22|31|41','stocks':220},
+                //     {'attrs':'10|22|32|40','stocks':130},
+                //     {'attrs':'11|23|32|41','stocks':120},
+                // ];
+
+                /**init start */
+
+                var k, k2, _attr_id, _attr_value, attr_length;
+                var _attr, _all_ids_in;
+
+                //显示html结构
+                function show_attr_item() {
+                    var html = '';
+                    var count = 0;
+                    for (k in attributes) {
+                        html += '<div class="product-attr" > <span class="label">' + attributes[k].name + '</span>';
+                        html += '<ul>';
+                        for (k2 in attributes[k].values) {
+                            _attr_id = attributes[k].values_id[k2];
+                            _attr_value = attributes[k].values[k2];
+                            html += '<li class="text" val="' + _attr_id + '" >';
+                            html += '<span>' + _attr_value + '</span>';
+                            html += '<s></s>';
+                            html += '</li>';
+                        }
+                        html += '</ul>';
+                        html += '</div>';
+                        count++;
+                    }
+                    attr_length = count;
+                    $('#panel-sel').html(html);
+                }
+
+                //显示数据
+                function show_data(sku_list) {
+                    var str = "";
+                    for (k in sku_list) {
+                        str += sku_list[k]['attrs']['sku'] + "\t" + sku_list[k]['stocks'] + "\n";
+                    }
+                    $('#panel_sku_list pre').html(str);
+                }
+
+                show_data(sku_list);
+                console.log('HELLOOOOOOOOO');
+                show_attr_item();
+
+                /**init end */
+
+                //获取所有包含指定节点的路线
+                function filterProduct(ids) {
+                    var result = [];
+                    $(sku_list).each(function (k, v) {
+                        console.log('SKU LIST V:', v);
+                        _attr = '|' + v['attrs']['sku'] + '|';
+                        _all_ids_in = true;
+                        for (k in ids) {
+                            if (_attr.indexOf('|' + ids[k] + '|') == -1) {
+                                _all_ids_in = false;
+                                break;
+                            }
+                        }
+                        if (_all_ids_in) {
+                            result.push(v);
+                        }
+                    });
+                    console.log("RESULT:", result);
+                    return result;
+                }
+
+                //获取 经过已选节点 所有线路上的全部节点
+                // 根据已经选择得属性值，得到余下还能选择的属性值
+                function filterAttrs(ids) {
+                    var products = filterProduct(ids);
+                    //console.log(products);
+                    var result = [];
+                    $(products).each(function (k, v) {
+                        result = result.concat(v['attrs']['sku'].split('|'));
+                    });
+                    return result;
+                }
+
+                //已选择的节点数组
+                function _getSelAttrId() {
+
+                    var list = [];
+                    $('.product-attr li.sel').each(function () {
+                        list.push($(this).attr('val'));
+                        console.log(list);
+                    });
+                    return list;
+                }
+
+                $('.product-attr li').on('click', function () {
+                    if ($(this).hasClass('b')) {
+                        return; //被锁定了
+                    }
+                    if ($(this).hasClass('sel')) {
+                        $(this).removeClass('sel');
+                        $(this).find('i[class="sel"]').remove();
+                    } else {
+                        $(this).siblings().removeClass('sel');
+                        $(this).siblings().find('i[class="sel"]').remove();
+                        $(this).addClass('sel');
+                        $(this).append($('<i class="sel"></i>'));
+                    }
+                    var select_ids = _getSelAttrId();
+
+                    //已经选择了的规格
+                    var $_sel_product_attr = $('li.sel').parents('.product-attr');
+
+                    // step 1
+                    var all_ids = filterAttrs(select_ids);
+                    //console.log(all_ids);
+
+                    //获取未选择的
+                    var $other_notsel_attr = $('.product-attr').not($_sel_product_attr);
+
+                    //设置为选择属性中的不可选节点
+                    $other_notsel_attr.each(function () {
+                        set_block($(this), all_ids);
+                    });
+
+                    //step 2
+                    //设置已选节点的同级节点是否可选
+                    var count = 0;
+                    var sel_key = [];
+                    $_sel_product_attr.each(function () {
+                        // console.log('-------------------------');
+                        // console.log(update_2($(this))[0]);
+                        // console.log('-------------------------')
+                        sel_key = update_2($(this)); //.push(update_2($(this))[0]);
+                        // console.log(sel_key);
+                        count++;
+                        console.log("COUNT:", count);
+
+                        console.log('attr_length=', attr_length);
+                        if (count === parseInt(attr_length)) {
+                            console.log('All selected!');
+                            //console.log(test);
+                            var str_key = sel_key.join('|');
+                            console.log(str_key);
+
+                            // var sku;
+                            $.each(sku_list, function (key, sku) {
+                                //console.log('SEL PRODUCT ATTR-SKU:',sku);
+                                // $.each(sku,function(name, value){
+                                //     if(name === 'attrs' && value === str) {
+                                if (sku.attrs.sku === str_key) {
+                                    $('.stocks>span').empty().text(sku.attrs.stocks);
+                                    $('.add-to').empty().text('¥' + sku.attrs.price);
+                                }
+                                //     }
+                                // });
+                            });
+                            //console.log($.inArray({"attrs":test.join('|')}, sku_list));
+                        } else {
+                            $('.add-to').empty().text($('.add-to-backup').text());
+                            $('.stocks>span').empty().text($('.stocks-backup').text());
+                        }
+                    });
+                });
+
+                function update_2($product_attr) {
+                    // 若该属性值 $li 是未选中状态的话，设置同级的其他属性是否可选
+                    var select_ids = _getSelAttrId();
+                    console.log('-------------------------');
+                    console.log('      select_ids');
+                    console.log('-------------------------');
+                    console.log(select_ids);
+                    console.log('-------------------------');
+
+                    var $li = $product_attr.find('li.sel');
+
+                    var select_ids2 = del_array_val(select_ids, $li.attr('val'));
+                    //console.log(select_ids2);
+                    console.log('-------------------------');
+                    console.log('      select_ids2');
+                    console.log('-------------------------');
+                    console.log(select_ids2);
+                    console.log('-------------------------');
+
+                    var all_ids = filterAttrs(select_ids2);
+                    //console.log(all_ids);
+
+                    set_block($product_attr, all_ids);
+
+                    return select_ids2;
+                }
+
+                function set_block($product_attr, all_ids) {
+
+                    //根据 $product-attr下的所有节点是否在可选节点中（all_ids） 来设置可选状态
+                    $product_attr.find('li').each(function (k2, li2) {
+
+                        if ($.inArray($(li2).attr('val'), all_ids) == -1) {
+                            $(li2).addClass('b');
+                        } else {
+                            $(li2).removeClass('b');
+                        }
+                    });
+                }
+
+                function del_array_val(arr, val) {
+                    //去除 数组 arr中的 val ，返回一个新数组
+                    var a = [];
+                    console.log('-------------------------');
+                    console.log('      arr');
+                    console.log('-------------------------');
+                    console.log(arr);
+                    console.log('-------------------------');
+                    var ak;
+                    for (ak in arr) {
+                        if (arr[ak] !== val || ak <= 0) {
+                            a.push(arr[ak]);
+                        }
+                    }
+                    return a;
+                }
+
+                $('.product-attr li')[0].click();
+
+                return false;
+            } // end ajax request success
+        }); //end ajax
+    }
+    /** ----------------------------------------------------------------------------------------------
+     *
+     * SKU展示
+     *
+     * ----------------------------------------------------------------------------------------------*/
+});
+
+/***/ }),
+/* 185 */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+    /**----------------------------------
+     *
+     *       商品分类管理
+     *
+     *-----------------------------------*/
+
+    //  添加二级分类
+
+
+    var elRow = $($('.categories>.row')[0]).clone();
+    var inputTopCat = elRow.find('.top-category>form>div>.input-group>input');
+
+    $('.categories').on('click', '.add-sub-category', function () {
+        var addFlag = true;
+        console.log($(this).data().pid);
+        var pId = $(this).data().pid;
+        var formId = '#sub-category-' + pId; //$(this).data().pid;
+        var elForm = $(formId);
+        var elDiv = elForm.find('div[class="form-group"]');
+
+        console.log(elDiv);
+        elDiv.each(function () {
+            if ($.trim($(this).find('input').val()) === '') {
+                addFlag = false;
+                return false;
+            }
+        });
+        if (!addFlag) return false;
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "/admin/product/categories/create",
+            method: "POST",
+            data: { 'parent_id': pId },
+            dataType: 'json',
+            success: function success(response) {
+                console.log(response);
+                if (response.status === 'success') {
+                    var el = $('#tmp-category').clone();
+                    el.show();
+                    el.find('input').val('').attr({ 'data-id': response.id, 'data-pid': pId, 'id': 'input-category-' + response.id, 'class': 'form-control input-category' });
+                    el.appendTo(elForm);
+                    el.find('input').focus();
+
+                    $(window).bind('beforeunload', function () {
+                        return false;
+                    });
+                }
+            },
+            error: function error() {
+                console.log('Add category error');
+            }
+        });
+
+        //console.log(elDiv[0]);
+    }).on('click', '.add-top-category', function () {
+        // 添加一级分类
+
+        //console.log(elRow.find('.sub-category>form:first'));
+        var elTmpSub = $(elRow.find('.sub-category>form').children('.form-group')[0]);
+
+        // console.log();
+        //elTmpSub.find('.input-group>input').val('');
+        elRow.find('.sub-category>form').empty(); //.prepend(elTmpSub);
+
+        inputTopCat.val('').attr('data-id', '');
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "/admin/product/categories/create",
+            method: "POST",
+            data: { 'name': inputTopCat.val(), 'parent_id': 0 },
+            //processData: false,
+            //contentType: false,
+            dataType: 'json',
+            success: function success(response) {
+                console.log(response);
+                if (response.status === 'success') {
+                    inputTopCat.attr({ 'data-id': response.id, 'id': 'input-category-' + response.id });
+                    elRow.attr('class', 'row row-' + response.id);
+                    elRow.find('div.sub-category>form').attr('id', 'sub-category-' + response.id);
+                    elRow.find('div.sub-category>button.add-sub-category').attr('data-pid', response.id);
+                    $('#op-row').before(elRow);
+                    $(window).bind('beforeunload', function () {
+                        return false;
+                    });
+                }
+            },
+            error: function error() {
+                console.log('Upload error');
+            }
+        });
+    }).on('blur', '.input-category', function () {
+        //更新一级分类
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "/admin/product/categories/update",
+            method: "POST",
+            data: { 'name': $(this).val(), 'id': $(this).data().id },
+            dataType: 'json',
+            success: function success(response) {
+                console.log(response);
+                $(window).unbind('beforeunload');
+            },
+            error: function error() {
+                console.log('Update error');
+            }
+        });
+    }).on('click', '.del-category', function () {
+        //删除分类
+        var type = $(this).data().type;
+
+        var id = $(this).prev().data().id;
+        var $obj = $(this);
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "/admin/product/categories/delete",
+            method: "POST",
+            data: { 'id': id, 'type': type },
+            dataType: 'json',
+            beforeSend: function beforeSend() {
+                $obj.empty().append($('<img src="/images/loading.gif" />'));
+            },
+            success: function success(response) {
+                console.log(response);
+                $obj.empty().append($('<i class="fas fa-minus"></i>'));
+                if (response.status === 'success') {
+                    if (type === 'top') {
+                        $('.row-' + id).remove();
+                    } else {
+                        $obj.parent().parent().remove();
+                    }
+                }
+                //$(window).unbind('beforeunload');
+            },
+            error: function error() {
+                console.log('Update error');
+            }
+        });
+    });
+
+    /**----------------------------------
+     *
+     *       商品分类管理
+     *
+     *-----------------------------------*/
+});
+
+/***/ }),
+/* 186 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
