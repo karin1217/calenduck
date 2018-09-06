@@ -165,16 +165,24 @@
             margin: 0 auto;
         }
 
-        .product-attr .input-group {
+
+
+
+        .product-amount{ overflow:hidden;}
+        .product-amount .label {font: 1.0em '宋体';color: #747272;width: 50px;;padding-right: 10px;float: left; display:block;}
+        .product-amount ul {float:left;width:300px;}
+        .product-amount li{color:#747272;overflow:hidden;position:relative;float:left;text-align:center; vertical-align:middle; border:1px solid #747272;text-indent:0; cursor:pointer}
+        .product-amount .input-group {
             width: 150px;
         }
-        .product-attr .input-group-addon {
+        .product-amount .input-group-addon {
             height: 24px;
             border: 1px solid #747272;
             border-radius: 0;
             padding: 3px 9px;
+            cursor: pointer;
         }
-        .product-attr input {
+        .product-amount input {
             height: 24px;
             border-top: 1px solid #747272;
             border-bottom: 1px solid #747272;
@@ -243,7 +251,7 @@
                             <h6>选择规格 :</h6>
                             <ul class="select-sku">
                                 <div id="panel-sel"></div>
-                                <div class="product-attr"> <span class="label">数量</span>
+                                <div class="product-amount"> <span class="label">数量</span>
                                     {{--<ul><li class="text" val="21"><span>短款</span><s></s></li></ul>--}}
                                     <div class="input-group">
 

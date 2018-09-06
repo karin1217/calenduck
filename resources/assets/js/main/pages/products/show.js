@@ -1,4 +1,10 @@
 $(document).ready(function () {
+
+    // 初始化购买数量的值
+    var initVal = ($('#amount').val()==='') ? 0 : parseInt($('#amount').val());
+    // 最大库存量
+    var maxStocks = parseInt($('.stocks span').text());
+    console.log('MAX STOCKS');
     /** ---------------------------------------------------------------------------------------------
      *
      * 图片展示及放大镜
@@ -44,6 +50,7 @@ $(document).ready(function () {
      *
      * ----------------------------------------------------------------------------------------------*/
     console.log($('.add-to').length);
+    var isAllSelected = false;
     if($('.add-to').length !== 0) {
         $.ajax({
             url: "/storage/data/sku" + $('.add-to').data().id,//json文件位置
@@ -105,7 +112,7 @@ $(document).ready(function () {
                         for (k2 in attributes[k].values) {
                             _attr_id = attributes[k].values_id[k2];
                             _attr_value = attributes[k].values[k2];
-                            html += '<li class="text" val="' + _attr_id + '" >';
+                            html += '<li class="text items" val="' + _attr_id + '" >';
                             html += '<span>' + _attr_value + '</span>';
                             html += '<s></s>';
                             html += '</li>'
@@ -128,7 +135,6 @@ $(document).ready(function () {
                 }
 
                 show_data(sku_list);
-                console.log('HELLOOOOOOOOO');
                 show_attr_item();
 
 
@@ -138,7 +144,7 @@ $(document).ready(function () {
                 function filterProduct(ids) {
                     var result = [];
                     $(sku_list).each(function (k, v) {
-                        console.log('SKU LIST V:', v);
+                        // console.log('SKU LIST V:', v);
                         _attr = '|' + v['attrs']['sku'] + '|';
                         _all_ids_in = true;
                         for (k in ids) {
@@ -152,7 +158,7 @@ $(document).ready(function () {
                         }
 
                     });
-                    console.log("RESULT:",result);
+                    // console.log("RESULT:",result);
                     return result;
                 }
 
@@ -180,7 +186,20 @@ $(document).ready(function () {
                     return list;
                 }
 
+
+
                 $('.product-attr li').on('click', function () {
+                    $('#amount').val(0);
+                    initVal = 0;
+                    $('#dataNums').show().rollNumDaq({
+                        digit: 1,
+                        deVal: 0,
+                        isInit: true
+                    });
+                    $('#amount').val('');
+
+
+
                     if ($(this).hasClass('b')) {
                         return;//被锁定了
                     }
@@ -228,6 +247,7 @@ $(document).ready(function () {
                         console.log('attr_length=', attr_length);
                         if (count === parseInt(attr_length)) {
                             console.log('All selected!');
+                            isAllSelected = true;
                             //console.log(test);
                             var str_key = sel_key.join('|');
                             console.log(str_key);
@@ -239,6 +259,7 @@ $(document).ready(function () {
                                 //     if(name === 'attrs' && value === str) {
                                 if (sku.attrs.sku === str_key) {
                                     $('.stocks>span').empty().text(sku.attrs.stocks);
+                                    maxStocks = sku.attrs.stocks;
                                     $('.add-to').empty().text('¥' + sku.attrs.price);
                                 }
                                 //     }
@@ -256,21 +277,21 @@ $(document).ready(function () {
                 function update_2($product_attr) {
                     // 若该属性值 $li 是未选中状态的话，设置同级的其他属性是否可选
                     var select_ids = _getSelAttrId();
-                    console.log('-------------------------');
-                    console.log('      select_ids');
-                    console.log('-------------------------');
-                    console.log(select_ids);
-                    console.log('-------------------------');
+                    // console.log('-------------------------');
+                    // console.log('      select_ids');
+                    // console.log('-------------------------');
+                    // console.log(select_ids);
+                    // console.log('-------------------------');
 
                     var $li = $product_attr.find('li.sel');
 
                     var select_ids2 = del_array_val(select_ids, $li.attr('val'));
-                    //console.log(select_ids2);
-                    console.log('-------------------------');
-                    console.log('      select_ids2');
-                    console.log('-------------------------');
-                    console.log(select_ids2);
-                    console.log('-------------------------');
+                    ////console.log(select_ids2);
+                    // console.log('-------------------------');
+                    // console.log('      select_ids2');
+                    // console.log('-------------------------');
+                    // console.log(select_ids2);
+                    // console.log('-------------------------');
 
                     var all_ids = filterAttrs(select_ids2);
                     //console.log(all_ids);
@@ -298,11 +319,11 @@ $(document).ready(function () {
                 function del_array_val(arr, val) {
                     //去除 数组 arr中的 val ，返回一个新数组
                     var a = [];
-                    console.log('-------------------------');
-                    console.log('      arr');
-                    console.log('-------------------------');
-                    console.log(arr);
-                    console.log('-------------------------');
+                    // console.log('-------------------------');
+                    // console.log('      arr');
+                    // console.log('-------------------------');
+                    // console.log(arr);
+                    // console.log('-------------------------');
                     var ak;
                     for (ak in arr) {
                         if (arr[ak] !== val || ak <= 0) {
@@ -324,4 +345,129 @@ $(document).ready(function () {
      * SKU展示
      *
      * ----------------------------------------------------------------------------------------------*/
+
+    /** -----------------------------------------------------------------------------------------------
+     *
+     * SKU 选择
+     *
+     * -----------------------------------------------------------------------------------------------*/
+    var defaults = {
+        deVal: 0,       //传入值
+        className:'dataNums',   //样式名称
+        digit:3,    //默认显示几位数字
+        isInit: true
+    };
+    function rollNumDaq(obj, options){
+        this.obj = obj;
+        this.options = $.extend(defaults, options);
+        console.log('OPTIONS',this.options);
+        this.init = function(){
+            console.log('rollNumDaq INIT');
+            this.initHtml(obj,defaults);
+        }
+    }
+    rollNumDaq.prototype = {
+        initHtml: function(obj,options){
+            var strHtml = '<ul class="' + options.className + ' inrow">';
+            var valLen = options.digit ||  (options.deVal + '').length;
+            //if(obj.find('.'+options.className).length <= 0){
+            if(options.isInit || options.deVal <= 1) {
+                for(var i = 0; i<  valLen; i++){
+                    strHtml += '<li class="dataOne "><div class="dataBoc"><div class="tt" t="38"><span class="num0">0</span> <span class="num1">1</span> <span class="num2">2</span> <span class="num3">3</span> <span class="num4">4</span><span class="num5">5</span> <span class="num6">6</span> <span class="num7">7</span> <span class="num8">8</span> <span class="num9">9</span><span class="num0">0</span> <span class="num1">1</span> <span class="num2">2</span> <span class="num3">3</span> <span class="num4">4</span><span class="num5">5</span> <span class="num6">6</span> <span class="num7">7</span> <span class="num8">8</span> <span class="num9">9</span></div></div></li>';
+                }
+                strHtml += '</ul>';
+                obj.html(strHtml);
+            }
+
+            this.scroNum(options);
+
+        },
+        scroNum: function(options){
+            $('#amount').val('');
+            var number = options.deVal;
+            var $num_item = $('.' + options.className).find('.tt');
+            var h = $('.dataBoc').height();
+            $num_item.css('transition','all .2s ease-in-out');
+            var numberStr = number.toString();
+            if(numberStr.length <= $num_item.length - 1){
+                var tempStr = '';
+                for(var a = 0; a < $num_item.length - numberStr.length; a++){
+                    tempStr += '0';
+                }
+                numberStr = tempStr + numberStr;
+            }
+
+            var numberArr = numberStr.split('');
+            $num_item.each(function(i, item) {
+                setTimeout(function(){
+                    $num_item.eq(i).css('top',-parseInt(numberArr[i])*h - h*10 + 'px');
+                },i*100)
+            });
+        }
+    }
+
+
+
+
+    $.fn.rollNumDaq = function(options){
+        var $that = this;
+        var rollNumObj = new rollNumDaq($that, options);
+        rollNumObj.init();
+    };
+
+
+
+
+
+    $("#decrement-amount").click(function(){
+        var oldLen = initVal.toString().length;
+        if( parseInt(initVal) <= 0)
+            return;
+        initVal -= 1;
+        var newLen = initVal.toString().length;
+        $("#dataNums").rollNumDaq({
+            digit: initVal.toString().length,
+            deVal: initVal,
+            isInit: newLen < oldLen
+        });
+
+    });
+    $("#increment-amount").click(function(){
+        var oldLen = initVal.toString().length;
+        if( parseInt(initVal) >= maxStocks)
+            return;
+        initVal += 1;
+        var newLen = initVal.toString().length;
+        $("#dataNums").rollNumDaq({
+            digit: initVal.toString().length,
+            deVal: initVal,
+            isInit: newLen > oldLen
+        });
+
+        if( parseInt($('.product-attr').length) === parseInt($('.items.sel').length)) {
+            console.log('IS ALL SELECTED');
+        }
+
+    });
+
+
+
+    $('#amount').on('click',function(){
+        $(this).val(initVal);
+        $('#dataNums').hide();
+    }).on('blur',function(){
+        initVal = parseInt($(this).val());
+        $('#dataNums').show().rollNumDaq({
+            digit: initVal.toString().length,
+            deVal: initVal,
+            isInit: true
+        });
+    });
+
+    /** -----------------------------------------------------------------------------------------------
+     *
+     * SKU 选择
+     *
+     * -----------------------------------------------------------------------------------------------*/
+
 });

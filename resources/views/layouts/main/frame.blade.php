@@ -1743,104 +1743,25 @@
 
 
 
-        var defaults = {
-            deVal: 0,       //传入值
-            className:'dataNums',   //样式名称
-            digit:3,    //默认显示几位数字
-            isInit: true
-        };
-        function rollNumDaq(obj, options){
-            this.obj = obj;
-            this.options = $.extend(defaults, options);
-            console.log('OPTIONS',this.options);
-            this.init = function(){
-                console.log('rollNumDaq INIT');
-                this.initHtml(obj,defaults);
-            }
-        }
-        rollNumDaq.prototype = {
-            initHtml: function(obj,options){
-                $('#amount').css('color',"#FFF");
-                var strHtml = '<ul class="' + options.className + ' inrow">';
-                var valLen = options.digit ||  (options.deVal + '').length;
-                //if(obj.find('.'+options.className).length <= 0){
-                if(options.isInit || options.deVal <= 1) {
-                    for(var i = 0; i<  valLen; i++){
-                        strHtml += '<li class="dataOne "><div class="dataBoc"><div class="tt" t="38"><span class="num0">0</span> <span class="num1">1</span> <span class="num2">2</span> <span class="num3">3</span> <span class="num4">4</span><span class="num5">5</span> <span class="num6">6</span> <span class="num7">7</span> <span class="num8">8</span> <span class="num9">9</span><span class="num0">0</span> <span class="num1">1</span> <span class="num2">2</span> <span class="num3">3</span> <span class="num4">4</span><span class="num5">5</span> <span class="num6">6</span> <span class="num7">7</span> <span class="num8">8</span> <span class="num9">9</span></div></div></li>';
-                    }
-                    strHtml += '</ul>';
-                    obj.html(strHtml);
-                }
 
-                this.scroNum(options);
+        //console.log('LI', $('.items'));
 
-            },
-            scroNum: function(options){
-                var number = options.deVal;
-                var $num_item = $('.' + options.className).find('.tt');
-                var h = $('.dataBoc').height();
-                $num_item.css('transition','all .2s ease-in-out');
-                var numberStr = number.toString();
-                if(numberStr.length <= $num_item.length - 1){
-                    var tempStr = '';
-                    for(var a = 0; a < $num_item.length - numberStr.length; a++){
-                        tempStr += '0';
-                    }
-                    numberStr = tempStr + numberStr;
-                }
-
-                var numberArr = numberStr.split('');
-                $num_item.each(function(i, item) {
-                    setTimeout(function(){
-                        $num_item.eq(i).css('top',-parseInt(numberArr[i])*h - h*10 + 'px');
-                    },i*100)
-                });
-            }
-        }
+        // $('.product-attr li').on('mousemove', function () {
+        //
+        //     console.log("ATTR CLICKED");
+        //     $('#amount').val(0);
+        //     $('#dataNums').show().rollNumDaq({
+        //         digit: 1,
+        //         deVal: 0,
+        //         isInit: true
+        //     });
+        //     $('#amount').val('');
+        //     initVal = 0;
+        //
+        // });
 
 
 
-
-        $.fn.rollNumDaq = function(options){
-            var $that = this;
-            var rollNumObj = new rollNumDaq($that, options);
-            rollNumObj.init();
-        };
-
-        var initVal = 0;
-
-
-
-        $("#decrement-amount").click(function(){
-            var oldLen = initVal.toString().length;
-            initVal -= 1;
-            var newLen = initVal.toString().length;
-            //console.log(initVal.toString().length);
-            $("#dataNums").rollNumDaq({
-                digit: initVal.toString().length,
-                deVal: initVal,
-                isInit: newLen < oldLen
-            });
-            $('#amount').val(initVal);
-
-        });
-        //$("#"+obj.attr('id')+"r").click(function(){
-        $("#increment-amount").click(function(){
-            var oldLen = initVal.toString().length;
-            initVal += 1;
-            var newLen = initVal.toString().length;
-            //console.log(initVal.toString().length);
-            $("#dataNums").rollNumDaq({
-                digit: initVal.toString().length,
-                deVal: initVal,
-                isInit: newLen > oldLen
-            });
-            $('#amount').val(initVal);
-            // $("#dataNums").initHtml({digit: initVal.toString().length}).rollNumDaq({
-            //     deVal: initVal
-            //
-            // });
-        });
 
 
     }); // End of document ready
